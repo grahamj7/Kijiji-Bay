@@ -26,46 +26,55 @@
       <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="0" selection-start="2541" selection-end="2541" vertical-scroll-proportion="0.91099477" vertical-offset="519" max-vertical-offset="6375">
+            <state line="40" column="93" selection-start="1876" selection-end="1876" vertical-scroll-proportion="0.46596858" vertical-offset="77" max-vertical-offset="5882">
               <folding>
-                <element signature="n#style#0;n#span#0;n#a#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#a#0;n#li#2;n#ul#0;n#div#1;n#div#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="tag#head#0;tag#html#0" expanded="false" />
+                <element signature="n#style#0;n#span#0;n#a#0;n#li#1;n#ul#0;n#div#1;n#div#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test.html">
+      <file leaf-file-name="myKijijiBay.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/myKijijiBay.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="6" selection-start="1586" selection-end="1586" vertical-scroll-proportion="-13.384615" vertical-offset="77" max-vertical-offset="13753">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="master.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/master.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="0" selection-start="83943" selection-end="83943" vertical-scroll-proportion="-0.68" vertical-offset="0" max-vertical-offset="119">
+            <state line="31" column="0" selection-start="1541" selection-end="1541" vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="238">
               <folding>
-                <element signature="e#38466#39743#2" expanded="true" />
-                <element signature="e#40556#40889#2" expanded="true" />
-                <element signature="e#41016#41341#2" expanded="true" />
-                <element signature="e#41414#42083#2" expanded="true" />
-                <element signature="e#42182#42395#2" expanded="true" />
-                <element signature="e#42458#42667#1" expanded="true" />
-                <element signature="e#42751#43608#2" expanded="true" />
+                <element signature="tag#head#0;tag#html#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.js">
+      <file leaf-file-name="signIn.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/signIn.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="0" selection-start="40" selection-end="40" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="187">
-              <folding />
+            <state line="31" column="0" selection-start="1541" selection-end="1541" vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="238">
+              <folding>
+                <element signature="tag#head#0;tag#html#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="register.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/register.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="31" column="0" selection-start="1541" selection-end="1541" vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="238">
+              <folding>
+                <element signature="tag#head#0;tag#html#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="selectCategory.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/selectCategory.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="31" column="0" selection-start="1541" selection-end="1541" vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="238">
+              <folding>
+                <element signature="tag#head#0;tag#html#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -85,6 +94,10 @@
         <option value="$PROJECT_DIR$/categories.css" />
         <option value="$PROJECT_DIR$/master.css" />
         <option value="$PROJECT_DIR$/test.html" />
+        <option value="$PROJECT_DIR$/myKijijiBay.html" />
+        <option value="$PROJECT_DIR$/signIn.html" />
+        <option value="$PROJECT_DIR$/register.html" />
+        <option value="$PROJECT_DIR$/selectCategory.html" />
         <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
@@ -121,7 +134,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -136,19 +148,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="350Project" />
+              <option name="myItemId" value="Kijiji-Bay" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager">
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -159,23 +181,15 @@
       <option name="showConsoleOnStdOut" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
       <setting name="configLocationType" value="CONFIG_FILE" />
       <setting name="settingsFile" value="" />
       <setting name="serverType" value="INTERNAL" />
       <setting name="preferredDebugBrowser" value="CHROME" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
@@ -197,7 +211,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1040" height="576" extended-state="6" />
+    <frame x="-8" y="-8" width="1040" height="576" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -238,10 +252,41 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="0" selection-start="2541" selection-end="2541" vertical-scroll-proportion="0.0" vertical-offset="519" max-vertical-offset="6375">
+          <folding>
+            <element signature="tag#head#0;tag#html#0" expanded="false" />
+            <element signature="n#style#0;n#span#0;n#a#0;n#li#1;n#ul#0;n#div#1;n#div#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="6" selection-start="1586" selection-end="1586" vertical-scroll-proportion="0.0" vertical-offset="77" max-vertical-offset="13753">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/master.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="83943" selection-end="83943" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="119">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="0" selection-start="40" selection-end="40" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="187">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
         <state line="33" column="16" selection-start="1568" selection-end="1568" vertical-scroll-proportion="0.0" vertical-offset="247" max-vertical-offset="765">
           <folding>
-            <element signature="n#style#0;n#span#0;n#a#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#a#0;n#li#2;n#ul#0;n#div#1;n#div#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="tag#head#0;tag#html#0" expanded="false" />
+            <element signature="n#style#0;n#span#0;n#a#0;n#li#1;n#ul#0;n#div#1;n#div#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -274,16 +319,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/master.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="83943" selection-end="83943" vertical-scroll-proportion="-0.68" vertical-offset="0" max-vertical-offset="119">
-          <folding>
-            <element signature="e#38466#39743#2" expanded="true" />
-            <element signature="e#40556#40889#2" expanded="true" />
-            <element signature="e#41016#41341#2" expanded="true" />
-            <element signature="e#41414#42083#2" expanded="true" />
-            <element signature="e#42182#42395#2" expanded="true" />
-            <element signature="e#42458#42667#1" expanded="true" />
-            <element signature="e#42751#43608#2" expanded="true" />
-          </folding>
+        <state line="1" column="0" selection-start="83943" selection-end="83943" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="119">
+          <folding />
         </state>
       </provider>
     </entry>
@@ -294,17 +331,53 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="6" selection-start="1586" selection-end="1586" vertical-scroll-proportion="-13.384615" vertical-offset="77" max-vertical-offset="13753">
+        <state line="25" column="6" selection-start="1586" selection-end="1586" vertical-scroll-proportion="0.0" vertical-offset="77" max-vertical-offset="13753">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/selectCategory.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="0" selection-start="1541" selection-end="1541" vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="238">
+          <folding>
+            <element signature="tag#head#0;tag#html#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="0" selection-start="1541" selection-end="1541" vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="238">
+          <folding>
+            <element signature="tag#head#0;tag#html#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/signIn.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="0" selection-start="1541" selection-end="1541" vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="238">
+          <folding>
+            <element signature="tag#head#0;tag#html#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myKijijiBay.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="0" selection-start="1541" selection-end="1541" vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="238">
+          <folding>
+            <element signature="tag#head#0;tag#html#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="0" selection-start="2541" selection-end="2541" vertical-scroll-proportion="0.91099477" vertical-offset="519" max-vertical-offset="6375">
+        <state line="40" column="93" selection-start="1876" selection-end="1876" vertical-scroll-proportion="0.46596858" vertical-offset="77" max-vertical-offset="5882">
           <folding>
-            <element signature="n#style#0;n#span#0;n#a#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#a#0;n#li#2;n#ul#0;n#div#1;n#div#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="tag#head#0;tag#html#0" expanded="false" />
+            <element signature="n#style#0;n#span#0;n#a#0;n#li#1;n#ul#0;n#div#1;n#div#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
