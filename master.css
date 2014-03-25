@@ -92,6 +92,7 @@ input,textarea{outline-width:0;}
 .fr #CarProofContent .buy-report{background:url('http://pic.classistatic.com/image/site/ca/autos/CarProof-Buy-CarProof-Report-FR.jpg');width:227px;}
 #CarProofContent .request-report{background:url('http://pic.classistatic.com/image/site/ca/autos/CarProof-Ask-for-it.gif');width:111px;}
 .fr #CarProofContent .request-report{background:url('http://pic.classistatic.com/image/site/ca/autos/CarProof-Ask-for-it-FR.jpg');width:121px;}
+
 #LayoutFooter{background:#f2f2f2;border-top:solid 1px #ccc;clear:both;margin-top:20px;}
 #LayoutFooter footer{margin:0 auto;overflow:auto;padding:20px 0;width:960px;}
 #LayoutFooter .footer-top{border-bottom:solid 1px #ccc;overflow:auto;padding-bottom:18px;}
@@ -105,21 +106,9 @@ input,textarea{outline-width:0;}
 #LayoutFooter .footer-title{font:11px/14px Arial,Verdana,sans-serif;color:#333;font-weight:bold;margin-bottom:8px;}
 #LayoutFooter .copyright p{font:12px/15px Arial,Verdana,sans-serif;color:#999;margin:0;}
 #LayoutFooter .copyright p.fine-print{font:8px/10px Arial,Verdana,sans-serif;}
-#FooterBottom{border-top:solid 1px #fff;overflow:auto;padding:15px 0 30px;}
-#FooterBottom a{font:11px/14px Arial,Verdana,sans-serif;color:#666;text-decoration:none;}
-#FooterBottom a:hover{color:#ec7d1b;}
-#FooterBottom .link{background:transparent url("../img/sprite.png") no-repeat 0 0;display:block;float:left;height:40px;margin-right:9px;}
-#FooterBottom .linkLabel{padding-top:12px;display:block;}
-#FooterBottom .lnk-apple{width:115px;background-position:-329px 0;}
-#FooterBottom .lnk-google{width:115px;background-position:-444px 0;}
-#FooterBottom .lnk-rss{width:40px;background-position:-439px -80px;}
-#FooterBottom .lnk-facebook{width:40px;background-position:-479px -80px;}
-#FooterBottom .lnk-youtube{width:40px;background-position:-519px -80px;}
-.fr #FooterBottom .lnk-apple{background-position:-329px -40px;}
-.fr #FooterBottom .lnk-google{background-position:-444px -40px;}
-#CountriesList{font:12px/15px Arial,Verdana,sans-serif;background:#fff;border-top:solid 1px #ccc;clear:both;color:#000;line-height:15px;list-style:none;margin:0;overflow:hidden;padding:15px 10px 0;}
-#CountriesList li{float:left;margin-right:8px;}
-#CountriesList a{color:#006;}
+
+
+
 .highlightNew{font-size:11px;color:#999;}
 html,button,input,select,textarea{font-family:Arial,Verdana,sans-serif;}
 h1 span,h2 span{color:#333;font-weight:normal;}
@@ -408,16 +397,6 @@ hr.adsense-bottom-bar{clear:none;background-color:#e4e4e4;height:10px;margin-top
 #UserContent hr{clear:none;}
 #CarProofContent{font-size:13px;}
 #CarProofContent h1{clear:none;float:none;}
-.banner{margin-top:20px;}
-.banner.big-box{width:300px;}
-.banner.leaderboard{margin-bottom:20px;width:728px;height:90px;}
-.banner.leaderboard.top{margin-top:10px;}
-.banner.skyscraper{width:160px;height:600px;}
-.banner.inline-ad{margin-bottom:5px;margin-top:5px;width:728px;}
-.banner.sponsored{margin:0;padding-left:50px;padding-top:5px;width:575px;}
-.banner.collapse-banner{height:inherit;}
-#PageMRP .banner .leaderboard{margin-top:15px;}
-#InlineBanner{clear:none;border-bottom:solid 1px #e4e4e4;}
 form h1{margin-bottom:15px;}
 form input[type=password],form input[type=text],form textarea{font:13px/16px Arial,Verdana,sans-serif;background:#fff;border:inset 1px #ccc;}
 form input[type=password].error,form input[type=text].error,form textarea.error{border:inset 1px #f00;}
@@ -498,7 +477,8 @@ header{padding:0 5px;}
 #BrowseContainer.open .action div{background-position:-317px -41px;}
 #BrowseCategoriesList{cursor:default;left:-1px;position:absolute;top:34px;width:161px;}
 #BrowseContainer.open #BrowseCategoriesList{display:block;}
-.fr #BrowseCategoriesList{width:189px;}#SearchContainer{float:left;padding-left:10px;}
+.fr #BrowseCategoriesList{width:189px;}
+#SearchContainer{float:left;padding-left:10px;}
 #SearchIn{position:relative;}
 .fr #SearchIn{background-position:215px 2px;width:205px;}
 #SearchIn.open,#CurrentLocation.open{background-color:#f2f2f2;}
