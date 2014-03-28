@@ -2,10 +2,10 @@
  * Created by JG on 23/03/14.
  */
 
+var  specCat = [], specId = [], buyCat = [], servCat = [], carsCat = [], petsCat = [], commCat = [], rlEsCat = [], jobsCat = [];
 
 function generateCategories()
-{               var  specCat = [], specId = [], buyCat = [], servCat = [], carsCat = [], petsCat = [], commCat = [], rlEsCat = [], jobsCat = [];
-
+{
     specCat.push('buy and sell');   specId.push(0);
     buyCat.push('art, collectibles');
     buyCat.push('baby items');
@@ -131,7 +131,12 @@ function generateCategories()
     jobsCat.push('tv, media, fashion');
     jobsCat.push('other');
 
-    var i, div, section1, section2, section3, ul, li, heading, a;
+    displayCategories();
+}
+
+function displayCategories()
+{
+    var i, div, section1, section2, section3, ul, li, innerDiv, heading, a;
 
     section1 = document.createElement('section');
     section2 = document.createElement('section');
@@ -141,17 +146,35 @@ function generateCategories()
     ul = document.createElement('ul');
 
     li = document.createElement('li');
-    li.className="cat-name";
+    li.style.display = "inline";
+    li.style.font="14px/17px Arial,Verdana,sans-serif";
+    li.style.margin=0;
+    li.style.overflow="hidden";
+
+    innerDiv = document.createElement('div');
+    innerDiv.id = 'div'+specId[0];
+    innerDiv.style.display = "inline";
 
     heading = document.createElement('h2');
-    heading.className="icon-link";
+    
+    heading.style.display = "inline";
+    heading.id = 'heading'+specId[0];
 
     a = document.createElement('a');
-    a.className="category-selected";
+    a.style.color="#006";
+    a.style.cursor="pointer";
+    a.style.textDecoration="underline";
+    a.style.display="block";
+    a.style.float="left";
+    a.style.fontWeight="bold";
+    a.style.marginTop="4px";
+    a.style.display = "inline";
     a.id = parseInt((specId[0]));
-//    a.onclick = alert(specCat[0] + ' : ' + specId[0]);
+    a.addEventListener('click',eventListener, false);
     a.textContent=specCat[0];
+
     heading.appendChild(a);
+    li.appendChild(innerDiv);
     li.appendChild(heading);
     ul.appendChild(li);
 
@@ -160,9 +183,9 @@ function generateCategories()
     {
         li = document.createElement('li');
         a = document.createElement('a');
-        a.id = parseInt((specId[0]+i));
+        a.id = parseInt((specId[0]+i+1));
         a.textContent=buyCat[i];
-//        a.onclick = alert(buyCat[i] + ' : ' +specId[0]+i);
+        a.addEventListener('click', eventListener, false);
 
         li.appendChild(a);
         ul.appendChild(li);
@@ -173,17 +196,35 @@ function generateCategories()
     ul = document.createElement('ul');
 
     li = document.createElement('li');
-    li.className="cat-name";
+    li.style.font="14px/17px Arial,Verdana,sans-serif";
+    li.style.margin=0;
+    li.style.overflow="hidden";
+    li.style.display = "inline";
+
+    innerDiv = document.createElement('div');
+    innerDiv.id = 'div'+specId[1];
+    innerDiv.style.display = "inline";
 
     heading = document.createElement('h2');
-    heading.className="icon-link";
+    
+    heading.style.display = "inline";
+    heading.id = 'heading'+specId[1];
 
     a = document.createElement('a');
-    a.className="category-selected";
+    a.style.color="#006";
+    a.style.cursor="pointer";
+    a.style.textDecoration="underline";
+    a.style.display="block";
+    a.style.float="left";
+    a.style.fontWeight="bold";
+    a.style.marginTop="4px";
+    a.style.display = "inline";
     a.id = parseInt((specId[1]));
-//    a.onclick = alert(specCat[1] + ' : ' + specId[1]);
+    a.addEventListener('click', eventListener, false);
     a.textContent=specCat[1];
+
     heading.appendChild(a);
+    li.appendChild(innerDiv);
     li.appendChild(heading);
     ul.appendChild(li);
 
@@ -192,9 +233,9 @@ function generateCategories()
     {
         li = document.createElement('li');
         a = document.createElement('a');
-        a.id = parseInt((specId[1]+i));
+        a.id = parseInt((specId[1]+i+1));
         a.textContent=servCat[i];
-//        a.onclick = alert(servCat[i] + ' : ' +specId[1]+i);
+        a.addEventListener('click', eventListener, false);
 
         li.appendChild(a);
         ul.appendChild(li);
@@ -205,17 +246,35 @@ function generateCategories()
     ul = document.createElement('ul');
 
     li = document.createElement('li');
-    li.className="cat-name";
+    li.style.font="14px/17px Arial,Verdana,sans-serif";
+    li.style.margin=0;
+    li.style.overflow="hidden";
+    li.style.display = "inline";
+
+    innerDiv = document.createElement('div');
+    innerDiv.id = 'div'+specId[2];
+    innerDiv.style.display = "inline";
 
     heading = document.createElement('h2');
-    heading.className="icon-link";
+    
+    heading.style.display = "inline";
+    heading.id = 'heading'+specId[2];
 
     a = document.createElement('a');
-    a.className="category-selected";
+    a.style.color="#006";
+    a.style.cursor="pointer";
+    a.style.textDecoration="underline";
+    a.style.display="block";
+    a.style.float="left";
+    a.style.fontWeight="bold";
+    a.style.marginTop="4px";
+    a.style.display = "inline";
     a.id = parseInt((specId[2]));
-//    a.onclick = alert(specCat[2] + ' : ' + specId[2]);
+    a.addEventListener('click', eventListener, false);
     a.textContent=specCat[2];
+
     heading.appendChild(a);
+    li.appendChild(innerDiv);
     li.appendChild(heading);
     ul.appendChild(li);
 
@@ -225,9 +284,9 @@ function generateCategories()
         li = document.createElement('li');
 
         a = document.createElement('a');
-        a.id = parseInt((specId[2]+i));
+        a.id = parseInt((specId[2]+i+1));
         a.textContent=carsCat[i];
-//        a.onclick = alert(carsCat[i] + ' : ' +specId[2]+i);
+        a.addEventListener('click', eventListener, false);
 
         li.appendChild(a);
         ul.appendChild(li);
@@ -238,17 +297,35 @@ function generateCategories()
     ul = document.createElement('ul');
 
     li = document.createElement('li');
-    li.className="cat-name";
+    li.style.font="14px/17px Arial,Verdana,sans-serif";
+    li.style.margin=0;
+    li.style.overflow="hidden";
+    li.style.display = "inline";
+
+    innerDiv = document.createElement('div');
+    innerDiv.style.display = "inline";
+    innerDiv.id = 'div'+specId[3];
 
     heading = document.createElement('h2');
-    heading.className="icon-link";
+    
+    heading.style.display = "inline";
+    heading.id = 'heading'+specId[3];
 
     a = document.createElement('a');
-    a.className="category-selected";
+    a.style.color="#006";
+    a.style.cursor="pointer";
+    a.style.textDecoration="underline";
+    a.style.display="block";
+    a.style.float="left";
+    a.style.fontWeight="bold";
+    a.style.marginTop="4px";
+    a.style.display = "inline";
     a.id = parseInt((specId[3]));
-//    a.onclick = alert(specCat[3] + ' : ' + specId[3]);
+    a.addEventListener('click', eventListener, false);
     a.textContent=specCat[3];
+
     heading.appendChild(a);
+    li.appendChild(innerDiv);
     li.appendChild(heading);
     ul.appendChild(li);
 
@@ -257,9 +334,9 @@ function generateCategories()
     {
         li = document.createElement('li');
         a = document.createElement('a');
-        a.id = parseInt((specId[3]+i));
+        a.id = parseInt((specId[3]+i+1));
         a.textContent=commCat[i];
-//        a.onclick = alert(commCat[i] + ' : ' +specId[3]+i);
+        a.addEventListener('click', eventListener, false);
 
         li.appendChild(a);
         ul.appendChild(li);
@@ -270,17 +347,34 @@ function generateCategories()
     ul = document.createElement('ul');
 
     li = document.createElement('li');
-    li.className="cat-name";
+    li.style.font="14px/17px Arial,Verdana,sans-serif";
+    li.style.margin=0;
+    li.style.overflow="hidden";
+    li.style.display = "inline";
+
+    innerDiv = document.createElement('div');
+    innerDiv.id = 'div'+specId[4];
+    innerDiv.style.display = "inline";
 
     heading = document.createElement('h2');
-    heading.className="icon-link";
+    
+    heading.style.display = "inline";
+    heading.id = 'heading'+specId[4];
 
     a = document.createElement('a');
-    a.className="category-selected";
+    a.style.color="#006";a.style.cursor="pointer";
+    a.style.textDecoration="underline";
+    a.style.display="block";
+    a.style.float="left";
+    a.style.fontWeight="bold";
+    a.style.marginTop="4px";
+    a.style.display = "inline";
     a.id = parseInt((specId[4]));
-//    a.onclick = alert(specCat[4] + ' : ' + specId[4]);
+    a.addEventListener('click', eventListener, false);
     a.textContent=specCat[4];
+
     heading.appendChild(a);
+    li.appendChild(innerDiv);
     li.appendChild(heading);
     ul.appendChild(li);
 
@@ -289,9 +383,9 @@ function generateCategories()
     {
         li = document.createElement('li');
         a = document.createElement('a');
-        a.id = parseInt((specId[4]+i));
+        a.id = parseInt((specId[4]+i+1));
         a.textContent=petsCat[i];
-//        a.onclick = alert(petsCat[i] + ' : ' +specId[4]+i);
+        a.addEventListener('click', eventListener, false);
 
         li.appendChild(a);
         ul.appendChild(li);
@@ -302,17 +396,35 @@ function generateCategories()
     ul = document.createElement('ul');
 
     li = document.createElement('li');
-    li.className="cat-name";
+    li.style.font="14px/17px Arial,Verdana,sans-serif";
+    li.style.margin=0;
+    li.style.overflow="hidden";
+    li.style.display = "inline";
+
+    innerDiv = document.createElement('div');
+    innerDiv.id = 'div'+specId[5];
+    innerDiv.style.display = "inline";
 
     heading = document.createElement('h2');
-    heading.className="icon-link";
+    
+    heading.style.display = "inline";
+    heading.id = 'heading'+specId[5];
 
     a = document.createElement('a');
-//    a.onclick = alert(specCat[5] + ' : ' + specId[5]);
+    a.style.color="#006";
+    a.style.cursor="pointer";
+    a.style.textDecoration="underline";
+    a.style.display="block";
+    a.style.float="left";
+    a.style.fontWeight="bold";
+    a.style.marginTop="4px";
+    a.style.display = "inline";
+    a.addEventListener('click', eventListener, false);
     a.textContent=specCat[5];
     a.id = parseInt((specId[5]));
 
     heading.appendChild(a);
+    li.appendChild(innerDiv);
     li.appendChild(heading);
     ul.appendChild(li);
 
@@ -324,15 +436,14 @@ function generateCategories()
         {
             li.className="cat-sub";
             li.textContent=rlEsCat[i];
-            li.id = parseInt((specId[5]+i));
+            li.id = parseInt((specId[5]+i+1));
         }
         else
         {
             a = document.createElement('a');
-            a.id = parseInt((specId[5]+i));
+            a.id = parseInt((specId[5]+i+1));
             a.textContent=rlEsCat[i];
-
-//            a.onclick = alert(rlEsCat[i] + ' : ' +specId[5]+i);
+            a.addEventListener('click', eventListener, false);
 
             li.appendChild(a);
         }
@@ -344,17 +455,35 @@ function generateCategories()
     ul = document.createElement('ul');
 
     li = document.createElement('li');
-    li.className="cat-name";
+    li.style.display = "inline";
+    li.style.font="14px/17px Arial,Verdana,sans-serif";
+    li.style.margin=0;
+    li.style.overflow="hidden";
+    li.listStyleType="none";
 
+    innerDiv = document.createElement('div');
+    innerDiv.id = 'div'+specId[6];
+    innerDiv.style.display = "inline";
+    
     heading = document.createElement('h2');
-    heading.className="icon-link";
+    heading.style.display = "inline";
+    heading.id = 'heading'+specId[6];
 
     a = document.createElement('a');
-//    a.onclick = alert(specCat[6] + ' : ' + specId[6]);
+    a.style.color="#006";
+    a.style.cursor="pointer";
+    a.style.textDecoration="underline";
+    a.style.display="block";
+    a.style.float="left";
+    a.style.fontWeight="bold";
+    a.style.marginTop="4px";
+    a.style.display = "inline";
+    a.addEventListener('click', eventListener, false);
     a.textContent=specCat[6];
     a.id = parseInt((specId[6]));
 
     heading.appendChild(a);
+    li.appendChild(innerDiv);
     li.appendChild(heading);
     ul.appendChild(li);
 
@@ -363,13 +492,13 @@ function generateCategories()
     {
         li = document.createElement('li');
         a = document.createElement('a');
-        a.id = parseInt((specId[6]+i));
+        a.id = parseInt((specId[6]+i+1));
         a.textContent=jobsCat[i];
-//        a.onclick = console.log(jobsCat[i] + ' : ' +parseInt(specId[6]+i));
+        a.addEventListener('click', eventListener, false);
 
         li.appendChild(a);
         ul.appendChild(li);
-   }
+    }
     section3.appendChild(ul);
 
     div = document.getElementById('Categories');
@@ -378,8 +507,31 @@ function generateCategories()
     div.appendChild(section2);
     div.appendChild(section3);
 
+
 }
 
+function eventListener(event)
+{
+    alert(event.target.id);
+}
+
+
+function displayImages()
+{
+    var img = null, div = null, heading = null;
+
+    for (var i = 0; i <= 6; i++)
+    {
+        img = document.createElement('img');
+        div = document.getElementById('div'+specId[i]);
+        heading = document.getElementById('heading'+specId[i]);
+        img.src = 'Images/'+i+'.png';
+        div.style.margin=0;
+        div.style.overflow="hidden";
+//        console.log(heading);
+        div.appendChild(img);
+    }
+}
 
 
 
