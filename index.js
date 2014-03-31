@@ -130,8 +130,6 @@ function generateCategories()
     jobsCat.push('sales, retail sales');
     jobsCat.push('tv, media, fashion');
     jobsCat.push('other');
-
-    displayCategories();
 }
 
 function displayCategories()
@@ -501,6 +499,7 @@ function displayCategories()
 
     div = document.getElementById('Categories');
     div.style.paddingLeft = "100px";
+//    div.align = "middle";
     div.appendChild(section1);
     div.appendChild(section2);
     div.appendChild(section3);
@@ -525,12 +524,9 @@ function displayImages()
 }
 
 
-//var main, sub;
 
 function eventListener(event)
 {
-//    main = parseInt(event.target.id.substring(0,1));
-//    sub  = parseInt(event.target.id.substring(1,3));
     window.location.assign("items.html?id="+event.target.id);
 }
 

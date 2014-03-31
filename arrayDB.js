@@ -5,51 +5,107 @@
 // Database
 var DB = [];
 
+var itemTable = [], userTable = [];
+
+var userIdArr = [], userNameArr = [],   passArr = [],   emailArr = [],  firstArr = [],  lastArr = [],   addressArr = [];
+//  usersId         username            password        email           firstName       lastName        address
+var userID,         userName,           password,       email,          fName,          lName,          address;
+
+var postalArr = [], provArr = [],   phoneArr = [],  ageArr = [];
+//  postalCode      province        phone(10)       age
+var postal,         prov,           phone,          age;
+
+for (var i = 0; i < 5; i++)
+{
+    userID = i;
+    userName = 'user'+i;
+    password = 'pass'+i;
+    email = 'email'+i+'@mail.usask.ca';
+    fName = 'first'+i;
+    lName = 'last'+i;
+    address = 'add'+i;
+    postal = 'post'+i;
+    prov = 'prov'+i;
+    phone = 'phone'+i;
+    age = 'age'+i;
+
+    userIdArr.push(userID);
+    userNameArr.push(userName);
+    passArr.push(password);
+    emailArr.push(email);
+    firstArr.push(fName);
+    lastArr.push(lName);
+    addressArr.push(address);
+    postalArr.push(postal);
+    provArr.push(prov);
+    phoneArr.push(phone);
+    ageArr.push(age);
+}
+userTable.push(userIdArr);
+userTable.push(userNameArr);
+userTable.push(passArr);
+userTable.push(emailArr);
+userTable.push(firstArr);
+userTable.push(lastArr);
+userTable.push(addressArr);
+userTable.push(postalArr);
+userTable.push(provArr);
+userTable.push(phoneArr);
+userTable.push(ageArr);
+
+
+
+
+
+
+
 var titleArr = [], imageArr = [], descArr = [], priceArr = [], userArr = [], mainCatArr = [], subCatArr = [];
-//  Title   Image   Desc    Price   User    MainCat     SubCat
-var title,  image,  desc,   price,  user,   mainCat,    subCat;
+//  Title   Image   Desc    Price   userId   MainCat     SubCat
+var title,  image,  desc,   price,  userId,   mainCat,    subCat;
 
 title = 'Item1';    titleArr.push(title);
-image = '';         imageArr.push(image);
+image = 'Image1';   imageArr.push(image);
 desc  = 'Desc1';    descArr.push(desc);
 price = '1.01';     priceArr.push(price);
-user  = 'User1';    userArr.push(user);
+userId = 'User1';    userArr.push(userId);
 mainCat = 0;        mainCatArr.push(mainCat);
 subCat = 1;         subCatArr.push(subCat);
 
 title = 'Item2';    titleArr.push(title);
-image = '';         imageArr.push(image);
+image = 'Image2';   imageArr.push(image);
 desc  = 'Desc2';    descArr.push(desc);
 price = '2.02';     priceArr.push(price);
-user  = 'User2';    userArr.push(user);
+userId = 'User2';    userArr.push(userId);
 mainCat = 0;        mainCatArr.push(mainCat);
 subCat = 1;         subCatArr.push(subCat);
 
 title = 'Item3';    titleArr.push(title);
-image = '';         imageArr.push(image);
+image = 'Image3';   imageArr.push(image);
 desc  = 'Desc3';    descArr.push(desc);
 price = '3.03';     priceArr.push(price);
-user  = 'User3';    userArr.push(user);
+userId = 'User3';    userArr.push(userId);
 mainCat = 0;        mainCatArr.push(mainCat);
 subCat = 1;         subCatArr.push(subCat);
 
 title = 'Item4';    titleArr.push(title);
-image = '';         imageArr.push(image);
+image = 'Image4';   imageArr.push(image);
 desc  = 'Desc4';    descArr.push(desc);
 price = '4.04';     priceArr.push(price);
-user  = 'User4';    userArr.push(user);
+userId = 'User4';    userArr.push(userId);
 mainCat = 0;        mainCatArr.push(mainCat);
 subCat = 1;         subCatArr.push(subCat);
 
 
-DB.push(titleArr);
-DB.push(imageArr);
-DB.push(descArr);
-DB.push(priceArr);
-DB.push(userArr);
-DB.push(mainCatArr);
-DB.push(subCatArr);
+itemTable.push(titleArr);
+itemTable.push(imageArr);
+itemTable.push(descArr);
+itemTable.push(priceArr);
+itemTable.push(userArr);
+itemTable.push(mainCatArr);
+itemTable.push(subCatArr);
 
+DB.push(itemTable);
+DB.push(userTable);
 
 function createTable()
 {
@@ -57,7 +113,8 @@ function createTable()
     var main = id.substring(0,1);
     var sub  = id.substring(1,3);
 
-        titleArr = DB[0]; imageArr = DB[1], descArr = DB[2], priceArr = DB[3], userArr = DB[4], mainCatArr = DB[5], subCatArr = DB[6];
+    var items = DB[0];
+    titleArr = items[0]; imageArr = items[1]; descArr = items[2]; priceArr = items[3]; userArr = items[4]; mainCatArr = items[5]; subCatArr = items[6];
     var indexes = [], i, row;
 
     for (i = 0; i < mainCatArr.length; i++)

@@ -6,16 +6,6 @@
     <title>Kijiji-Bay</title>
     <link rel="shortcut icon" type="image/x-icon" href="Images/favicon.ico" />
 
-    <meta name="description" content="Visit Kijiji-Bay Classifieds to buy, sell, or trade almost anything! Used cars, pets, jobs, services, electronics, homes, boats for sale and more locally anywhere in Saskatoon."/>
-    <meta property="og:site_name" content="Kijiji-Bay"/>
-    <meta property="og:country-name" content="Canada"/>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-
-
-    <meta property="og:type" content="website"/>
-    <meta property="og:description" content="Visit Kijiji-Bay Classifieds to buy, sell, or trade almost anything! Used cars, pets, jobs, services, electronics, homes, boats for sale and more locally anywhere in Saskatoon."/>
-    <meta property="og:title" content="Kijiji-Bay"/>
-
     <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.structure.css">
     <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.structure.min.css">
     <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.theme.css">
@@ -29,12 +19,11 @@
         //todo go through css's and filter out the crap
         //todo get icons for categories
     </script>
-    <script type="text/javascript" src="index.js"></script>
-
-    <!--    <link rel="canonical" href="http://localhost:63342/350Project/index.html"/> -->
-    <!--    <link rel="stylesheet" type="text/css" href="master.css"/>-->
 </head>
+
 <body>
+<script type="text/javascript" src="index.js"></script>
+<script type="text/javascript" src="arrayDB.js"></script>
 
 <header>
     <div id="TopHeader">
@@ -48,7 +37,7 @@
             </ul>
             <div id="HeaderRightBottom">
                 <a class="button-header-nav first" href="postAd.html" rel="nofollow">
-                    Post Ad <strong>FREE</strong></a><a class="button-header-nav last" href="cart.html" rel="nofollow">
+                    Post Ad <strong>FREE</strong></a><a class="button-header-nav last" href="myProfile.html" rel="nofollow">
                 My Cart</a>
             </div>
         </div>
@@ -58,24 +47,33 @@
     </div>
 </header>
 
-<h1>PostAd</h1>
+<h1>Post-Ad</h1>
+<div id="PostAddCategories"></div>
+<script type="text/javascript">
+
+    postAdDisplay();
+
+</script>
 
 <div id="LayoutFooter">
     <footer>
         <div id="FooterBottom">
-            <ul>
-                <section onclick="alert('')" style="list-style-type: none; min-width: 33%; max-width:50%; padding-left: 20%;">
+            <section style="min-width: 33%; max-width:50%; padding-left: 20%;">
+                <ul style="list-style-type: none">
                     <li>
-                        <image style="cursor:pointer" onclick="window.open('https://www.facebook.com/AnotherSchoolProject')" src="Images/fbook.png"/>
+                        <image style="cursor:pointer" onclick="window.open('https://www.facebook.com/AnotherSchoolProject')" src="Images/fbook.png"></image>
                         <a href="https://www.facebook.com/AnotherSchoolProject" target="_blank" rel="nofollow">Friend us on Facebook</a>
                     </li>
-                </section>
-                <section style="list-style-type: none; min-width: 33%; max-width:50%;">
+                </ul>
+            </section>
+            <section style="min-width: 33%; max-width:50%;">
+                <ul style="list-style-type: none">
                     <li>
-                        <fb:like style="vertical-align: -33px" href="https://www.facebook.com/AnotherSchoolProject" send="false" width="600" show_faces="false"></fb:like>
+                        <!--suppress XmlUnboundNsPrefix -->
+                        <fb:like style="vertical-align: -33px" href="https://www.facebook.com/AnotherSchoolProject" send="false" width="60" show_faces="false"></fb:like>
                     </li>
-                </section>
-            </ul>
+                </ul>
+            </section>
         </div>
     </footer>
 </div>
@@ -93,5 +91,6 @@
     }(document, "script", 'facebook-jssdk'));
 
 </script>
+
 </body>
 </html>
