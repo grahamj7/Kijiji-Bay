@@ -16,19 +16,85 @@
     <meta property="og:description" content="Visit Kijiji-Bay Classifieds to buy, sell, or trade almost anything! Used cars, pets, jobs, services, electronics, homes, boats for sale and more locally anywhere in Saskatoon."/>
     <meta property="og:title" content="Kijiji-Bay"/>
 
+    <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.structure.css">
+    <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.structure.min.css">
+    <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.theme.css">
+    <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.theme.min.css">
+    <link rel="stylesheet" type="text/css" href="styling.css">
+
+    <script type="text/javascript" src="jquery/jquery.mobile.custom.js"></script>
+    <script type="text/javascript" src="jquery/jquery.mobile.custom.min.js"></script>
     <script type="javascript">
         //todo find new flashy image for title of website
         //todo go through css's and filter out the crap
         //todo get icons for categories
     </script>
-
-    <link rel="canonical" href="http://localhost:63342/350Project/index.html"/>
-    <link rel="stylesheet" type="text/css" href="//ca.classistatic.com/static/V/2014.03.13/css/master.css"/>
-    <link rel="stylesheet" type="text/css" href="homepage.css"/>
-    <link rel="stylesheet" type="text/css" href="categories.css"/>
+    <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript" src="arrayDB.js"></script>
 </head>
 
 <body>
 
+<header>
+    <div id="TopHeader">
+        <div id="HeaderLeft">
+            <a href="index.html"><image src="Images/favicon.ico"></image></a>
+        </div>
+        <div id="HeaderRight">
+            <ul id="HeaderRightTop">
+                <li><a href="signIn.html" rel="nofollow">Sign In<span style="padding-right: 80px"></span></a></li>
+                <li><a href="register.html" rel="nofollow">Register<span style="padding-right: 30px"></span></a></li>
+            </ul>
+            <div id="HeaderRightBottom">
+                <a class="button-header-nav first" href="postAd.html" rel="nofollow">
+                    Post Ad <strong>FREE</strong></a><a class="button-header-nav last" href="cart.html" rel="nofollow">
+                My Cart</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="HeaderBar">
+    </div>
+
+</header>
+
+<div data-role="content">
+    <h1>My Profile</h1>
+</div>
+
+<div id="LayoutFooter">
+    <footer>
+        <div id="FooterBottom">
+            <ul>
+                <section onclick="alert('')" style="list-style-type: none; min-width: 33%; max-width:50%; padding-left: 20%;">
+                    <li>
+                        <image style="cursor:pointer" onclick="window.open('https://www.facebook.com/AnotherSchoolProject')" src="Images/fbook.png"/>
+                        <a href="https://www.facebook.com/AnotherSchoolProject" target="_blank" rel="nofollow">Friend us on Facebook</a>
+                    </li>
+                </section>
+                <section style="list-style-type: none; min-width: 33%; max-width:50%;">
+                    <li>
+                        <fb:like style="vertical-align: -33px" href="https://www.facebook.com/AnotherSchoolProject" send="false" width="600" show_faces="false"></fb:like>
+                    </li>
+                </section>
+            </ul>
+        </div>
+    </footer>
+</div>
+<script>
+
+    (function(d, s, id)
+    {                   // like on facebook
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, "script", 'facebook-jssdk'));
+
+</script>
 </body>
 </html>
+        

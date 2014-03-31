@@ -156,9 +156,7 @@ function displayCategories()
     innerDiv.style.display = "inline";
 
     heading = document.createElement('h2');
-    
     heading.style.display = "inline";
-    heading.id = 'heading'+specId[0];
 
     a = document.createElement('a');
     a.style.color="#006";
@@ -169,7 +167,7 @@ function displayCategories()
     a.style.fontWeight="bold";
     a.style.marginTop="4px";
     a.style.display = "inline";
-    a.id = parseInt((specId[0]));
+    a.id = '0'+parseInt((specId[0]));
     a.addEventListener('click',eventListener, false);
     a.textContent=specCat[0];
 
@@ -183,7 +181,7 @@ function displayCategories()
     {
         li = document.createElement('li');
         a = document.createElement('a');
-        a.id = parseInt((specId[0]+i+1));
+        a.id = '0'+parseInt((specId[0]+i+1));
         a.textContent=buyCat[i];
         a.addEventListener('click', eventListener, false);
 
@@ -208,7 +206,7 @@ function displayCategories()
     heading = document.createElement('h2');
     
     heading.style.display = "inline";
-    heading.id = 'heading'+specId[1];
+    
 
     a = document.createElement('a');
     a.style.color="#006";
@@ -258,7 +256,7 @@ function displayCategories()
     heading = document.createElement('h2');
     
     heading.style.display = "inline";
-    heading.id = 'heading'+specId[2];
+
 
     a = document.createElement('a');
     a.style.color="#006";
@@ -309,7 +307,7 @@ function displayCategories()
     heading = document.createElement('h2');
     
     heading.style.display = "inline";
-    heading.id = 'heading'+specId[3];
+
 
     a = document.createElement('a');
     a.style.color="#006";
@@ -359,7 +357,7 @@ function displayCategories()
     heading = document.createElement('h2');
     
     heading.style.display = "inline";
-    heading.id = 'heading'+specId[4];
+
 
     a = document.createElement('a');
     a.style.color="#006";a.style.cursor="pointer";
@@ -406,9 +404,9 @@ function displayCategories()
     innerDiv.style.display = "inline";
 
     heading = document.createElement('h2');
-    
+
     heading.style.display = "inline";
-    heading.id = 'heading'+specId[5];
+
 
     a = document.createElement('a');
     a.style.color="#006";
@@ -434,9 +432,9 @@ function displayCategories()
         li = document.createElement('li');
         if (i == 0 || i == 8 || i == 12)
         {
-            li.className="cat-sub";
             li.textContent=rlEsCat[i];
             li.id = parseInt((specId[5]+i+1));
+            li.style.paddingLeft="5px";
         }
         else
         {
@@ -467,7 +465,7 @@ function displayCategories()
     
     heading = document.createElement('h2');
     heading.style.display = "inline";
-    heading.id = 'heading'+specId[6];
+
 
     a = document.createElement('a');
     a.style.color="#006";
@@ -506,14 +504,8 @@ function displayCategories()
     div.appendChild(section1);
     div.appendChild(section2);
     div.appendChild(section3);
-
-
 }
 
-function eventListener(event)
-{
-    alert(event.target.id);
-}
 
 
 function displayImages()
@@ -528,20 +520,19 @@ function displayImages()
         img.src = 'Images/'+i+'.png';
         div.style.margin=0;
         div.style.overflow="hidden";
-//        console.log(heading);
         div.appendChild(img);
     }
 }
 
 
+//var main, sub;
 
-
-
-
-
-
-
-
+function eventListener(event)
+{
+//    main = parseInt(event.target.id.substring(0,1));
+//    sub  = parseInt(event.target.id.substring(1,3));
+    window.location.assign("items.html?id="+event.target.id);
+}
 
 
 

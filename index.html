@@ -1,6 +1,5 @@
 
 <!DOCTYPE html>
-<!--suppress ALL -->
 <html>
 <head>
     <!--Kijiji-Bay: Free Classifieds in Saskatoon. Find a job, buy a car, find a house or apartment, furniture, appliances and more!-->
@@ -12,32 +11,37 @@
     <meta property="og:country-name" content="Canada"/>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 
-
     <meta property="og:type" content="website"/>
     <meta property="og:description" content="Visit Kijiji-Bay Classifieds to buy, sell, or trade almost anything! Used cars, pets, jobs, services, electronics, homes, boats for sale and more locally anywhere in Saskatoon."/>
     <meta property="og:title" content="Kijiji-Bay"/>
 
+    <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.structure.css">
+    <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.structure.min.css">
+    <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.theme.css">
+    <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.theme.min.css">
+    <link rel="stylesheet" type="text/css" href="styling.css">
+
+    <script type="text/javascript" src="jquery/jquery.mobile.custom.js"></script>
+    <script type="text/javascript" src="jquery/jquery.mobile.custom.min.js"></script>
     <script type="javascript">
         //todo find new flashy image for title of website
         //todo go through css's and filter out the crap
         //todo get icons for categories
     </script>
-    <script type="text/javascript" src="index.js"></script>
-
-    <link rel="canonical" href="http://localhost:63342/350Project/index.html"/>
-<!--    <link rel="stylesheet" type="text/css" href="master.css"/>-->
 </head>
 
 <body>
+<script type="text/javascript" src="index.js"></script>
+<script type="text/javascript" src="arrayDB.js"></script>
 
 <header>
     <div id="TopHeader">
         <div id="HeaderLeft">
-            <a href="http://localhost:63342/350Project/index.html"><image src="Images/favicon.ico"></image></a>
+            <a href="index.html"><image src="Images/favicon.ico"></image></a>
         </div>
         <div id="HeaderRight">
             <ul id="HeaderRightTop">
-                <li><a href="signIn.html" rel="nofollow">Sign In<span style="padding-right: 80px"></span></a></li>
+                <li><a href="signIn.html" rel="nofollow">Sign In<span style="padding-right: 50px"></span></a></li>
                 <li><a href="register.html" rel="nofollow">Register<span style="padding-right: 30px"></span></a></li>
             </ul>
             <div id="HeaderRightBottom">
@@ -50,265 +54,198 @@
 
     <div id="HeaderBar">
     </div>
-
 </header>
 
 
-<div id="fb-root"></div>
-<script>
-
-    (function(d, s, id)
-    {                   // like on facebook
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-
-        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-
-</script>
-
-<style>
-    /* Styling for the categories*/
-    #HeaderLeft{float:left;}
-
-    #HeaderRight{float:right;height:76px;padding-right:10px;width:365px;}
-
-    #HeaderRightTop{height:15px;list-style:none;margin-top:2px;padding:0;position:relative;text-align:right;vertical-align:top;}
-    #HeaderRightTop li{border:solid 1px transparent;font:13px/16px Arial,Verdana,sans-serif;color:#666;display:inline-block;height:16px;margin-left:5px;padding:7px 4px 0 4px;position:relative;vertical-align:top;}
-    #HeaderRightTop a{font:13px/16px Arial,Verdana,sans-serif;color:#666;text-decoration:none;}
-    #HeaderRightTop a:hover{color:#ec7d1b;text-decoration:underline;}
-
-    #HeaderRightBottom{margin-top:10px;text-align:right;}
-    #HeaderRightBottom a{position:relative;}
-    #HeaderRightBottom .button-open :active,#HeaderRightBottom .button-open .active{text-decoration:underline;}
-    .fr #HeaderRightBottom a.last{padding-right:23px;}
-
-    #HeaderBar label{color:#666;display:block;float:left;margin-top:9px;}
-    #HeaderBar{font:13px/16px Arial,Verdana,sans-serif;border:solid 1px #ccc;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;-moz-background-clip:padding;-webkit-background-clip:padding-box;background-clip:padding-box;background:-moz-linear-gradient(top,#fff 0,#ececec 100%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#fff),color-stop(100%,#ececec));background:-webkit-linear-gradient(top,#fff 0,#ececec 100%);background:-o-linear-gradient(top,#fff 0,#ececec 100%);background:-ms-linear-gradient(top,#fff 0,#ececec 100%);background:linear-gradient(top,#fff 0,#ececec 100%);height:33px;padding:0;position:relative;}
-
-    #TopHeader{background:-moz-linear-gradient(left,#fff 10%,#faf19a 100%);background:-webkit-gradient(linear,left top,right top,color-stop(10%,#fff),color-stop(100%,#faf19a));background:-webkit-linear-gradient(left,#fff 10%,#faf19a 100%);background:-o-linear-gradient(left,#fff 10%,#faf19a 100%);background:-ms-linear-gradient(left,#fff 10%,#faf19a 100%);background:linear-gradient(left,#fff 10%,#faf19a 100%);overflow:auto;}
 
 
-    .button-header-nav{font:13px/16px Arial,Verdana,sans-serif;border:solid 1px #ccc;border-right:0;color:#006;display:inline-block;background:-moz-linear-gradient(top,#fff 0,#ececec 100%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#fff),color-stop(100%,#ececec));background:-webkit-linear-gradient(top,#fff 0,#ececec 100%);background:-o-linear-gradient(top,#fff 0,#ececec 100%);background:-ms-linear-gradient(top,#fff 0,#ececec 100%);background:linear-gradient(top,#fff 0,#ececec 100%);padding:6px 23px;text-decoration:none;text-shadow:0 -1px 0 rgba(255,255,255,0.5);}
-    .fr .button-header-nav{padding:6px 12px;}
-    .button-header-nav:hover{background:-moz-linear-gradient(top,#fff 0,#e4e4e4 100%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#fff),color-stop(100%,#e4e4e4));background:-webkit-linear-gradient(top,#fff 0,#e4e4e4 100%);background:-o-linear-gradient(top,#fff 0,#e4e4e4 100%);background:-ms-linear-gradient(top,#fff 0,#e4e4e4 100%);background:linear-gradient(top,#fff 0,#e4e4e4 100%);}
-    .button-header-nav.first{-webkit-border-top-left-radius:5px;-moz-border-top-left-radius:5px;border-top-left-radius:5px;-webkit-border-bottom-left-radius:5px;-moz-border-bottom-left-radius:5px;border-bottom-left-radius:5px;}
-    .button-header-nav.last{-webkit-border-top-right-radius:5px;-moz-border-top-right-radius:5px;border-top-right-radius:5px;-webkit-border-bottom-right-radius:5px;-moz-border-bottom-right-radius:5px;border-bottom-right-radius:5px;border-right:solid 1px #ccc;}
-    .container-primary header{font:14px/17px Arial,Verdana,sans-serif;-webkit-border-top-left-radius:5px;-moz-border-top-left-radius:5px;border-top-left-radius:5px;-webkit-border-top-right-radius:5px;-moz-border-top-right-radius:5px;border-top-right-radius:5px;border:solid 1px #ebd387;color:#333;font-weight:bold;background:-moz-linear-gradient(top,#fef3c8 0,#fceb75 100%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#fef3c8),color-stop(100%,#fceb75));background:-webkit-linear-gradient(top,#fef3c8 0,#fceb75 100%);background:-o-linear-gradient(top,#fef3c8 0,#fceb75 100%);background:-ms-linear-gradient(top,#fef3c8 0,#fceb75 100%);background:linear-gradient(top,#fef3c8 0,#fceb75 100%);padding:6px 10px;}
-    .container-primary header span{font-weight:normal;}
-    .button-header-nav strong{color:#ec7d1b;}
-    header{padding:0 5px;}
-
-
-    #Categories li,.bullet-list li,.location-depth-3 li{background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAMAAACeL25MAAAAFVBMVEXyrmHcbRntdQ3qcBDpcREAAAD/uSkYCRoQAAAABnRSTlORD1FsNgCBrJ5QAAAAHUlEQVR42h3HyQkAABACsXEP+y9Z8BMIPyvOprQBAkcANxFx9IcAAAAASUVORK5CYII=");background-repeat:no-repeat;}
-    #Categories{border-top:solid 1px #ccc;padding-top:20px;}
-    #Categories section{float:left;width:33%;}
-    #Categories ul{font:11px/14px Arial,Verdana,sans-serif;color:#666;list-style-type:none;margin:0 20px 15px 0;padding:0;}
-    #Categories li{background-position:5px 7px;margin-left:5px;padding-left:15px;}
-    #Categories li>a{font:13px/16px Arial,Verdana,sans-serif;color:#006;}
-    #Categories li>a:hover{color:#006;cursor:pointer;text-decoration:underline;}
-    #Categories li>a:hover:hover{background:#beea69;color:#006;}
-    #Categories li.cat-sub>a{font:13px/16px Arial,Verdana,sans-serif;color:#3b5998;}
-    #Categories li.cat-sub>a:hover{color:#006;cursor:pointer;text-decoration:underline;}
-    #Categories li.cat-sub>a:hover:hover{background:#beea69;color:#006;}
-
-
-    #LayoutFooter{background:#f2f2f2;border-top:solid 1px #ccc;clear:both;margin-top:20px;}
-    #LayoutFooter footer{margin:0 auto;overflow:auto;padding:20px 0;}
-    #LayoutFooter section{float:left;margin-right:10px;width:178px;}
-    #LayoutFooter a{vertical-align: 25px;}
-    #LayoutFooter a:hover{color: #ec7d1b;}
-    
-</style>
 
 <div id="Categories">
-    <!--
-        <section>
-            <ul>
-                <li class="cat-name">
-                    <h2 class="icon-link">
-                        <div class="icon cat-10"></div>
-                        <a onclick="" class="category-selected" data-id="10">buy and sell</a>
-                    </h2>
-                </li>
-                <li ><a href="/b-art-collectibles/saskatoon/c12l1700197" class="category-selected" data-id="12">art, collectibles</a></li>
-                <li ><a href="/b-baby-items/saskatoon/c253l1700197" class="category-selected" data-id="253">baby items</a></li>
-                <li ><a href="/b-bikes/saskatoon/c644l1700197" class="category-selected" data-id="644">bikes</a></li>
-                <li ><a href="/b-books/saskatoon/c109l1700197" class="category-selected" data-id="109">books</a></li>
-                <li ><a href="/b-business-industrial/saskatoon/c145l1700197" class="category-selected" data-id="145">business, industrial</a></li>
-                <li ><a href="/b-camera-camcorder-lens/saskatoon/c103l1700197" class="category-selected" data-id="103">cameras, camcorders</a></li>
-                <li ><a href="/b-cd-dvd-blu-ray/saskatoon/c104l1700197" class="category-selected" data-id="104">cds, dvds, blu-ray</a></li>
-                <li ><a href="/b-clothing/saskatoon/c274l1700197" class="category-selected" data-id="274">clothing</a></li>
-                <li ><a href="/b-computer/saskatoon/c16l1700197" class="category-selected" data-id="16">computers</a></li>
-                <li ><a href="/b-computer-accessories/saskatoon/c128l1700197" class="category-selected" data-id="128">computer accessories</a></li>
-                <li ><a href="/b-electronics/saskatoon/c15l1700197" class="category-selected" data-id="15">electronics</a></li>
-                <li ><a href="/b-furniture/saskatoon/c235l1700197" class="category-selected" data-id="235">furniture</a></li>
-                <li ><a href="/b-garage-sale-yard-sale/saskatoon/c638l1700197" class="category-selected" data-id="638">garage sales</a></li>
-                <li ><a href="/b-health-special-needs/saskatoon/c140l1700197" class="category-selected" data-id="140">health, special needs</a></li>
-                <li ><a href="/b-hobbies-craft/saskatoon/c139l1700197" class="category-selected" data-id="139">hobbies, crafts</a></li>
-                <li ><a href="/b-home-appliance/saskatoon/c107l1700197" class="category-selected" data-id="107">home appliances</a></li>
-                <li ><a href="/b-home-indoor/saskatoon/c717l1700197" class="category-selected" data-id="717">home - indoor</a></li>
-                <li ><a href="/b-home-outdoor/saskatoon/c19l1700197" class="category-selected" data-id="19">home - outdoor</a></li>
-                <li ><a href="/b-home-renovation/saskatoon/c727l1700197" class="category-selected" data-id="727">home renovation materials</a></li>
-                <li ><a href="/b-ipod-mp3-headphones/saskatoon/c767l1700197" class="category-selected" data-id="767">iPods, mp3, headphones</a></li>
-                <li ><a href="/b-jewelry-watch/saskatoon/c133l1700197" class="category-selected" data-id="133">jewellery, watches</a></li>
-                <li ><a href="/b-musical-instrument/saskatoon/c17l1700197" class="category-selected" data-id="17">musical instruments</a></li>
-                <li ><a href="/b-phone-tablet/saskatoon/c132l1700197" class="category-selected" data-id="132">phones</a></li>
-                <li ><a href="/b-sporting-goods-exercise/saskatoon/c111l1700197" class="category-selected" data-id="111">sporting goods, exercise</a></li>
-                <li ><a href="/b-tickets/saskatoon/c14l1700197" class="category-selected" data-id="14">tickets</a></li>
-                <li ><a href="/b-tool/saskatoon/c110l1700197" class="category-selected" data-id="110">tools</a></li>
-                <li ><a href="/b-toys-games/saskatoon/c108l1700197" class="category-selected" data-id="108">toys, games</a></li>
-                <li ><a href="/b-video-games-consoles/saskatoon/c141l1700197" class="category-selected" data-id="141">video games, consoles</a></li>
-                <li ><a href="/b-buy-sell-other/saskatoon/c26l1700197" class="category-selected" data-id="26">other</a></li>
-            </ul>
-            <ul>
-                <li class="cat-name">
-                    <h2 class="icon-link">
-                        <div class="icon cat-72"></div>
-                        <a href="/b-services/saskatoon/c72l1700197" class="category-selected" data-id="72">services</a>
-                    </h2>
-                </li>
-                <li ><a href="/b-childcare-nanny-service/saskatoon/c84l1700197" class="category-selected" data-id="84">childcare, nanny</a></li>
-                <li ><a href="/b-cleaners-cleaning-service/saskatoon/c160l1700197" class="category-selected" data-id="160">cleaners, cleaning</a></li>
-                <li ><a href="/b-entertainment/saskatoon/c165l1700197" class="category-selected" data-id="165">entertainment</a></li>
-                <li ><a href="/b-financial-legal/saskatoon/c131l1700197" class="category-selected" data-id="131">financial, legal</a></li>
-                <li ><a href="/b-fitness-personal-trainer/saskatoon/c83l1700197" class="category-selected" data-id="83">fitness, personal trainer</a></li>
-                <li ><a href="/b-health-beauty/saskatoon/c166l1700197" class="category-selected" data-id="166">health, beauty</a></li>
-                <li ><a href="/b-moving-storage/saskatoon/c144l1700197" class="category-selected" data-id="144">moving, storage</a></li>
-                <li ><a href="/b-music-lessons/saskatoon/c86l1700197" class="category-selected" data-id="86">music lessons</a></li>
-                <li ><a href="/b-photography-video/saskatoon/c168l1700197" class="category-selected" data-id="168">photography, video</a></li>
-                <li ><a href="/b-skilled-trades/saskatoon/c76l1700197" class="category-selected" data-id="76">skilled trades</a></li>
-                <li ><a href="/b-tutor-language-lessons/saskatoon/c169l1700197" class="category-selected" data-id="169">tutors, languages</a></li>
-                <li ><a href="/b-wedding-service/saskatoon/c79l1700197" class="category-selected" data-id="79">wedding</a></li>
-                <li ><a href="/b-travel-vacations/saskatoon/c302l1700197" class="category-selected" data-id="302">travel, vacations</a></li>
-                <li ><a href="/b-other-services/saskatoon/c87l1700197" class="category-selected" data-id="87">other</a></li>
-            </ul>
-        </section>
-        <section>
-            <ul>
-                <li class="cat-name">
-                    <h2 class="icon-link">
-                        <div class="icon cat-27"></div>
-                        <a href="/b-cars-vehicles/saskatoon/c27l1700197" class="category-selected" data-id="27">cars &amp; vehicles</a>
-                    </h2>
-                </li>
-                <li ><a href="/b-cars-trucks/saskatoon/c174l1700197" class="category-selected" data-id="174">cars &amp; trucks</a></li>
-                <li class="cat-sub"><a href="/b-cars-trucks/saskatoon/convertible__coupe__hatchback__other+body+type__sedan__wagon/c174l1700197a138" class="category-selected" data-id="174">cars</a> (<a href="/b-cars-trucks/saskatoon/convertible__coupe__hatchback__other+body+type__sedan__wagon/c174l1700197a138?price=__5000" class="category-selected" data-id="174">under</a> / <a href="/b-cars-trucks/saskatoon/convertible__coupe__hatchback__other+body+type__sedan__wagon/c174l1700197a138?price=5000__" class="category-selected" data-id="174">over</a> $5K)</li>
-                <li class="cat-sub"><a href="/b-cars-trucks/saskatoon/suv+crossover/c174l1700197a138" class="category-selected" data-id="174">SUVs</a> / <a href="/b-cars-trucks/saskatoon/pickup+truck/c174l1700197a138" class="category-selected" data-id="174">trucks</a> / <a href="/b-cars-trucks/saskatoon/mini+van/c174l1700197a138" class="category-selected" data-id="174">vans</a></li>
-                <li ><a href="/b-classic-cars/saskatoon/c122l1700197" class="category-selected" data-id="122">classic cars</a></li>
-                <li ><a href="/b-auto-parts-tires/saskatoon/c31l1700197" class="category-selected" data-id="31">auto parts, tires</a></li>
-                <li ><a href="/b-automotive-services/saskatoon/c142l1700197" class="category-selected" data-id="142">automotive services</a></li>
-                <li ><a href="/b-motorcycles/saskatoon/c30l1700197" class="category-selected" data-id="30">motorcycles</a></li>
-                <li ><a href="/b-atv-snowmobile/saskatoon/c171l1700197" class="category-selected" data-id="171">ATVs, snowmobiles</a></li>
-                <li ><a href="/b-boat-watercraft/saskatoon/c29l1700197" class="category-selected" data-id="29">boats, watercraft</a></li>
-                <li ><a href="/b-rv-camper-trailer/saskatoon/c172l1700197" class="category-selected" data-id="172">RVs, campers, trailers</a></li>
-                <li ><a href="/b-heavy-equipment/saskatoon/c301l1700197" class="category-selected" data-id="301">heavy equipment</a></li>
-                <li ><a href="/b-cars-other/saskatoon/c33l1700197" class="category-selected" data-id="33">other</a></li>
-            </ul>
-            <ul>
-                <li class="cat-name">
-                    <h2 class="icon-link">
-                        <div class="icon cat-112"></div>
-                        <a href="/b-pets/saskatoon/c112l1700197" class="category-selected" data-id="112">pets</a>
-                    </h2>
-                </li>
-                <li ><a href="/b-pet-accessories/saskatoon/c115l1700197" class="category-selected" data-id="115">accessories</a></li>
-                <li ><a href="/b-pet-services/saskatoon/c143l1700197" class="category-selected" data-id="143">animal, pet services</a></li>
-                <li ><a href="/b-birds/saskatoon/c135l1700197" class="category-selected" data-id="135">birds for sale</a></li>
-                <li ><a href="/b-cats-kittens/saskatoon/c125l1700197" class="category-selected" data-id="125">cats, kittens for sale</a></li>
-                <li ><a href="/b-dogs-puppies/saskatoon/c126l1700197" class="category-selected" data-id="126">dogs, puppies for sale</a></li>
-                <li ><a href="/b-livestock/saskatoon/c217l1700197" class="category-selected" data-id="217">livestock for sale</a></li>
-                <li ><a href="/b-lost-and-found/saskatoon/c791l1700197" class="category-selected" data-id="791">lost &amp; found</a></li>
-                <li ><a href="/b-other-pets/saskatoon/c114l1700197" class="category-selected" data-id="114">other pets for sale</a></li>
-                <li ><a href="/b-free-pets-donate-pets/saskatoon/c113l1700197" class="category-selected" data-id="113">to give or donate</a></li>
-                <li ><a href="/b-pets-other-items/saskatoon/c127l1700197" class="category-selected" data-id="127">other</a></li>
-            </ul>
-            <ul>
-                <li class="cat-name">
-                    <h2 class="icon-link">
-                        <div class="icon cat-1"></div>
-                        <a href="/b-community/saskatoon/c1l1700197" class="category-selected" data-id="1">community</a>
-                    </h2>
-                </li>
-                <li ><a href="/b-activities-groups/saskatoon/c7l1700197" class="category-selected" data-id="7">activities, groups</a></li>
-                <li ><a href="/b-artists-musicians/saskatoon/c2l1700197" class="category-selected" data-id="2">artists, musicians</a></li>
-                <li ><a href="/b-classes-lessons/saskatoon/c4l1700197" class="category-selected" data-id="4">classes, lessons</a></li>
-                <li ><a href="http://saskatoon.kijiji.ca/c-RedirectToPHPBB" class="category-selected" data-id="637">discussions</a></li>
-                <li ><a href="/b-events/saskatoon/c289l1700197" class="category-selected" data-id="289">events</a></li>
-                <li ><a href="/b-friendship-networking/saskatoon/c634l1700197" class="category-selected" data-id="634">friendship, networking</a></li>
-                <li ><a href="/b-long-lost-relationships/saskatoon/c635l1700197" class="category-selected" data-id="635">long lost relationships</a></li>
-                <li ><a href="/b-lost-and-found/saskatoon/c120l1700197" class="category-selected" data-id="120">lost &amp; found</a></li>
-                <li ><a href="/b-missed-connections/saskatoon/c636l1700197" class="category-selected" data-id="636">missed connections</a></li>
-                <li ><a href="/b-rideshare-carpool/saskatoon/c5l1700197" class="category-selected" data-id="5">rideshare</a></li>
-                <li ><a href="/b-volunteers/saskatoon/c3l1700197" class="category-selected" data-id="3">volunteers</a></li>
-                <li ><a href="/b-community-other/saskatoon/c9l1700197" class="category-selected" data-id="9">other</a></li>
-            </ul>
-        </section>
-        <section>
-            <ul>
-                <li class="cat-name">
-                    <h2 class="icon-link">
-                        <div class="icon cat-34"></div>
-                        <a href="/b-real-estate/saskatoon/c34l1700197" class="category-selected" data-id="34">real estate</a>
-                    </h2>
-                </li>
-                <li class="cat-sub cat-subtitle">for rent:</li>
-                <li ><a href="/b-apartments-condos/saskatoon/c37l1700197" class="category-selected" data-id="37">apartments, condos</a></li>
-                <li ><a href="/b-house-rental/saskatoon/c43l1700197" class="category-selected" data-id="43">house rental</a></li>
-                <li ><a href="/b-room-rental-roommate/saskatoon/c36l1700197" class="category-selected" data-id="36">room rental, roommates</a></li>
-                <li ><a href="/b-short-term-rental/saskatoon/c42l1700197" class="category-selected" data-id="42">short term rentals</a></li>
-                <li ><a href="/b-commercial-office-space/saskatoon/c40l1700197" class="category-selected" data-id="40">commercial, office space</a></li>
-                <li ><a href="http://vacations.kijiji.ca/?lang=en" class="category-selected" data-id="642">vacation rentals</a></li>
-                <li ><a href="/b-storage-parking/saskatoon/c39l1700197" class="category-selected" data-id="39">storage, parking</a></li>
-                <li class="cat-sub cat-subtitle">for sale:</li>
-                <li ><a href="/b-house-for-sale/saskatoon/c35l1700197" class="category-selected" data-id="35">houses for sale</a></li>
-                <li ><a href="/b-condo-for-sale/saskatoon/c643l1700197" class="category-selected" data-id="643">condos for sale</a></li>
-                <li ><a href="/b-land-for-sale/saskatoon/c641l1700197" class="category-selected" data-id="641">land for sale</a></li>
-                <li class="cat-sub cat-subtitle">other:</li>
-                <li ><a href="/b-real-estate-service/saskatoon/c170l1700197" class="category-selected" data-id="170">real estate services</a></li>
-                <li ><a href="/b-other-real-estate/saskatoon/c44l1700197" class="category-selected" data-id="44">other</a></li>
-            </ul>
-            <ul>
-                <li class="cat-name">
-                    <h2 class="icon-link">
-                        <div class="icon cat-45"></div>
-                        <a href="/b-jobs/saskatoon/c45l1700197" class="category-selected" data-id="45">jobs</a>
-                    </h2>
-                </li>
-                <li ><a href="/b-accounting-management-jobs/saskatoon/c58l1700197" class="category-selected" data-id="58">accounting, mgmt</a></li>
-                <li ><a href="/b-childcare-jobs/saskatoon/c47l1700197" class="category-selected" data-id="47">child care</a></li>
-                <li ><a href="/b-bar-food-hopitality-jobs/saskatoon/c60l1700197" class="category-selected" data-id="60">bar, food, hospitality</a></li>
-                <li ><a href="/b-cleaning-housekeeper-jobs/saskatoon/c146l1700197" class="category-selected" data-id="146">cleaning, housekeeper</a></li>
-                <li ><a href="/b-construction-trades-jobs/saskatoon/c50l1700197" class="category-selected" data-id="50">construction, trades</a></li>
-                <li ><a href="/b-customer-service-jobs/saskatoon/c147l1700197" class="category-selected" data-id="147">customer service</a></li>
-                <li ><a href="/b-driver-security-jobs/saskatoon/c148l1700197" class="category-selected" data-id="148">driver, security</a></li>
-                <li ><a href="/b-general-labour-jobs/saskatoon/c149l1700197" class="category-selected" data-id="149">general labour</a></li>
-                <li ><a href="/b-graphic-web-design-jobs/saskatoon/c152l1700197" class="category-selected" data-id="152">graphic, web design</a></li>
-                <li ><a href="/b-hair-stylist-salon-jobs/saskatoon/c150l1700197" class="category-selected" data-id="150">hair stylist, salon</a></li>
-                <li ><a href="/b-office-manager-receptionist-jobs/saskatoon/c46l1700197" class="category-selected" data-id="46">office mgr, receptionist</a></li>
-                <li ><a href="/b-part-time-student-jobs/saskatoon/c59l1700197" class="category-selected" data-id="59">part time, students</a></li>
-                <li ><a href="/b-programmer-computer-jobs/saskatoon/c54l1700197" class="category-selected" data-id="54">programmers, computer</a></li>
-                <li ><a href="/b-sales-retail-jobs/saskatoon/c61l1700197" class="category-selected" data-id="61">sales, retail sales</a></li>
-                <li ><a href="/b-tv-media-fashion-jobs/saskatoon/c55l1700197" class="category-selected" data-id="55">tv, media, fashion</a></li>
-                <li ><a href="/b-other-jobs/saskatoon/c62l1700197" class="category-selected" data-id="62">other</a></li>
-            </ul>
-            <ul>
-                <li class="cat-name">
-                    <h2 class="icon-link">
-                        <div class="icon cat-218"></div>
-                        <a href="/b-resumes/saskatoon/c218l1700197" class="category-selected" data-id="218">resumes</a>
-                    </h2>
-                </li>
-                <li ><a href="/b-childcare-resumes/saskatoon/c225l1700197" class="category-selected" data-id="225">child care</a></li>
-                <li ><a href="/b-construction-trades-resumes/saskatoon/c224l1700197" class="category-selected" data-id="224">construction, trades</a></li>
-                <li ><a href="/b-general-labour-resumes/saskatoon/c230l1700197" class="category-selected" data-id="230">general labour</a></li>
-                <li><a href="/b-resumes/saskatoon/c218l1700197" class="category-selected" data-id="218">(more categories...)</a></li>
-            </ul>
-        </section>
-        -->
+
+<!--
+    <section>
+        <ul>
+            <li class="cat-name">
+                <h2 class="icon-link">
+                    <div class="icon cat-10"></div>
+                    <a onclick="" class="category-selected" data-id="10">buy and sell</a>
+                </h2>
+            </li>
+            <li ><a href="/b-art-collectibles/saskatoon/c12l1700197" class="category-selected" data-id="12">art, collectibles</a></li>
+            <li ><a href="/b-baby-items/saskatoon/c253l1700197" class="category-selected" data-id="253">baby items</a></li>
+            <li ><a href="/b-bikes/saskatoon/c644l1700197" class="category-selected" data-id="644">bikes</a></li>
+            <li ><a href="/b-books/saskatoon/c109l1700197" class="category-selected" data-id="109">books</a></li>
+            <li ><a href="/b-business-industrial/saskatoon/c145l1700197" class="category-selected" data-id="145">business, industrial</a></li>
+            <li ><a href="/b-camera-camcorder-lens/saskatoon/c103l1700197" class="category-selected" data-id="103">cameras, camcorders</a></li>
+            <li ><a href="/b-cd-dvd-blu-ray/saskatoon/c104l1700197" class="category-selected" data-id="104">cds, dvds, blu-ray</a></li>
+            <li ><a href="/b-clothing/saskatoon/c274l1700197" class="category-selected" data-id="274">clothing</a></li>
+            <li ><a href="/b-computer/saskatoon/c16l1700197" class="category-selected" data-id="16">computers</a></li>
+            <li ><a href="/b-computer-accessories/saskatoon/c128l1700197" class="category-selected" data-id="128">computer accessories</a></li>
+            <li ><a href="/b-electronics/saskatoon/c15l1700197" class="category-selected" data-id="15">electronics</a></li>
+            <li ><a href="/b-furniture/saskatoon/c235l1700197" class="category-selected" data-id="235">furniture</a></li>
+            <li ><a href="/b-garage-sale-yard-sale/saskatoon/c638l1700197" class="category-selected" data-id="638">garage sales</a></li>
+            <li ><a href="/b-health-special-needs/saskatoon/c140l1700197" class="category-selected" data-id="140">health, special needs</a></li>
+            <li ><a href="/b-hobbies-craft/saskatoon/c139l1700197" class="category-selected" data-id="139">hobbies, crafts</a></li>
+            <li ><a href="/b-home-appliance/saskatoon/c107l1700197" class="category-selected" data-id="107">home appliances</a></li>
+            <li ><a href="/b-home-indoor/saskatoon/c717l1700197" class="category-selected" data-id="717">home - indoor</a></li>
+            <li ><a href="/b-home-outdoor/saskatoon/c19l1700197" class="category-selected" data-id="19">home - outdoor</a></li>
+            <li ><a href="/b-home-renovation/saskatoon/c727l1700197" class="category-selected" data-id="727">home renovation materials</a></li>
+            <li ><a href="/b-ipod-mp3-headphones/saskatoon/c767l1700197" class="category-selected" data-id="767">iPods, mp3, headphones</a></li>
+            <li ><a href="/b-jewelry-watch/saskatoon/c133l1700197" class="category-selected" data-id="133">jewellery, watches</a></li>
+            <li ><a href="/b-musical-instrument/saskatoon/c17l1700197" class="category-selected" data-id="17">musical instruments</a></li>
+            <li ><a href="/b-phone-tablet/saskatoon/c132l1700197" class="category-selected" data-id="132">phones</a></li>
+            <li ><a href="/b-sporting-goods-exercise/saskatoon/c111l1700197" class="category-selected" data-id="111">sporting goods, exercise</a></li>
+            <li ><a href="/b-tickets/saskatoon/c14l1700197" class="category-selected" data-id="14">tickets</a></li>
+            <li ><a href="/b-tool/saskatoon/c110l1700197" class="category-selected" data-id="110">tools</a></li>
+            <li ><a href="/b-toys-games/saskatoon/c108l1700197" class="category-selected" data-id="108">toys, games</a></li>
+            <li ><a href="/b-video-games-consoles/saskatoon/c141l1700197" class="category-selected" data-id="141">video games, consoles</a></li>
+            <li ><a href="/b-buy-sell-other/saskatoon/c26l1700197" class="category-selected" data-id="26">other</a></li>
+        </ul>
+        <ul>
+            <li class="cat-name">
+                <h2 class="icon-link">
+                    <div class="icon cat-72"></div>
+                    <a href="/b-services/saskatoon/c72l1700197" class="category-selected" data-id="72">services</a>
+                </h2>
+            </li>
+            <li ><a href="/b-childcare-nanny-service/saskatoon/c84l1700197" class="category-selected" data-id="84">childcare, nanny</a></li>
+            <li ><a href="/b-cleaners-cleaning-service/saskatoon/c160l1700197" class="category-selected" data-id="160">cleaners, cleaning</a></li>
+            <li ><a href="/b-entertainment/saskatoon/c165l1700197" class="category-selected" data-id="165">entertainment</a></li>
+            <li ><a href="/b-financial-legal/saskatoon/c131l1700197" class="category-selected" data-id="131">financial, legal</a></li>
+            <li ><a href="/b-fitness-personal-trainer/saskatoon/c83l1700197" class="category-selected" data-id="83">fitness, personal trainer</a></li>
+            <li ><a href="/b-health-beauty/saskatoon/c166l1700197" class="category-selected" data-id="166">health, beauty</a></li>
+            <li ><a href="/b-moving-storage/saskatoon/c144l1700197" class="category-selected" data-id="144">moving, storage</a></li>
+            <li ><a href="/b-music-lessons/saskatoon/c86l1700197" class="category-selected" data-id="86">music lessons</a></li>
+            <li ><a href="/b-photography-video/saskatoon/c168l1700197" class="category-selected" data-id="168">photography, video</a></li>
+            <li ><a href="/b-skilled-trades/saskatoon/c76l1700197" class="category-selected" data-id="76">skilled trades</a></li>
+            <li ><a href="/b-tutor-language-lessons/saskatoon/c169l1700197" class="category-selected" data-id="169">tutors, languages</a></li>
+            <li ><a href="/b-wedding-service/saskatoon/c79l1700197" class="category-selected" data-id="79">wedding</a></li>
+            <li ><a href="/b-travel-vacations/saskatoon/c302l1700197" class="category-selected" data-id="302">travel, vacations</a></li>
+            <li ><a href="/b-other-services/saskatoon/c87l1700197" class="category-selected" data-id="87">other</a></li>
+        </ul>
+    </section>
+    <section>
+        <ul>
+            <li class="cat-name">
+                <h2 class="icon-link">
+                    <div class="icon cat-27"></div>
+                    <a href="/b-cars-vehicles/saskatoon/c27l1700197" class="category-selected" data-id="27">cars &amp; vehicles</a>
+                </h2>
+            </li>
+            <li ><a href="/b-cars-trucks/saskatoon/c174l1700197" class="category-selected" data-id="174">cars &amp; trucks</a></li>
+            <li class="cat-sub"><a href="/b-cars-trucks/saskatoon/convertible__coupe__hatchback__other+body+type__sedan__wagon/c174l1700197a138" class="category-selected" data-id="174">cars</a> (<a href="/b-cars-trucks/saskatoon/convertible__coupe__hatchback__other+body+type__sedan__wagon/c174l1700197a138?price=__5000" class="category-selected" data-id="174">under</a> / <a href="/b-cars-trucks/saskatoon/convertible__coupe__hatchback__other+body+type__sedan__wagon/c174l1700197a138?price=5000__" class="category-selected" data-id="174">over</a> $5K)</li>
+            <li class="cat-sub"><a href="/b-cars-trucks/saskatoon/suv+crossover/c174l1700197a138" class="category-selected" data-id="174">SUVs</a> / <a href="/b-cars-trucks/saskatoon/pickup+truck/c174l1700197a138" class="category-selected" data-id="174">trucks</a> / <a href="/b-cars-trucks/saskatoon/mini+van/c174l1700197a138" class="category-selected" data-id="174">vans</a></li>
+            <li ><a href="/b-classic-cars/saskatoon/c122l1700197" class="category-selected" data-id="122">classic cars</a></li>
+            <li ><a href="/b-auto-parts-tires/saskatoon/c31l1700197" class="category-selected" data-id="31">auto parts, tires</a></li>
+            <li ><a href="/b-automotive-services/saskatoon/c142l1700197" class="category-selected" data-id="142">automotive services</a></li>
+            <li ><a href="/b-motorcycles/saskatoon/c30l1700197" class="category-selected" data-id="30">motorcycles</a></li>
+            <li ><a href="/b-atv-snowmobile/saskatoon/c171l1700197" class="category-selected" data-id="171">ATVs, snowmobiles</a></li>
+            <li ><a href="/b-boat-watercraft/saskatoon/c29l1700197" class="category-selected" data-id="29">boats, watercraft</a></li>
+            <li ><a href="/b-rv-camper-trailer/saskatoon/c172l1700197" class="category-selected" data-id="172">RVs, campers, trailers</a></li>
+            <li ><a href="/b-heavy-equipment/saskatoon/c301l1700197" class="category-selected" data-id="301">heavy equipment</a></li>
+            <li ><a href="/b-cars-other/saskatoon/c33l1700197" class="category-selected" data-id="33">other</a></li>
+        </ul>
+        <ul>
+            <li class="cat-name">
+                <h2 class="icon-link">
+                    <div class="icon cat-112"></div>
+                    <a href="/b-pets/saskatoon/c112l1700197" class="category-selected" data-id="112">pets</a>
+                </h2>
+            </li>
+            <li ><a href="/b-pet-accessories/saskatoon/c115l1700197" class="category-selected" data-id="115">accessories</a></li>
+            <li ><a href="/b-pet-services/saskatoon/c143l1700197" class="category-selected" data-id="143">animal, pet services</a></li>
+            <li ><a href="/b-birds/saskatoon/c135l1700197" class="category-selected" data-id="135">birds for sale</a></li>
+            <li ><a href="/b-cats-kittens/saskatoon/c125l1700197" class="category-selected" data-id="125">cats, kittens for sale</a></li>
+            <li ><a href="/b-dogs-puppies/saskatoon/c126l1700197" class="category-selected" data-id="126">dogs, puppies for sale</a></li>
+            <li ><a href="/b-livestock/saskatoon/c217l1700197" class="category-selected" data-id="217">livestock for sale</a></li>
+            <li ><a href="/b-lost-and-found/saskatoon/c791l1700197" class="category-selected" data-id="791">lost &amp; found</a></li>
+            <li ><a href="/b-other-pets/saskatoon/c114l1700197" class="category-selected" data-id="114">other pets for sale</a></li>
+            <li ><a href="/b-free-pets-donate-pets/saskatoon/c113l1700197" class="category-selected" data-id="113">to give or donate</a></li>
+            <li ><a href="/b-pets-other-items/saskatoon/c127l1700197" class="category-selected" data-id="127">other</a></li>
+        </ul>
+        <ul>
+            <li class="cat-name">
+                <h2 class="icon-link">
+                    <div class="icon cat-1"></div>
+                    <a href="/b-community/saskatoon/c1l1700197" class="category-selected" data-id="1">community</a>
+                </h2>
+            </li>
+            <li ><a href="/b-activities-groups/saskatoon/c7l1700197" class="category-selected" data-id="7">activities, groups</a></li>
+            <li ><a href="/b-artists-musicians/saskatoon/c2l1700197" class="category-selected" data-id="2">artists, musicians</a></li>
+            <li ><a href="/b-classes-lessons/saskatoon/c4l1700197" class="category-selected" data-id="4">classes, lessons</a></li>
+            <li ><a href="http://saskatoon.kijiji.ca/c-RedirectToPHPBB" class="category-selected" data-id="637">discussions</a></li>
+            <li ><a href="/b-events/saskatoon/c289l1700197" class="category-selected" data-id="289">events</a></li>
+            <li ><a href="/b-friendship-networking/saskatoon/c634l1700197" class="category-selected" data-id="634">friendship, networking</a></li>
+            <li ><a href="/b-long-lost-relationships/saskatoon/c635l1700197" class="category-selected" data-id="635">long lost relationships</a></li>
+            <li ><a href="/b-lost-and-found/saskatoon/c120l1700197" class="category-selected" data-id="120">lost &amp; found</a></li>
+            <li ><a href="/b-missed-connections/saskatoon/c636l1700197" class="category-selected" data-id="636">missed connections</a></li>
+            <li ><a href="/b-rideshare-carpool/saskatoon/c5l1700197" class="category-selected" data-id="5">rideshare</a></li>
+            <li ><a href="/b-volunteers/saskatoon/c3l1700197" class="category-selected" data-id="3">volunteers</a></li>
+            <li ><a href="/b-community-other/saskatoon/c9l1700197" class="category-selected" data-id="9">other</a></li>
+        </ul>
+    </section>
+    <section>
+        <ul>
+            <li class="cat-name">
+                <h2 class="icon-link">
+                    <div class="icon cat-34"></div>
+                    <a href="/b-real-estate/saskatoon/c34l1700197" class="category-selected" data-id="34">real estate</a>
+                </h2>
+            </li>
+            <li class="cat-sub cat-subtitle">for rent:</li>
+            <li ><a href="/b-apartments-condos/saskatoon/c37l1700197" class="category-selected" data-id="37">apartments, condos</a></li>
+            <li ><a href="/b-house-rental/saskatoon/c43l1700197" class="category-selected" data-id="43">house rental</a></li>
+            <li ><a href="/b-room-rental-roommate/saskatoon/c36l1700197" class="category-selected" data-id="36">room rental, roommates</a></li>
+            <li ><a href="/b-short-term-rental/saskatoon/c42l1700197" class="category-selected" data-id="42">short term rentals</a></li>
+            <li ><a href="/b-commercial-office-space/saskatoon/c40l1700197" class="category-selected" data-id="40">commercial, office space</a></li>
+            <li ><a href="http://vacations.kijiji.ca/?lang=en" class="category-selected" data-id="642">vacation rentals</a></li>
+            <li ><a href="/b-storage-parking/saskatoon/c39l1700197" class="category-selected" data-id="39">storage, parking</a></li>
+            <li class="cat-sub cat-subtitle">for sale:</li>
+            <li ><a href="/b-house-for-sale/saskatoon/c35l1700197" class="category-selected" data-id="35">houses for sale</a></li>
+            <li ><a href="/b-condo-for-sale/saskatoon/c643l1700197" class="category-selected" data-id="643">condos for sale</a></li>
+            <li ><a href="/b-land-for-sale/saskatoon/c641l1700197" class="category-selected" data-id="641">land for sale</a></li>
+            <li class="cat-sub cat-subtitle">other:</li>
+            <li ><a href="/b-real-estate-service/saskatoon/c170l1700197" class="category-selected" data-id="170">real estate services</a></li>
+            <li ><a href="/b-other-real-estate/saskatoon/c44l1700197" class="category-selected" data-id="44">other</a></li>
+        </ul>
+        <ul>
+            <li class="cat-name">
+                <h2 class="icon-link">
+                    <div class="icon cat-45"></div>
+                    <a href="/b-jobs/saskatoon/c45l1700197" class="category-selected" data-id="45">jobs</a>
+                </h2>
+            </li>
+            <li ><a href="/b-accounting-management-jobs/saskatoon/c58l1700197" class="category-selected" data-id="58">accounting, mgmt</a></li>
+            <li ><a href="/b-childcare-jobs/saskatoon/c47l1700197" class="category-selected" data-id="47">child care</a></li>
+            <li ><a href="/b-bar-food-hopitality-jobs/saskatoon/c60l1700197" class="category-selected" data-id="60">bar, food, hospitality</a></li>
+            <li ><a href="/b-cleaning-housekeeper-jobs/saskatoon/c146l1700197" class="category-selected" data-id="146">cleaning, housekeeper</a></li>
+            <li ><a href="/b-construction-trades-jobs/saskatoon/c50l1700197" class="category-selected" data-id="50">construction, trades</a></li>
+            <li ><a href="/b-customer-service-jobs/saskatoon/c147l1700197" class="category-selected" data-id="147">customer service</a></li>
+            <li ><a href="/b-driver-security-jobs/saskatoon/c148l1700197" class="category-selected" data-id="148">driver, security</a></li>
+            <li ><a href="/b-general-labour-jobs/saskatoon/c149l1700197" class="category-selected" data-id="149">general labour</a></li>
+            <li ><a href="/b-graphic-web-design-jobs/saskatoon/c152l1700197" class="category-selected" data-id="152">graphic, web design</a></li>
+            <li ><a href="/b-hair-stylist-salon-jobs/saskatoon/c150l1700197" class="category-selected" data-id="150">hair stylist, salon</a></li>
+            <li ><a href="/b-office-manager-receptionist-jobs/saskatoon/c46l1700197" class="category-selected" data-id="46">office mgr, receptionist</a></li>
+            <li ><a href="/b-part-time-student-jobs/saskatoon/c59l1700197" class="category-selected" data-id="59">part time, students</a></li>
+            <li ><a href="/b-programmer-computer-jobs/saskatoon/c54l1700197" class="category-selected" data-id="54">programmers, computer</a></li>
+            <li ><a href="/b-sales-retail-jobs/saskatoon/c61l1700197" class="category-selected" data-id="61">sales, retail sales</a></li>
+            <li ><a href="/b-tv-media-fashion-jobs/saskatoon/c55l1700197" class="category-selected" data-id="55">tv, media, fashion</a></li>
+            <li ><a href="/b-other-jobs/saskatoon/c62l1700197" class="category-selected" data-id="62">other</a></li>
+        </ul>
+        <ul>
+            <li class="cat-name">
+                <h2 class="icon-link">
+                    <div class="icon cat-218"></div>
+                    <a href="/b-resumes/saskatoon/c218l1700197" class="category-selected" data-id="218">resumes</a>
+                </h2>
+            </li>
+            <li ><a href="/b-childcare-resumes/saskatoon/c225l1700197" class="category-selected" data-id="225">child care</a></li>
+            <li ><a href="/b-construction-trades-resumes/saskatoon/c224l1700197" class="category-selected" data-id="224">construction, trades</a></li>
+            <li ><a href="/b-general-labour-resumes/saskatoon/c230l1700197" class="category-selected" data-id="230">general labour</a></li>
+            <li><a href="/b-resumes/saskatoon/c218l1700197" class="category-selected" data-id="218">(more categories...)</a></li>
+        </ul>
+    </section>
+    -->
 </div>
 
 <script type="text/javascript">
@@ -322,21 +259,35 @@
     <footer>
         <div id="FooterBottom">
             <ul>
-                <section style="width:250px; padding-left:300px; list-style-type: none">
+                <section onclick="alert('')" style="list-style-type: none; min-width: 33%; max-width:50%; padding-left: 20%;">
                     <li>
                         <image style="cursor:pointer" onclick="window.open('https://www.facebook.com/AnotherSchoolProject')" src="Images/fbook.png"/>
                         <a href="https://www.facebook.com/AnotherSchoolProject" target="_blank" rel="nofollow">Friend us on Facebook</a>
                     </li>
                 </section>
-                <section style="padding-left: 200px; list-style-type: none;">
+                <section style="list-style-type: none; min-width: 33%; max-width:50%;">
                     <li>
-                        <fb:like style="vertical-align: -22px" href="https://www.facebook.com/AnotherSchoolProject" send="false" width="600" show_faces="false"></fb:like>
+                        <fb:like style="vertical-align: -33px" href="https://www.facebook.com/AnotherSchoolProject" send="false" width="600" show_faces="false"></fb:like>
                     </li>
                 </section>
             </ul>
         </div>
     </footer>
 </div>
+<script>
+
+    (function(d, s, id)
+    {                   // like on facebook
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, "script", 'facebook-jssdk'));
+
+</script>
 
 </body>
 </html>
