@@ -14,11 +14,9 @@
 
     <script type="text/javascript" src="jquery/jquery.mobile.custom.js"></script>
     <script type="text/javascript" src="jquery/jquery.mobile.custom.min.js"></script>
-    <script type="javascript">
-        //todo find new flashy image for title of website
-        //todo go through css's and filter out the crap
-        //todo get icons for categories
-    </script>
+    <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript" src="arrayDB.js"></script>
+    <script type="text/javascript" src="postAd.js"></script>
 </head>
 
 <body>
@@ -48,7 +46,7 @@
 </header>
 
 <div data-role="content">
-    <section style="width: 50%; float: left">
+    <section style="width: 50%; float: left" id="SigninSection">
         <form action="myProfile.html">
             <fieldset>
                 <legend><strong>Sign-In:</strong></legend>
@@ -71,13 +69,12 @@
             </fieldset>
         </form>
     </section>
-    <section style="width: 50%; float: right">
+    <section style="width: 50%; float: right" id="notRegistered">
         <form action="register.html">
             <fieldset>
                 <legend><strong>Not Registered Yet?</strong></legend>
-                <br><h3>Register Now</h3>
-                <a hidden="hidden"></a><br>
-                <input type="submit">
+                <h3>Register Now</h3>
+                <input type="submit" value="Register!!">
             </fieldset>
         </form>
     </section>
@@ -105,7 +102,7 @@
         </div>
     </footer>
 </div>
-<script>
+<script type="text/javascript">
 
     (function(d, s, id)
     {                   // like on facebook

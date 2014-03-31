@@ -12,18 +12,14 @@
     <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.theme.min.css">
     <link rel="stylesheet" type="text/css" href="styling.css">
 
-    <script type="text/javascript" src="jquery/jquery.mobile.custom.js"></script>
-    <script type="text/javascript" src="jquery/jquery.mobile.custom.min.js"></script>
-    <script type="javascript">
-        //todo find new flashy image for title of website
-        //todo go through css's and filter out the crap
-        //todo get icons for categories
-    </script>
+<!--    <script type="text/javascript" src="jquery/jquery.mobile.custom.js"></script>
+    <script type="text/javascript" src="jquery/jquery.mobile.custom.min.js"></script>-->
+    <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript" src="arrayDB.js"></script>
+    <script type="text/javascript" src="postAd.js"></script>
 </head>
 
 <body>
-<script type="text/javascript" src="index.js"></script>
-<script type="text/javascript" src="arrayDB.js"></script>
 
 <header>
     <div id="TopHeader">
@@ -47,12 +43,19 @@
     </div>
 </header>
 
-<h1>Post-Ad</h1>
-<div id="PostAddCategories"></div>
+<div data-role="content">
+
+    <section id="MainCategories" style="width: 33%; display: inline-block">
+        <h2>Main Category</h2>
+    </section>
+    <section id="SubCategories" style="width: 33%; display: inline-block">
+        <h2>Sub Category</h2>
+    </section>
+</div>
 <script type="text/javascript">
 
-    postAdDisplay();
-
+    generateCategories();
+    postMainCategories();
 </script>
 
 <div id="LayoutFooter">

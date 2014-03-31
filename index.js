@@ -2,7 +2,7 @@
  * Created by JG on 23/03/14.
  */
 
-var  specCat = [], specId = [], buyCat = [], servCat = [], carsCat = [], petsCat = [], commCat = [], rlEsCat = [], jobsCat = [];
+var  specCat = [], specId = [], buyCat = [], servCat = [], carsCat = [], petsCat = [], commCat = [], rlEsCat = [], jobsCat = [], allArrays = [];
 
 function generateCategories()
 {
@@ -52,8 +52,6 @@ function generateCategories()
     servCat.push('wedding');
     servCat.push('travel, vacations');
     servCat.push('other');
-
-
 
     specCat.push('cars & vehicles');   specId.push(200);
     carsCat.push('cars');
@@ -130,6 +128,14 @@ function generateCategories()
     jobsCat.push('sales, retail sales');
     jobsCat.push('tv, media, fashion');
     jobsCat.push('other');
+
+    allArrays.push(buyCat);
+    allArrays.push(servCat);
+    allArrays.push(carsCat);
+    allArrays.push(petsCat);
+    allArrays.push(commCat);
+    allArrays.push(rlEsCat);
+    allArrays.push(jobsCat);
 }
 
 function displayCategories()
@@ -202,9 +208,9 @@ function displayCategories()
     innerDiv.style.display = "inline";
 
     heading = document.createElement('h2');
-    
+
     heading.style.display = "inline";
-    
+
 
     a = document.createElement('a');
     a.style.color="#006";
@@ -252,7 +258,7 @@ function displayCategories()
     innerDiv.style.display = "inline";
 
     heading = document.createElement('h2');
-    
+
     heading.style.display = "inline";
 
 
@@ -303,7 +309,7 @@ function displayCategories()
     innerDiv.id = 'div'+specId[3];
 
     heading = document.createElement('h2');
-    
+
     heading.style.display = "inline";
 
 
@@ -353,7 +359,7 @@ function displayCategories()
     innerDiv.style.display = "inline";
 
     heading = document.createElement('h2');
-    
+
     heading.style.display = "inline";
 
 
@@ -460,7 +466,7 @@ function displayCategories()
     innerDiv = document.createElement('div');
     innerDiv.id = 'div'+specId[6];
     innerDiv.style.display = "inline";
-    
+
     heading = document.createElement('h2');
     heading.style.display = "inline";
 
@@ -498,8 +504,9 @@ function displayCategories()
     section3.appendChild(ul);
 
     div = document.getElementById('Categories');
-    div.style.paddingLeft = "100px";
-//    div.align = "middle";
+    if(!div)
+        div = document.getElementById('PostCategories');
+    div.style.paddingLeft = "10%";
     div.appendChild(section1);
     div.appendChild(section2);
     div.appendChild(section3);
@@ -523,24 +530,159 @@ function displayImages()
     }
 }
 
-
-
 function eventListener(event)
 {
     window.location.assign("items.html?id="+event.target.id);
 }
 
 
+function postMainCategories()
+{
+    var i, div, br, a;
+
+    div = document.getElementById('MainCategories');
+
+    for (i = 0; i < specCat.length; i++)
+    {
+        br = document.createElement('br');
+
+        a = document.createElement('a');
+        a.style.color="#006";
+        a.style.cursor="pointer";
+        a.style.textDecoration="underline";
+        a.style.display="block";
+        a.style.paddingLeft="10%";
+        a.style.fontWeight="bold";
+        a.style.marginTop="4px";
+        a.style.display = "inline";
+        a.addEventListener('click', postSubCategories, false);
+        a.textContent=specCat[i];
+        a.id = parseInt((specId[i]));
+
+        div.appendChild(a);
+        div.appendChild(br);
+    }
+}
+
+function postSubCategories(event)
+{
+    var div, br, a, array, index;
+    index = event.target.id.substr(0,1);
+    array = allArrays[index];
+
+    div = document.getElementById('SubCategories');
 
 
 
+    while(div.childElementCount > 1)
+        div.removeChild(div.lastChild);
+
+    if(index != 5)
+        for (var i = 0; i < array.length; i++)
+        {
+            br = document.createElement('br');
+
+            a = document.createElement('a');
+            a.style.color="#006";
+            a.style.cursor="pointer";
+            a.style.textDecoration="underline";
+            a.style.display="block";
+            a.style.paddingLeft="10%";
+            a.style.fontWeight="bold";
+            a.style.marginTop="4px";
+            a.style.display = "inline";
+//            a.addEventListener('click', postSubCategories, false);
+            a.textContent=array[i];
+
+            div.appendChild(a);
+            div.appendChild(br);
+        }
+    else
+        otherFunction(array, div);
+}
 
 
+function otherFunction(array, div)
+{
+    var br, a;
 
+    br = document.createElement('br');
 
+    a = document.createElement('a');
+    a.style.color="#006";
+    a.style.cursor="pointer";
+    a.style.textDecoration="underline";
+    a.style.display="block";
+    a.style.paddingLeft="10%";
+    a.style.fontWeight="bold";
+    a.style.marginTop="4px";
+    a.style.display = "inline";
+    a.addEventListener('click', postOtherSubCategories, false);
+    a.textContent=array[0];
 
+    div.appendChild(a);
+    div.appendChild(br);
 
+    br = document.createElement('br');
 
+    a = document.createElement('a');
+    a.style.color="#006";
+    a.style.cursor="pointer";
+    a.style.textDecoration="underline";
+    a.style.display="block";
+    a.style.paddingLeft="10%";
+    a.style.fontWeight="bold";
+    a.style.marginTop="4px";
+    a.style.display = "inline";
+    a.addEventListener('click', postOtherSubCategories, false);
+    a.textContent=array[8];
+
+    div.appendChild(a);
+    div.appendChild(br);
+
+    br = document.createElement('br');
+
+    a = document.createElement('a');
+    a.style.color="#006";
+    a.style.cursor="pointer";
+    a.style.textDecoration="underline";
+    a.style.display="block";
+    a.style.paddingLeft="10%";
+    a.style.fontWeight="bold";
+    a.style.marginTop="4px";
+    a.style.display = "inline";
+    a.addEventListener('click', postOtherSubCategories, false);
+    a.textContent=array[12];
+
+    div.appendChild(a);
+    div.appendChild(br);
+}
+
+function postOtherSubCategories()
+{
+    var array = allArrays[5], br, a, div;
+//    div = document.getElementById('');
+
+    for (var i = 0; i < array.length; i++)
+    {
+        br = document.createElement('br');
+
+        a = document.createElement('a');
+        a.style.color="#006";
+        a.style.cursor="pointer";
+        a.style.textDecoration="underline";
+        a.style.display="block";
+        a.style.paddingLeft="10%";
+        a.style.fontWeight="bold";
+        a.style.marginTop="4px";
+        a.style.display = "inline";
+//        a.addEventListener('click', postSubCategories, false);
+        a.textContent=array[i];
+
+//        div.appendChild(a);
+//        div.appendChild(br);
+    }
+}
 
 
 
