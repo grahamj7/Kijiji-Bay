@@ -3,6 +3,7 @@
  */
 
 var  specCat = [], specId = [], buyCat = [], servCat = [], carsCat = [], petsCat = [], commCat = [], rlEsCat = [], jobsCat = [], allArrays = [];
+var categoryId;
 
 function generateCategories()
 {
@@ -332,12 +333,12 @@ function displayCategories()
     ul.appendChild(li);
 
     //Normal Heading
-    for(i = 0; i < commCat.length; i++)
+    for(i = 0; i < petsCat.length; i++)
     {
         li = document.createElement('li');
         a = document.createElement('a');
         a.id = parseInt((specId[3]+i+1));
-        a.textContent=commCat[i];
+        a.textContent=petsCat[i];
         a.addEventListener('click', eventListener, false);
 
         li.appendChild(a);
@@ -381,12 +382,12 @@ function displayCategories()
     ul.appendChild(li);
 
     //Normal Heading
-    for(i = 0; i < petsCat.length; i++)
+    for(i = 0; i < commCat.length; i++)
     {
         li = document.createElement('li');
         a = document.createElement('a');
         a.id = parseInt((specId[4]+i+1));
-        a.textContent=petsCat[i];
+        a.textContent=commCat[i];
         a.addEventListener('click', eventListener, false);
 
         li.appendChild(a);
@@ -512,8 +513,6 @@ function displayCategories()
     div.appendChild(section3);
 }
 
-
-
 function displayImages()
 {
     var img = null, div = null, heading = null;
@@ -534,7 +533,6 @@ function eventListener(event)
 {
     window.location.assign("items.html?id="+event.target.id);
 }
-
 
 function postMainCategories()
 {
@@ -566,18 +564,21 @@ function postMainCategories()
 
 function postSubCategories(event)
 {
+    document.getElementById('ItemCategories').style.visibility='hidden';
+
     var div, br, a, array, index;
     index = event.target.id.substr(0,1);
     array = allArrays[index];
 
     div = document.getElementById('SubCategories');
-
-
+    div.style.visibility = "visible";
 
     while(div.childElementCount > 1)
         div.removeChild(div.lastChild);
 
-    if(index != 5)
+    if(index == 5)
+        otherFunction(array, div);
+    else
         for (var i = 0; i < array.length; i++)
         {
             br = document.createElement('br');
@@ -589,18 +590,15 @@ function postSubCategories(event)
             a.style.display="block";
             a.style.paddingLeft="10%";
             a.style.fontWeight="bold";
-            a.style.marginTop="4px";
             a.style.display = "inline";
-//            a.addEventListener('click', postSubCategories, false);
+            a.addEventListener('click', nextHeader, false);
             a.textContent=array[i];
+            a.id = parseInt(specId[index] +i +1);
 
             div.appendChild(a);
             div.appendChild(br);
         }
-    else
-        otherFunction(array, div);
 }
-
 
 function otherFunction(array, div)
 {
@@ -619,6 +617,7 @@ function otherFunction(array, div)
     a.style.display = "inline";
     a.addEventListener('click', postOtherSubCategories, false);
     a.textContent=array[0];
+    a.id=0;
 
     div.appendChild(a);
     div.appendChild(br);
@@ -636,6 +635,7 @@ function otherFunction(array, div)
     a.style.display = "inline";
     a.addEventListener('click', postOtherSubCategories, false);
     a.textContent=array[8];
+    a.id=8;
 
     div.appendChild(a);
     div.appendChild(br);
@@ -653,36 +653,74 @@ function otherFunction(array, div)
     a.style.display = "inline";
     a.addEventListener('click', postOtherSubCategories, false);
     a.textContent=array[12];
+    a.id=12;
 
     div.appendChild(a);
     div.appendChild(br);
 }
 
-function postOtherSubCategories()
+function postOtherSubCategories(event)
 {
     var array = allArrays[5], br, a, div;
-//    div = document.getElementById('');
+    div = document.getElementById('SubCategories');
+    var index = event.target.id, final = array.length;
 
-    for (var i = 0; i < array.length; i++)
+    if(index == 0)
+        final = 8;
+    else if (index == 8)
+        final = 12;
+
+    while(div.childElementCount > 1)
+        div.removeChild(div.lastChild);
+
+    for (var i = index; i < final; i++)
     {
         br = document.createElement('br');
-
-        a = document.createElement('a');
-        a.style.color="#006";
-        a.style.cursor="pointer";
-        a.style.textDecoration="underline";
-        a.style.display="block";
-        a.style.paddingLeft="10%";
-        a.style.fontWeight="bold";
-        a.style.marginTop="4px";
-        a.style.display = "inline";
-//        a.addEventListener('click', postSubCategories, false);
-        a.textContent=array[i];
-
-//        div.appendChild(a);
-//        div.appendChild(br);
+        if (i != index)
+        {
+            a = document.createElement('a');
+            a.style.color="#006";
+            a.style.cursor="pointer";
+            a.style.textDecoration="underline";
+            a.style.display="block";
+            a.style.paddingLeft="10%";
+            a.style.fontWeight="bold";
+            a.style.marginTop="4px";
+            a.style.display = "inline";
+            a.addEventListener('click', nextHeader, false);
+            a.textContent=array[i];
+            a.id = parseInt(specId[5] +(i + 1));
+            div.appendChild(a);
+            div.appendChild(br);
+        }
+        else
+        {
+            a = document.createElement('p');
+            a.textContent=array[i];
+            a.style.paddingLeft="5%";
+            div.appendChild(a);
+        }
     }
 }
 
+function nextHeader(event)
+{
+    document.getElementById('ItemCategories').style.visibility='visible';
+    categoryId = event.target.id;
+}
 
+function getItemDetails()
+{
+    var price = document.getElementById('price').value;
+    var title = document.getElementById('title').value;
+    var desc = document.getElementById('desc').value;
+    var images = document.getElementById('images').files;
+    var mainCat = categoryId.substr(0,1);
+    var subCat = categoryId.substr(1);
 
+    if(images.length == 0)
+        images.push('Images/NoImage.jpg');
+
+    insertItem(price, title, desc, images, mainCat, subCat);
+    window.open("details.html", "_self");
+}

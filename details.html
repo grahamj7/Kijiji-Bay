@@ -20,7 +20,6 @@
 </head>
 
 <body>
-
 <header>
     <div id="TopHeader">
         <div id="HeaderLeft">
@@ -43,48 +42,11 @@
     </div>
 </header>
 
-<div data-role="content">
-
-    <section id="MainCategories" style="width: 33%; display: inline-block;">
-        <h2>Main Category</h2>
-    </section>
-    <section id="SubCategories"  style="width: 33%; display: inline-block; visibility: hidden;">
-        <h2>Sub Category</h2>
-    </section>
-    <section id="ItemCategories" style="width: 33%; display: inline-block; visibility: hidden; position: relative;">
-        <h2>Item Details</h2>
-        <form action="details.html" onsubmit="getItemDetails()">
-            <label for="title">
-                Title:
-                <input type="text" required="required" id="title" placeholder="Enter a Title Here">
-            </label>
-            <br>
-            <label for="price">
-                Price:
-                <input type="number" min="1" required="required" id="price" placeholder="Enter the price">
-            </label>
-            <br>
-            <label for="desc">
-                Description:
-                <input id="desc" required="required" type="text" placeholder="Enter a description">
-            </label>
-            <br>
-            <label for="images">
-                Images:
-                <input id="images" type="file" accept="image/*" multiple>
-            </label>
-            <br>
-            <label for="submit">
-            <input id="submit" type="submit">
-        </label>
-            <br>
-        </form>
-    </section>
+<div data-role="content" id="details">
+    <h2>Item Details</h2>
 </div>
-<script type="text/javascript">
 
-    generateCategories();
-    postMainCategories();
+<script type="text/javascript">
 
 </script>
 

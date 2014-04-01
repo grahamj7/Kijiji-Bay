@@ -14,7 +14,7 @@ var userID,         userName,           password,       email,          fName,  
 var postalArr = [], provArr = [],   phoneArr = [],  ageArr = [];
 //  postalCode      province        phone(10)       age
 var postal,         prov,           phone,          age;
-
+{
 for (var i = 0; i < 5; i++)
 {
     userID = i;
@@ -52,12 +52,6 @@ userTable.push(postalArr);
 userTable.push(provArr);
 userTable.push(phoneArr);
 userTable.push(ageArr);
-
-
-
-
-
-
 
 var titleArr = [], imageArr = [], descArr = [], priceArr = [], userArr = [], mainCatArr = [], subCatArr = [];
 //  Title   Image   Desc    Price   userId   MainCat     SubCat
@@ -106,6 +100,7 @@ itemTable.push(subCatArr);
 
 DB.push(itemTable);
 DB.push(userTable);
+}
 
 function createTable()
 {
@@ -161,7 +156,12 @@ function createTable()
     contentDiv.appendChild(tbl);
 }
 
+function insertItem(price, title, desc, images, mainCat, subCat)
+{
+    var div = document.getElementById('details');
 
+    
+}
 
 
 
