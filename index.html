@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    
     <!--Kijiji-Bay: Free Classifieds in Saskatoon. Find a job, buy a car, find a house or apartment, furniture, appliances and more!-->
     <title>Kijiji-Bay</title>
     <link rel="shortcut icon" type="image/x-icon" href="Images/favicon.ico" />
@@ -17,7 +18,8 @@
     <script type="text/javascript" src="index.js"></script>
     <script type="text/javascript" src="arrayDB.js"></script>
     <script type="text/javascript" src="postAd.js"></script>
-    <script type="javascript">
+    <script type="text/javascript" src="connectToPHPTest.js"></script>
+    <script type="text/javascript">
         //todo find new flashy image for title of website
         //todo go through css's and filter out the crap
         //todo get icons for categories
@@ -94,6 +96,6 @@
     }(document, "script", 'facebook-jssdk'));
 
 </script>
-
+<button onclick="makeCorsRequest()">Click me</button>
 </body>
 </html>
