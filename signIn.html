@@ -14,9 +14,11 @@
 
     <script type="text/javascript" src="jquery/jquery.mobile.custom.js"></script>
     <script type="text/javascript" src="jquery/jquery.mobile.custom.min.js"></script>
-    <script type="text/javascript" src="index.js"></script>
-    <script type="text/javascript" src="arrayDB.js"></script>
-    <script type="text/javascript" src="postAd.js"></script>
+    <script type="javascript">
+        //todo find new flashy image for title of website
+        //todo go through css's and filter out the crap
+        //todo get icons for categories
+    </script>
 </head>
 
 <body>
@@ -46,7 +48,7 @@
 </header>
 
 <div data-role="content">
-    <section style="width: 50%; float: left" id="SigninSection">
+    <section style="width: 50%; float: left">
         <form action="myProfile.html">
             <fieldset>
                 <legend><strong>Sign-In:</strong></legend>
@@ -61,7 +63,7 @@
                     <input type="password">
                 </label>
                 <br>
-                <a onclick="alert('Forgot Password');" href="">Forgot Password?</a>
+                <a onclick="newPopup()" href="">Forgot Password?</a>
                 <br>
                 <label for="remainSignedIn"><input type="checkbox" id="remainSignedIn" value="false">Keep me signed in</label>
                 <br>
@@ -69,12 +71,13 @@
             </fieldset>
         </form>
     </section>
-    <section style="width: 50%; float: right" id="notRegistered">
+    <section style="width: 50%; float: right">
         <form action="register.html">
             <fieldset>
                 <legend><strong>Not Registered Yet?</strong></legend>
-                <h3>Register Now</h3>
-                <input type="submit" value="Register!!">
+                <br><h3>Register Now</h3>
+                <a hidden="hidden"></a><br>
+                <input type="submit">
             </fieldset>
         </form>
     </section>
@@ -102,7 +105,7 @@
         </div>
     </footer>
 </div>
-<script type="text/javascript">
+<script type=text/javascript>
 
     (function(d, s, id)
     {                   // like on facebook
@@ -115,6 +118,14 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, "script", 'facebook-jssdk'));
 
+// Popup window code
+            function newPopup() {
+               window.open(
+                        "forgotPass.html",
+                       'popUpWindow',
+                       'height=150,width=550,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=no,menubar=no,location=no,directories=no,status=yes'
+               );
+            }
 </script>
 
 </body>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Forgot Password?</title>
+</head>
+<body>
+<h2>Are you sure you want to reset your password?</h2>
+<button onclick="window.close()">Cancel</button>
+<button onclick="submit()">Continue</button>
+<p style="display: inline-block" id="password"></p>
+<script type="text/javascript">
+    function submit()
+    {
+        var newPass = 'new Password';   // todo generate new password and assign it in the database
+        document.getElementById('password').innerHTML='Your new password is: '+newPass;
+    }
+</script>
+</body>
+</html>

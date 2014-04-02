@@ -14,9 +14,11 @@
 
     <script type="text/javascript" src="jquery/jquery.mobile.custom.js"></script>
     <script type="text/javascript" src="jquery/jquery.mobile.custom.min.js"></script>
-    <script type="text/javascript" src="index.js"></script>
-    <script type="text/javascript" src="arrayDB.js"></script>
-    <script type="text/javascript" src="postAd.js"></script>
+    <script type="javascript">
+        //todo find new flashy image for title of website
+        //todo go through css's and filter out the crap
+        //todo get icons for categories
+    </script>
 </head>
 
 <body>
@@ -47,7 +49,37 @@
 
 <div data-role="content">
     <h1>Register</h1>
-
+    <div>
+        <label for="fName">First Name: <input name="form" type="text" id="fName"></label><br>
+        <label for="lName">Last Name: <input name="form" type="text" id="lName"></label><br>
+        <label for="username">Username: <input type="text" name="form" id="username"></label><br>
+        <label for="Opass">Password: <input type="password" name="form" id="Opass"></label><br>
+        <label for="Cpass">Confirm Password: <input type="password" name="form" id="Cpass"></label><br>
+        <label for="age">Age ex.18: <input type="number" id="age" name="form" min="1"></label><br>
+        <label for="email">Email: <input type="email" name="form" id="email"></label><br>
+        <label for="phone">Phone Number ex.555-123-4567: <input name="form" type="tel" id="phone"></label><br>
+        <label for="address">Address: <input type="text" name="form" id="address"></label><br>
+        <label for="city">City: <input type="text" name="form" id="city"></label><br>
+        <label for="prov">Province: </label>
+        <select id="prov" name="form">
+            <option></option>
+            <option>BC</option>
+            <option>AB</option>
+            <option>SK</option>
+            <option>MB</option>
+            <option>ON</option>
+            <option>QC</option>
+            <option>NS</option>
+            <option>PE</option>
+            <option>NB</option>
+            <option>NL</option>
+            <option>YT</option>
+            <option>NW</option>
+            <option>NU</option>
+        </select><br>
+        <label for="postal">Postal Code ex.A1B2C3: <input type="text" name="form" id="postal"></label><br><br>
+        <button onclick="submit()">Submit</button>
+    </div>
 </div>
 
 <div id="LayoutFooter">
@@ -72,19 +104,102 @@
         </div>
     </footer>
 </div>
-<script>
+<script type="text/javascript">
+        (function(d, s, id)
+        {                   // like on facebook
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
 
-    (function(d, s, id)
-    {                   // like on facebook
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
 
-        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, "script", 'facebook-jssdk'));
 
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, "script", 'facebook-jssdk'));
+    var labels = document.getElementsByTagName('label');
+    for (var i = 0; i < labels.length; i++) {
+        if (labels[i].htmlFor != '') {
+            var elem = document.getElementById(labels[i].htmlFor);
+            if (elem)
+                elem.label = labels[i];
+        }
+    }
 
+    function checkPostal()
+    {
+        var postal = document.getElementById('postal').value;
+        var pattern2 = /[a-z][0-9][a-z][0-9][a-z][0-9]/i;
+
+        return pattern2.test(postal);
+    }
+    function checkPhone()
+    {
+        var phone = document.getElementById('phone').value;
+        var pattern1 = new RegExp('[0-9]{3}-[0-9]{3}-[0-9]{4}');
+        return pattern1.test(phone);
+    }
+    function check()
+    {
+        var all = document.getElementsByName('form');
+        for (var i = 0; i < all.length; i++)
+            if (all[i].value == '' )
+                return 'Please fill in box: '+document.getElementById(all[i].id).label.textContent;
+
+        if(checkUsername())
+            if(validatePassword())
+                if (checkPhone())
+                    if(checkPostal())
+                        return null;
+                    else
+                        return 'Please enter a valid Postal Code';
+                else
+                    return 'Please enter a valid Phone Number';
+            else
+                return 'Passwords do not match';
+        else
+            return 'Username is taken. Please try again';
+    }
+    function submit()
+    {
+        var message = check();
+        if(!message)
+            insertUser();
+        else
+            alert(message);
+    }
+    function checkUsername()
+    {
+        var users = userTable[1];
+        var username = document.getElementById('username').value;
+        for(var i = 0; i < users.length; i++)
+            if (username == users[i])
+                return false;
+        return true;
+    }
+    function validatePassword()
+    {
+        var pass = document.getElementById('Opass').value;
+        var Cpass = document.getElementById('Cpass').value;
+        return pass == Cpass;
+    }
+    function insertUser()
+    {
+        var fName = document.getElementById('fName').value;
+        var lName = document.getElementById('lName').value;
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('Opass').value;
+        var age = document.getElementById('age').value;
+        var email = document.getElementById('email').value;
+        var phone = document.getElementById('phone').value;
+        var address = document.getElementById('address').value;
+        var city = document.getElementById('city').value;
+        var prov = document.getElementById('prov').value;
+        var postal = document.getElementById('postal').value;
+
+        // todo insert into database
+
+        window.open('myProfile.html','_self');
+    }
 </script>
 
 </body>
