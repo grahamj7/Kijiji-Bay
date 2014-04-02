@@ -16,12 +16,9 @@
     <script type="text/javascript" src="jquery/jquery.mobile.custom.min.js"></script>
     <script type="text/javascript" src="index.js"></script>
     <script type="text/javascript" src="arrayDB.js"></script>
-    <script type="text/javascript" src="postAd.js"></script>
 </head>
 
 <body>
-<script type="text/javascript" src="index.js"></script>
-<script type="text/javascript" src="arrayDB.js"></script>
 
 <header>
     <div id="TopHeader">
@@ -45,7 +42,21 @@
     </div>
 </header>
 
-<h1>User Profile</h1>
+<div data-role="content">
+    <h1>User Profile</h1>
+    <div id="cart">
+        <h3>Cart: </h3>
+    </div>
+    <div id="sale">
+        <h3>Items for Sale: </h3>
+    </div>
+    <div id="bought">
+        <h3>Items Bought: </h3>
+    </div>
+    <div id="info">
+        <h3>User Info: </h3>
+    </div>
+</div>
 
 <div id="LayoutFooter">
     <footer>
@@ -69,7 +80,7 @@
         </div>
     </footer>
 </div>
-<script>
+<script type="text/javascript">
 
     (function(d, s, id)
     {                   // like on facebook
@@ -82,6 +93,240 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, "script", 'facebook-jssdk'));
 
+    getUserInfo();
+    function getUserInfo()
+    {
+        var username = 'username';
+        var password = 'password';
+        var fName = 'firstName';
+        var lName = 'lastName';
+        var age = 'age';
+        var email = 'email';
+        var phone = 'phone';
+        var address = 'address';
+        var city = 'city';
+        var prov = 'province';
+        var postal = 'postalCode';
+
+        // todo get user data from database
+        var div, ul, li, p, span, button;
+
+        div = document.getElementById('info');
+        ul = document.createElement('ul');
+        ul.style.listStyleType="none";
+
+        li = document.createElement('li');
+        p = document.createElement('p');
+        span = document.createElement('span');
+        button = document.createElement('button');
+
+        li.textContent='Username: ';
+        p.textContent = username;
+        p.style.paddingLeft='10%';
+        span.style.paddingLeft = '10%';
+        button.textContent = 'Change';
+        button.id='username';
+        button.addEventListener('click', changeListener, false);
+
+        li.appendChild(p);
+        ul.appendChild(li);
+
+
+        li = document.createElement('li');
+        p = document.createElement('p');
+        span = document.createElement('span');
+        button = document.createElement('button');
+
+        li.textContent='Password: ';
+        p.textContent = password;
+        p.style.paddingLeft='10%';
+        span.style.paddingLeft = '10%';
+        button.textContent = 'Change';
+        button.id='password';
+        button.addEventListener('click', changeListener, false);
+
+        span.appendChild(button);
+        li.appendChild(p);
+        li.appendChild(span);
+        ul.appendChild(li);
+
+
+        li = document.createElement('li');
+        p = document.createElement('p');
+        span = document.createElement('span');
+        button = document.createElement('button');
+
+        li.textContent='FirstName: ';
+        p.textContent = fName;
+        p.style.paddingLeft='10%';
+        span.style.paddingLeft = '10%';
+        button.textContent = 'Change';
+        button.id='fName';
+        button.addEventListener('click', changeListener, false);
+
+        span.appendChild(button);
+        li.appendChild(p);
+        li.appendChild(span);
+        ul.appendChild(li);
+
+
+        li = document.createElement('li');
+        p = document.createElement('p');
+        span = document.createElement('span');
+        button = document.createElement('button');
+
+        li.textContent='LastName: ';
+        p.textContent = lName;
+        p.style.paddingLeft='10%';
+        span.style.paddingLeft = '10%';
+        button.textContent = 'Change';
+        button.id='lName';
+        button.addEventListener('click', changeListener, false);
+
+        span.appendChild(button);
+        li.appendChild(p);
+        li.appendChild(span);
+        ul.appendChild(li);
+
+
+        li = document.createElement('li');
+        p = document.createElement('p');
+        span = document.createElement('span');
+        button = document.createElement('button');
+
+        li.textContent='Age: ';
+        p.textContent = age;
+        p.style.paddingLeft='10%';
+        span.style.paddingLeft = '10%';
+        button.textContent = 'Change';
+        button.id='age';
+        button.addEventListener('click', changeListener, false);
+
+        span.appendChild(button);
+        li.appendChild(p);
+        li.appendChild(span);
+        ul.appendChild(li);
+
+
+        li = document.createElement('li');
+        p = document.createElement('p');
+        span = document.createElement('span');
+        button = document.createElement('button');
+
+        li.textContent='Email: ';
+        p.textContent = email;
+        p.style.paddingLeft='10%';
+        span.style.paddingLeft = '10%';
+        button.textContent = 'Change';
+        button.id='email';
+        button.addEventListener('click', changeListener, false);
+
+        span.appendChild(button);
+        li.appendChild(p);
+        li.appendChild(span);
+        ul.appendChild(li);
+
+
+        li = document.createElement('li');
+        p = document.createElement('p');
+        span = document.createElement('span');
+        button = document.createElement('button');
+
+        li.textContent='Phone Number: ';
+        p.textContent = phone;
+        p.style.paddingLeft='10%';
+        span.style.paddingLeft = '10%';
+        button.textContent = 'Change';
+        button.id='phone';
+        button.addEventListener('click', changeListener, false);
+
+        span.appendChild(button);
+        li.appendChild(p);
+        li.appendChild(span);
+        ul.appendChild(li);
+
+
+        li = document.createElement('li');
+        p = document.createElement('p');
+        span = document.createElement('span');
+        button = document.createElement('button');
+
+        li.textContent='Address: ';
+        p.textContent = address;
+        p.style.paddingLeft='10%';
+        span.style.paddingLeft = '10%';
+        button.textContent = 'Change';
+        button.id='address';
+        button.addEventListener('click', changeListener, false);
+
+        span.appendChild(button);
+        li.appendChild(p);
+        li.appendChild(span);
+        ul.appendChild(li);
+
+
+        li = document.createElement('li');
+        p = document.createElement('p');
+        span = document.createElement('span');
+        button = document.createElement('button');
+
+        li.textContent='City: ';
+        p.textContent = city;
+        p.style.paddingLeft='10%';
+        span.style.paddingLeft = '10%';
+        button.textContent = 'Change';
+        button.id='city';
+        button.addEventListener('click', changeListener, false);
+
+        span.appendChild(button);
+        li.appendChild(p);
+        li.appendChild(span);
+        ul.appendChild(li);
+
+
+        li = document.createElement('li');
+        p = document.createElement('p');
+        span = document.createElement('span');
+        button = document.createElement('button');
+
+        li.textContent='Province: ';
+        p.textContent = prov;
+        p.style.paddingLeft='10%';
+        span.style.paddingLeft = '10%';
+        button.textContent = 'Change';
+        button.id='prov';
+        button.addEventListener('click', changeListener, false);
+
+        span.appendChild(button);
+        li.appendChild(p);
+        li.appendChild(span);
+        ul.appendChild(li);
+
+
+        li = document.createElement('li');
+        p = document.createElement('p');
+        span = document.createElement('span');
+        button = document.createElement('button');
+
+        li.textContent='Postal Code: ';
+        p.textContent = postal;
+        p.style.paddingLeft='10%';
+        span.style.paddingLeft = '10%';
+        button.textContent = 'Change';
+        button.id='postal';
+        button.addEventListener('click', changeListener, false);
+
+        span.appendChild(button);
+        li.appendChild(p);
+        li.appendChild(span);
+        ul.appendChild(li);
+
+        div.appendChild(ul);
+    }
+    function changeListener(event)
+    {
+
+    }
 </script>
 
 </body>
