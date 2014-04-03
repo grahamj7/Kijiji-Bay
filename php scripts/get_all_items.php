@@ -1,5 +1,6 @@
 <?php
-
+header('Access-Control-Allow-Origin: *');
+header('Content-type: application/json');
 $tableName ="Items";
 $ItemIDColName= "ItemId";
 $TitleColName="Title";
