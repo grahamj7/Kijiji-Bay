@@ -24,8 +24,11 @@ function getTitle(text) {
 function makeCorsRequest() {
   // All HTML5 Rocks properties support CORS.
   var url = 'http://localhost:80/get_all_users.php';
-
+  $.getJSON('http://localhost:80/get_all_users.php', function(data) {
+    console.log(data);
+});
   var xhr = createCORSRequest('GET', url);
+
   if (!xhr) {
     alert('CORS not supported');
     return;
