@@ -49,18 +49,18 @@
 
 <div data-role="content">
     <section style="width: 50%; float: left">
-        <form action="myProfile.html">
+        <form onsubmit="signIn()">
             <fieldset>
                 <legend><strong>Sign-In:</strong></legend>
 
                 <label>
                     <strong>Username: </strong>
-                    <input type="text">
+                    <input type="text" id="username">
                 </label>
                 <br>
                 <label>
                     <strong>Password: </strong>
-                    <input type="password">
+                    <input type="password" id="password">
                 </label>
                 <br>
                 <a onclick="newPopup()" href="">Forgot Password?</a>
@@ -77,7 +77,7 @@
                 <legend><strong>Not Registered Yet?</strong></legend>
                 <br><h3>Register Now</h3>
                 <a hidden="hidden"></a><br>
-                <input type="submit">
+                <input type="submit" value="Register Now!!">
             </fieldset>
         </form>
     </section>
@@ -118,14 +118,37 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, "script", 'facebook-jssdk'));
 
-// Popup window code
-            function newPopup() {
-               window.open(
-                        "forgotPass.html",
-                       'popUpWindow',
-                       'height=150,width=550,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=no,menubar=no,location=no,directories=no,status=yes'
-               );
+    // Popup window code
+    function newPopup() {
+        window.open(
+                "forgotPass.html",
+                'popUpWindow',
+                'height=150,width=550,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=no,menubar=no,location=no,directories=no,status=yes'
+        );
+    }
+
+    function signIn()
+    {
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+//      todo check if username exists in the database
+        if (username)
+        {
+//          todo get index of the user check if that password matches
+            if(password)
+            {
+                if(document.getElementById('remainSignedIn').checked)
+                    setCookie('username', username, 30);            // set cookie for 30 days
+                else
+                    setCookie('username', username, 0.041667);      //set cookie for 1 hour
+                window.open('myProfile.html','_self');
             }
+            else
+                alert("Password is incorrect");
+        }
+        else
+            alert("Username doesn't exist");
+    }
 </script>
 
 </body>
