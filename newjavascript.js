@@ -18,11 +18,12 @@ $.fn.MessageBox = function(msg) {
                 
             });
            // var obj = $.parseJSON(JSON.stringify(data));
+            var json = data;
             console.log(data);
-            alert(data);
+            alert(json["username"]);
         },
         error: function (xhr, status) {
-            alert("error");
+            alert("error, yo");
         }
     });
 };
