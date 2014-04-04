@@ -1,4 +1,3 @@
-</p>
 <?php
 $mysql_db_hostname = "edjo.usask.ca";
 $mysql_db_user = "cmpt350_jd";
@@ -22,4 +21,3 @@ $var[] = $obj;
 }
 echo '{"users":'.json_encode($var).'}';
 ?>
-<p style="text-align: justify;">
