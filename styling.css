@@ -6,8 +6,8 @@
 
 #HeaderRightTop{height:15px;list-style:none;margin-top:2px;padding:0;position:relative;text-align:right;vertical-align:top;}
 #HeaderRightTop li{border:solid 1px transparent;font:13px/16px Arial,Verdana,sans-serif;color:#666;display:inline-block;height:16px;margin-left:5px;padding:7px 4px 0 4px;position:relative;vertical-align:top;}
-#HeaderRightTop a{font:13px/16px Arial,Verdana,sans-serif;color:#666;text-decoration:none;}
-#HeaderRightTop a:hover{color:#ec7d1b;text-decoration:underline;}
+#HeaderRightTop a{font:13px/16px Arial,Verdana,sans-serif;color: #000000;text-decoration:none;}
+#HeaderRightTop a:hover{color: #53ec54;text-decoration:underline;}
 
 #HeaderRightBottom{margin-top:10px;text-align:right;}
 #HeaderRightBottom a{position:relative;}
@@ -17,7 +17,7 @@
 #HeaderBar label{color:#666;display:block;float:left;margin-top:9px;}
 #HeaderBar{font:13px/16px Arial,Verdana,sans-serif;border:solid 1px #ccc;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;-moz-background-clip:padding;-webkit-background-clip:padding-box;background-clip:padding-box;background:-moz-linear-gradient(top,#fff 0,#ececec 100%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#fff),color-stop(100%,#ececec));background:-webkit-linear-gradient(top,#fff 0,#ececec 100%);background:-o-linear-gradient(top,#fff 0,#ececec 100%);background:-ms-linear-gradient(top,#fff 0,#ececec 100%);background:linear-gradient(top,#fff 0,#ececec 100%);height:33px;padding:0;position:relative;}
 
-#TopHeader{background:-moz-linear-gradient(left,#fff 10%,#faf19a 100%);background:-webkit-gradient(linear,left top,right top,color-stop(10%,#fff),color-stop(100%,#faf19a));background:-webkit-linear-gradient(left,#fff 10%,#faf19a 100%);background:-o-linear-gradient(left,#fff 10%,#faf19a 100%);background:-ms-linear-gradient(left,#fff 10%,#faf19a 100%);background:linear-gradient(left,#fff 10%,#faf19a 100%);overflow:auto;}
+#TopHeader{background:-moz-linear-gradient(left, #341ffa 10%, #eb0007 100%);background:-webkit-gradient(linear,left top,right top,color-stop(10%, #341ffa),color-stop(100%, #eb0007));background:-webkit-linear-gradient(left, #341ffa 10%, #eb0007 100%);background:-o-linear-gradient(left, #341ffa 10%, #eb0007 100%);background:-ms-linear-gradient(left, #341ffa 10%, #eb0007 100%);background:linear-gradient(left, #341ffa 10%, #eb0007 100%);overflow:auto;}
 
 
 .button-header-nav{font:13px/16px Arial,Verdana,sans-serif;border:solid 1px #ccc;border-right:0;color:#006;display:inline-block;background:-moz-linear-gradient(top,#fff 0,#ececec 100%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#fff),color-stop(100%,#ececec));background:-webkit-linear-gradient(top,#fff 0,#ececec 100%);background:-o-linear-gradient(top,#fff 0,#ececec 100%);background:-ms-linear-gradient(top,#fff 0,#ececec 100%);background:linear-gradient(top,#fff 0,#ececec 100%);padding:6px 23px;text-decoration:none;text-shadow:0 -1px 0 rgba(255,255,255,0.5);}
@@ -25,9 +25,11 @@
 .button-header-nav:hover{background:-moz-linear-gradient(top,#fff 0,#e4e4e4 100%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#fff),color-stop(100%,#e4e4e4));background:-webkit-linear-gradient(top,#fff 0,#e4e4e4 100%);background:-o-linear-gradient(top,#fff 0,#e4e4e4 100%);background:-ms-linear-gradient(top,#fff 0,#e4e4e4 100%);background:linear-gradient(top,#fff 0,#e4e4e4 100%);}
 .button-header-nav.first{-webkit-border-top-left-radius:5px;-moz-border-top-left-radius:5px;border-top-left-radius:5px;-webkit-border-bottom-left-radius:5px;-moz-border-bottom-left-radius:5px;border-bottom-left-radius:5px;}
 .button-header-nav.last{-webkit-border-top-right-radius:5px;-moz-border-top-right-radius:5px;border-top-right-radius:5px;-webkit-border-bottom-right-radius:5px;-moz-border-bottom-right-radius:5px;border-bottom-right-radius:5px;border-right:solid 1px #ccc;}
-.container-primary header{font:14px/17px Arial,Verdana,sans-serif;-webkit-border-top-left-radius:5px;-moz-border-top-left-radius:5px;border-top-left-radius:5px;-webkit-border-top-right-radius:5px;-moz-border-top-right-radius:5px;border-top-right-radius:5px;border:solid 1px #ebd387;color:#333;font-weight:bold;background:-moz-linear-gradient(top,#fef3c8 0,#fceb75 100%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#fef3c8),color-stop(100%,#fceb75));background:-webkit-linear-gradient(top,#fef3c8 0,#fceb75 100%);background:-o-linear-gradient(top,#fef3c8 0,#fceb75 100%);background:-ms-linear-gradient(top,#fef3c8 0,#fceb75 100%);background:linear-gradient(top,#fef3c8 0,#fceb75 100%);padding:6px 10px;}
+.container-primary header{font:14px/17px Arial,Verdana,sans-serif;-webkit-border-top-left-radius:5px;-moz-border-top-left-radius:5px;border-top-left-radius:5px;-webkit-border-top-right-radius:5px;-moz-border-top-right-radius:5px;border-top-right-radius:5px;border:solid 1px #333333;color:#333;font-weight:bold;background:-moz-linear-gradient(top, #341ffa 0, #eb0007 100%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0%, #341ffa),color-stop(100%, #eb0007));background:-webkit-linear-gradient(top, #341ffa 0, #eb0007 100%);background:-o-linear-gradient(top, #341ffa 0, #eb0007 100%);background:-ms-linear-gradient(top, #341ffa 0, #eb0007 100%);background:linear-gradient(top, #341ffa 0, #eb0007 100%);padding:6px 10px;}
 .container-primary header span{font-weight:normal;}
-.button-header-nav strong{color:#ec7d1b;}
+.button-header-nav strong{color: #000000;}
+.button-header-nav:hover{color: #53ec54}
+.button-header-nav strong:hover{color: #53ec54}
 header{padding:0 5px;}
 
 
@@ -37,10 +39,10 @@ header{padding:0 5px;}
 #Categories li{background-position:5px 7px;margin-left:5px;padding-left:15px;}
 #Categories li>a{font:13px/16px Arial,Verdana,sans-serif;color:#006;}
 #Categories li>a:hover{color:#006;cursor:pointer;text-decoration:underline;}
-#Categories li>a:hover:hover{background:#beea69;color:#006;}
+#Categories li>a:hover:hover{background: #ea5c79;color:#006;}
 
 #LayoutFooter{background:#f2f2f2;border-top:solid 1px #ccc;clear:both;margin-top:20px;}
 #LayoutFooter footer{margin:0 auto;overflow:auto;}
 #LayoutFooter section{float:left; margin-right:10px;}
 #LayoutFooter a{vertical-align: 25px;}
-#LayoutFooter a:hover{color: #ec7d1b;}
+#LayoutFooter a:hover{color: #53ec54;}

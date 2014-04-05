@@ -2,8 +2,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!--Kijiji-Bay: Free Classifieds in Saskatoon. Find a job, buy a car, find a house or apartment, furniture, appliances and more!-->
-    <title>Kijiji-Bay</title>
+    <!--JD CMPT350 Project: Free Classifieds in Saskatoon. Find a job, buy a car, find a house or apartment, furniture, appliances and more!-->
+    <title>JD CMPT350 Project</title>
     <link rel="shortcut icon" type="image/x-icon" href="Images/favicon.ico" />
 
     <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.structure.css">
@@ -12,8 +12,6 @@
     <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.theme.min.css">
     <link rel="stylesheet" type="text/css" href="styling.css">
 
-    <!--    <script type="text/javascript" src="jquery/jquery.mobile.custom.js"></script>
-        <script type="text/javascript" src="jquery/jquery.mobile.custom.min.js"></script>-->
     <script type="text/javascript" src="index.js"></script>
     <script type="text/javascript" src="arrayDB.js"></script>
 </head>
@@ -32,8 +30,8 @@
             </ul>
             <div id="HeaderRightBottom">
                 <a class="button-header-nav first" href="postAd.html" rel="nofollow">
-                    Post Ad <strong>FREE</strong></a><a class="button-header-nav last" href="myProfile.html" rel="nofollow">
-                My Cart</a>
+                    <strong>Post Ad</strong></a><a class="button-header-nav last" href="myProfile.html" rel="nofollow">
+                My Profile</a>
             </div>
         </div>
     </div>
@@ -66,6 +64,11 @@
             <label for="desc">
                 Description:
                 <input id="desc" required="required" type="text" placeholder="Enter a description">
+            </label>
+            <br>
+            <label for="quantity">
+                Quantity:
+                <input id="quantity" required="required" type="number" min="1" value="1">
             </label>
             <br>
             <label for="images">

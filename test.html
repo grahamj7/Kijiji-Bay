@@ -1,12 +1,25 @@
 <html>
 <head>
- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
- <script type="text/javascript" src="newjavascript.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="newjavascript.js"></script>
+    <script type="text/javascript" src="arrayDB.js"></script>
 </head>
 <body>
- <div class="Title">Welcome!</div>
- <input type="button" value="GET" id="test" onClick="$(this).MessageBox('msg');" />
- <input type="button" value="POST" id="test2" onClick="$(this).PostTest();" />
- 
+    <div class="Title">Welcome!</div>
+    <input type="button" value="ahaha" id="test" onClick="$(this).MessageBox('msg');" />
+
+
+    <form action="mailto:xyz?Subject=Test_Post" method="post" enctype="text/plain">
+        Mailto: protocol test:
+         <br>
+        Subject:
+        <input type="test" id="subject">
+         <br>
+        Body:
+        <textarea id="textBody"></textarea>
+         <br>
+        <input type="submit">
+    </form>
+
 </body>
 </html>

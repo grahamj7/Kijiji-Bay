@@ -2,8 +2,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!--Kijiji-Bay: Free Classifieds in Saskatoon. Find a job, buy a car, find a house or apartment, furniture, appliances and more!-->
-    <title>Kijiji-Bay</title>
+    <!--JD CMPT350 Project: Free Classifieds in Saskatoon. Find a job, buy a car, find a house or apartment, furniture, appliances and more!-->
+    <title>JD CMPT350 Project</title>
     <link rel="shortcut icon" type="image/x-icon" href="Images/favicon.ico" />
 
     <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.structure.css">
@@ -12,18 +12,16 @@
     <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.theme.min.css">
     <link rel="stylesheet" type="text/css" href="styling.css">
 
-    <script type="text/javascript" src="jquery/jquery.mobile.custom.js"></script>
-    <script type="text/javascript" src="jquery/jquery.mobile.custom.min.js"></script>
     <script type="javascript">
         //todo find new flashy image for title of website
         //todo go through css's and filter out the crap
         //todo get icons for categories
     </script>
+    <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript" src="arrayDB.js"></script>
 </head>
 
 <body>
-<script type="text/javascript" src="index.js"></script>
-<script type="text/javascript" src="arrayDB.js"></script>
 
 <header>
     <div id="TopHeader">
@@ -37,8 +35,8 @@
             </ul>
             <div id="HeaderRightBottom">
                 <a class="button-header-nav first" href="postAd.html" rel="nofollow">
-                    Post Ad <strong>FREE</strong></a><a class="button-header-nav last" href="myProfile.html" rel="nofollow">
-                My Cart</a>
+                    <strong>Post Ad</strong></a><a class="button-header-nav last" href="myProfile.html" rel="nofollow">
+                My Profile</a>
             </div>
         </div>
     </div>
@@ -55,12 +53,12 @@
 
                 <label>
                     <strong>Username: </strong>
-                    <input type="text" id="username">
+                    <input type="text" required id="username">
                 </label>
                 <br>
                 <label>
                     <strong>Password: </strong>
-                    <input type="password" id="password">
+                    <input type="password" required id="password">
                 </label>
                 <br>
                 <a onclick="newPopup()" href="">Forgot Password?</a>
@@ -119,35 +117,54 @@
     }(document, "script", 'facebook-jssdk'));
 
     // Popup window code
-    function newPopup() {
+    function newPopup()
+    {
         window.open(
                 "forgotPass.html",
                 'popUpWindow',
                 'height=150,width=550,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=no,menubar=no,location=no,directories=no,status=yes'
         );
     }
-
     function signIn()
     {
         var username = document.getElementById('username').value;
         var password = document.getElementById('password').value;
+        var table = DB[1], pass = table[2];
 //      todo check if username exists in the database
-        if (username)
-        {
+        var index = checkUserName(username);
+        if(index || index == 0)
 //          todo get index of the user check if that password matches
-            if(password)
+            if(checkPassword(password, index))
             {
-                if(document.getElementById('remainSignedIn').checked)
-                    setCookie('username', username, 30);            // set cookie for 30 days
-                else
-                    setCookie('username', username, 0.041667);      //set cookie for 1 hour
+                if(document.getElementById('remainSignedIn').checked)     {}
+//                    setCookie('username', username, 365);             // set cookie for 365 days  (1 year)
+//                else
+//                    setCookie('username', username, 0.041667);        //set cookie for 1 hour
+                                                                        //start session instead of cookie
                 window.open('myProfile.html','_self');
             }
             else
-                alert("Password is incorrect");
-        }
+                alert("Password is incorrect"+password+' '+pass[index]);
         else
             alert("Username doesn't exist");
+    }
+    function checkUserName(username)
+    {
+        var table = DB[1];
+        var array = table[1];
+        for(var i = 0; i < array.length; i++)
+            if (username == array[i])
+            {alert(username +' '+ array[i]);
+                return i;
+            }
+        return false;
+    }
+    function checkPassword(password, index)
+    {
+        var table = DB[1];
+        var array = table[2];
+
+        return password == array[index];
     }
 </script>
 

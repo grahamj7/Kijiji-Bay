@@ -7,17 +7,16 @@ var DB = [];
 
 var itemTable = [], userTable = [];
 
-var userIdArr = [], userNameArr = [],   passArr = [],   emailArr = [],  firstArr = [],  lastArr = [],   addressArr = [];
-//  usersId         username            password        email           firstName       lastName        address
-var userID,         userName,           password,       email,          fName,          lName,          address;
+var passArr = [],   emailArr = [],  firstArr = [],  lastArr = [],   addressArr = [];
+//  password        email           firstName       lastName        address
+var password,       email,          fName,          lName,          address;
 
-var postalArr = [], provArr = [],   phoneArr = [],  ageArr = [];
-//  postalCode      province        phone(10)       age
-var postal,         prov,           phone,          age;
+var postalArr = [], provArr = [],   phoneArr = [];
+//  postalCode      province        phone(10)
+var postal,         prov,           phone;
 {
     for (var i = 0; i < 5; i++)
     {
-        userID = i;
         userName = 'user'+i;
         password = 'pass'+i;
         email = 'email'+i+'@mail.usask.ca';
@@ -29,7 +28,6 @@ var postal,         prov,           phone,          age;
         phone = 'phone'+i;
         age = 'age'+i;
 
-        userIdArr.push(userID);
         userNameArr.push(userName);
         passArr.push(password);
         emailArr.push(email);
@@ -41,10 +39,9 @@ var postal,         prov,           phone,          age;
         phoneArr.push(phone);
         ageArr.push(age);
     }
-    userTable.push(userIdArr);
-    userTable.push(userNameArr);
-    userTable.push(passArr);
+
     userTable.push(emailArr);
+    userTable.push(passArr);
     userTable.push(firstArr);
     userTable.push(lastArr);
     userTable.push(addressArr);
@@ -56,7 +53,7 @@ var postal,         prov,           phone,          age;
     var titleArr = [], imageArr = [], descArr = [], priceArr = [], userArr = [], mainCatArr = [], subCatArr = [];
 //  Title   Image   Desc    Price   userId   MainCat     SubCat
     var title,  image,  desc,   price,  userId,   mainCat,    subCat;
-
+{
     title = 'Item1';    titleArr.push(title);
     image = 'Image1';   imageArr.push(image);
     desc  = 'Desc1';    descArr.push(desc);
@@ -88,7 +85,7 @@ var postal,         prov,           phone,          age;
     userId = 'User4';    userArr.push(userId);
     mainCat = 0;        mainCatArr.push(mainCat);
     subCat = 1;         subCatArr.push(subCat);
-
+}
 
     itemTable.push(titleArr);
     itemTable.push(imageArr);
