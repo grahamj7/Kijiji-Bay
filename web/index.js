@@ -721,6 +721,9 @@ function getItemDetails()
     var mainCat = categoryId.substr(0,1);
     var subCat = categoryId.substr(1);
 
+    categoryId = null;
+
+
     if(images.length == 0)
         images.push('Images/NoImage.jpg');
 
@@ -728,7 +731,7 @@ function getItemDetails()
     window.open("items.html?id="+categoryId+"", "_self");
 }
 
-function createTable()
+function createTable()          // todo something
 {
     var id = (parent.document.URL.substring(parent.document.URL.indexOf('?')+4, parent.document.URL.length));
 
@@ -738,61 +741,13 @@ function createTable()
     url=url+"&mainCat="+main+"&subCat="+sub;
     loadXMLDoc(url);
 
-    var items = DB[0];
-    var titleArr = items[0], imageArr = items[1], descArr = items[2], priceArr = items[3], userArr = items[4], mainCatArr = items[5], subCatArr = items[6];
-    var indexes = [], i, row;
 
-    if(sub == 0)
-    {
-        alert('0');
-        for(i = 0; i < mainCatArr.length; i++)
-            if(main == mainCatArr[i])
-                indexes.push(i);
-    }
-    else
-    {
-        alert('other');
-        for(i = 0; i < mainCatArr.length; i++)
-            if((mainCatArr[i] == main) && (subCatArr[i] == sub))
-                indexes.push(i);
-    }
-
-
-    var contentDiv  = document.getElementById('contentDiv');
-    var tbl         = document.createElement("table");
-    var tblBody     = document.createElement("tbody");
-    var titleCell, imageCell, descCell, priceCell, userCell, mainCatCell, subCatCell;
-    for(i = 0; i < indexes.length; i++)
-    {
-        row = document.createElement('tr');
-
-        titleCell = document.createElement('td');
-        imageCell = document.createElement('td');
-        priceCell = document.createElement('td');
-
-        titleCell.textContent = titleArr[i];
-        imageCell.textContent = imageArr[i];
-        priceCell.textContent = '$'+priceArr[i];
-
-        row.appendChild(imageCell);
-        row.appendChild(titleCell);
-        row.appendChild(priceCell);
-        tblBody.appendChild(row);
-    }
-
-
-
-    tbl.appendChild(tblBody);
-    contentDiv.appendChild(tbl);
 }
 
-function insertItem(price, title, desc, images, mainCat, subCat)
+function insertItem(price, title, desc, images, mainCat, subCat)        // todo something else
 {
     var div = document.getElementById('details');
-
-
 }
-
 
 function setCookie(cname,cvalue,exdays)
 {
@@ -868,7 +823,6 @@ function signIn()
     if(pass)
         if(checkPassword(password, pass))
         {
-            window.open('index.html','_self');
             if(document.getElementById('remainSignedIn').checked)
                 setCookie('username', username, 365);               // set cookie for 365 days  (1 year)
             else
@@ -919,21 +873,14 @@ function onSubmit(form)
 }
 function checkEmail(user)                                              // todo get users password from database
 {
-    var table = DB[1];
-    var email = table[0];
-    var pass = table[1];
+ var email, pass;
     for (var i = 0; i < email.length; i++)
         if(email[i] == user)
             return pass[i];
     return false;
 }
-
-
-function sendTheMail(email, pass) {
-
-    if(!pass || pass == '')
-        pass = 'Temp Pass';
-
+function sendTheMail(email, pass)
+{
     var m = new mandrill.Mandrill('dN409U_HBEg6330LDyiJfw');
     var params =
     {
@@ -941,13 +888,13 @@ function sendTheMail(email, pass) {
         {
             "from_email":"jhg257@mail.usask.ca",
             "to":[{"email": email}],
-            "subject": "Your current Password for JD CMPT350 Project",
+            "subject": "Your Current Password for JD CMPT350 Project",
             "html": "<p>Your current password for JD CMPT350 Project is: "+pass+"</p>",
             "autotext": true
         }
     };
     m.messages.send
-        (params, null, null);
+        (params, null, alert('Email failed'));
 }
 
 
@@ -1206,7 +1153,7 @@ function getLabels()
     }
 }
 
-function checkForm(form)
+function checkForm(form)                                                // todo get user email from database
 {
     var re = /\W/;
     var email = form.email.value.replaceAll('@', '');
@@ -1231,8 +1178,7 @@ function checkForm(form)
         return false;
     }
 
-    var table = DB[1];
-    var users = table[1];
+    var users;                                                      // todo database
     for(var i = 0; i < users.length; i++)
         if (form.username.value == users[i])
         {
