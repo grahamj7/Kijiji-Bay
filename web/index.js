@@ -593,7 +593,10 @@ function postSubCategories(event)
             a.style.display = "inline";
             a.addEventListener('click', nextHeader, false);
             a.textContent=array[i];
-            a.id = parseInt(specId[index] +i +1);
+            if(index == 0)
+                a.id = '0'+parseInt(specId[index] +i +1);
+            else
+                a.id = parseInt(specId[index] +i +1);
 
             div.appendChild(a);
             div.appendChild(br);
@@ -722,5 +725,611 @@ function getItemDetails()
         images.push('Images/NoImage.jpg');
 
     insertItem(price, title, desc, images, mainCat, subCat);
-    window.open("details.html", "_self");
+    window.open("items.html?id="+categoryId+"", "_self");
+}
+
+function createTable()
+{
+    var id = (parent.document.URL.substring(parent.document.URL.indexOf('?')+4, parent.document.URL.length));
+
+    var main = parseInt(id.substring(0,1));
+    var sub  = parseInt(id.substring(1,3));
+
+    var items = DB[0];
+    var titleArr = items[0], imageArr = items[1], descArr = items[2], priceArr = items[3], userArr = items[4], mainCatArr = items[5], subCatArr = items[6];
+    var indexes = [], i, row;
+
+    if(sub == 0)
+    {
+        alert('0');
+        for(i = 0; i < mainCatArr.length; i++)
+            if(main == mainCatArr[i])
+                indexes.push(i);
+    }
+    else
+    {
+        alert('other');
+        for(i = 0; i < mainCatArr.length; i++)
+            if((mainCatArr[i] == main) && (subCatArr[i] == sub))
+                indexes.push(i);
+    }
+
+
+    var contentDiv  = document.getElementById('contentDiv');
+    var tbl         = document.createElement("table");
+    var tblBody     = document.createElement("tbody");
+    var titleCell, imageCell, descCell, priceCell, userCell, mainCatCell, subCatCell;
+    for(i = 0; i < indexes.length; i++)
+    {
+        row = document.createElement('tr');
+
+        titleCell = document.createElement('td');
+        imageCell = document.createElement('td');
+        priceCell = document.createElement('td');
+
+        titleCell.textContent = titleArr[i];
+        imageCell.textContent = imageArr[i];
+        priceCell.textContent = '$'+priceArr[i];
+
+        row.appendChild(imageCell);
+        row.appendChild(titleCell);
+        row.appendChild(priceCell);
+        tblBody.appendChild(row);
+    }
+
+
+
+    tbl.appendChild(tblBody);
+    contentDiv.appendChild(tbl);
+}
+
+function insertItem(price, title, desc, images, mainCat, subCat)
+{
+    var div = document.getElementById('details');
+
+
+}
+
+
+function setCookie(cname,cvalue,exdays)
+{
+    var d = new Date();
+    d.setTime(d.getTime()+(exdays*24*60*60*1000));
+    var expires = "expires="+d.toGMTString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+
+function getCookie(cname)
+{
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++)
+    {
+        var c = ca[i].trim();
+        if (c.indexOf(name)==0)
+            return c.substring(name.length,c.length);
+    }
+    return "";
+}
+
+function checkCookie()
+{
+    var username=getCookie("username");
+    if (username == "")
+    {
+        window.open('signIn.html', '_self');
+    }
+}
+
+function checkItemsCookie()
+{
+    var username=getCookie("username");
+    if (username == "")
+    {
+         alert('Items window');
+    }
+}
+
+
+(function(d, s, id)
+{                   // like on facebook
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, "script", 'facebook-jssdk'));
+
+
+/**
+ * SIGN IN PAGE
+ */
+
+// Popup window code
+function newPopup()
+{
+    window.open(
+        "forgotPass.html",
+        'popUpWindow',
+        'height=150,width=550,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=no,menubar=no,location=no,directories=no,status=yes'
+    );
+}
+function signIn()
+{
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+
+    var pass = checkUserName(username);
+    if(pass)
+        if(checkPassword(password, pass))
+        {
+            window.open('index.html','_self');
+            if(document.getElementById('remainSignedIn').checked)
+                setCookie('username', username, 365);               // set cookie for 365 days  (1 year)
+            else
+                setCookie('username', username, 1);                 //set cookie for 1 day
+
+            return true;
+        }
+        else
+            alert("Password is incorrect");
+    else
+        alert("Username doesn't exist");
+    return false;
+}
+function checkUserName(username)                                        // todo database
+{
+    var table = DB[1];
+    var array = table[0];
+    var pass = table[1];
+    for(var i = 0; i < array.length; i++)
+        if (username == array[i])
+            return pass[i];
+
+    return false;
+}
+
+function checkPassword(password, pass)                                  // todo database
+{
+    return password == pass;
+}
+
+/**
+ *      FORGOT PASSWORD PAGE
+ */
+
+function onSubmit(form)
+{
+    var pass = checkEmail(form.email.value);
+    if(!pass)
+    {
+        alert("Error: Email doesn't exist in our database");
+        form.email.focus();
+        return false;
+    }
+
+    sendTheMail(form.email.value, pass);
+    close();
+    return false;
+}
+function checkEmail(user)                                              // todo get users password from database
+{
+    var table = DB[1];
+    var email = table[0];
+    var pass = table[1];
+    for (var i = 0; i < email.length; i++)
+        if(email[i] == user)
+            return pass[i];
+    return false;
+}
+
+
+function sendTheMail(email, pass) {
+
+    if(!pass || pass == '')
+        pass = 'Temp Pass';
+
+    var m = new mandrill.Mandrill('dN409U_HBEg6330LDyiJfw');
+    var params =
+    {
+        "message":
+        {
+            "from_email":"jhg257@mail.usask.ca",
+            "to":[{"email": email}],
+            "subject": "Your current Password for JD CMPT350 Project",
+            "html": "<p>Your current password for JD CMPT350 Project is: "+pass+"</p>",
+            "autotext": true
+        }
+    };
+    m.messages.send
+        (params, null, null);
+}
+
+
+/**
+ * CHANGE INFO PAGE
+ */
+
+function submit(form)                                                   // todo Jordaen
+{
+    alert('test');
+    return false;
+}
+
+
+/**
+ * MY PROFILE PAGE
+ */
+
+function getUserInfo()                                                 // todo get user data from database
+{
+    var email = getCookie('username');
+    var password = 'password';
+    var fName = 'firstName';
+    var lName = 'lastName';
+    var phone = 'phone';
+    var address = 'address';
+    var city = 'city';
+    var prov = 'province';
+    var postal = 'postalCode';
+
+    displayUserInfo(email, password, fName, lName, phone, address, city, prov, postal);
+}
+
+function displayUserInfo(email, password, fName, lName, phone, address, city, prov, postal)
+{
+    var div, ul, li, p, span, button;
+
+    div = document.getElementById('info');
+    ul = document.createElement('ul');
+    ul.style.listStyleType="none";
+
+    li = document.createElement('li');
+    p = document.createElement('p');
+    span = document.createElement('span');
+    button = document.createElement('button');
+
+    li.textContent='Username: ';
+    p.textContent = username;
+    p.style.paddingLeft='10%';
+    span.style.paddingLeft = '10%';
+    button.textContent = 'Change';
+    button.id='username';
+    button.addEventListener('click', changeListener, false);
+
+    li.appendChild(p);
+    ul.appendChild(li);
+
+
+    li = document.createElement('li');
+    p = document.createElement('p');
+    span = document.createElement('span');
+    button = document.createElement('button');
+
+    li.textContent='Password: ';
+    p.textContent = password;
+    p.style.paddingLeft='10%';
+    span.style.paddingLeft = '10%';
+    button.textContent = 'Change';
+    button.id='password';
+    button.addEventListener('click', changeListener, false);
+
+    span.appendChild(button);
+    li.appendChild(p);
+    li.appendChild(span);
+    ul.appendChild(li);
+
+
+    li = document.createElement('li');
+    p = document.createElement('p');
+    span = document.createElement('span');
+    button = document.createElement('button');
+
+    li.textContent='FirstName: ';
+    p.textContent = fName;
+    p.style.paddingLeft='10%';
+    span.style.paddingLeft = '10%';
+    button.textContent = 'Change';
+    button.id='fName';
+    button.addEventListener('click', changeListener, false);
+
+    span.appendChild(button);
+    li.appendChild(p);
+    li.appendChild(span);
+    ul.appendChild(li);
+
+
+    li = document.createElement('li');
+    p = document.createElement('p');
+    span = document.createElement('span');
+    button = document.createElement('button');
+
+    li.textContent='LastName: ';
+    p.textContent = lName;
+    p.style.paddingLeft='10%';
+    span.style.paddingLeft = '10%';
+    button.textContent = 'Change';
+    button.id='lName';
+    button.addEventListener('click', changeListener, false);
+
+    span.appendChild(button);
+    li.appendChild(p);
+    li.appendChild(span);
+    ul.appendChild(li);
+
+
+    li = document.createElement('li');
+    p = document.createElement('p');
+    span = document.createElement('span');
+    button = document.createElement('button');
+
+    li.textContent='Email: ';
+    p.textContent = email;
+    p.style.paddingLeft='10%';
+    span.style.paddingLeft = '10%';
+    button.textContent = 'Change';
+    button.id='email';
+    button.addEventListener('click', changeListener, false);
+
+    span.appendChild(button);
+    li.appendChild(p);
+    li.appendChild(span);
+    ul.appendChild(li);
+
+
+    li = document.createElement('li');
+    p = document.createElement('p');
+    span = document.createElement('span');
+    button = document.createElement('button');
+
+    li.textContent='Phone Number: ';
+    p.textContent = phone;
+    p.style.paddingLeft='10%';
+    span.style.paddingLeft = '10%';
+    button.textContent = 'Change';
+    button.id='phone';
+    button.addEventListener('click', changeListener, false);
+
+    span.appendChild(button);
+    li.appendChild(p);
+    li.appendChild(span);
+    ul.appendChild(li);
+
+
+    li = document.createElement('li');
+    p = document.createElement('p');
+    span = document.createElement('span');
+    button = document.createElement('button');
+
+    li.textContent='Address: ';
+    p.textContent = address;
+    p.style.paddingLeft='10%';
+    span.style.paddingLeft = '10%';
+    button.textContent = 'Change';
+    button.id='address';
+    button.addEventListener('click', changeListener, false);
+
+    span.appendChild(button);
+    li.appendChild(p);
+    li.appendChild(span);
+    ul.appendChild(li);
+
+
+    li = document.createElement('li');
+    p = document.createElement('p');
+    span = document.createElement('span');
+    button = document.createElement('button');
+
+    li.textContent='City: ';
+    p.textContent = city;
+    p.style.paddingLeft='10%';
+    span.style.paddingLeft = '10%';
+    button.textContent = 'Change';
+    button.id='city';
+    button.addEventListener('click', changeListener, false);
+
+    span.appendChild(button);
+    li.appendChild(p);
+    li.appendChild(span);
+    ul.appendChild(li);
+
+
+    li = document.createElement('li');
+    p = document.createElement('p');
+    span = document.createElement('span');
+    button = document.createElement('button');
+
+    li.textContent='Province: ';
+    p.textContent = prov;
+    p.style.paddingLeft='10%';
+    span.style.paddingLeft = '10%';
+    button.textContent = 'Change';
+    button.id='prov';
+    button.addEventListener('click', changeListener, false);
+
+    span.appendChild(button);
+    li.appendChild(p);
+    li.appendChild(span);
+    ul.appendChild(li);
+
+
+    li = document.createElement('li');
+    p = document.createElement('p');
+    span = document.createElement('span');
+    button = document.createElement('button');
+
+    li.textContent='Postal Code: ';
+    p.textContent = postal;
+    p.style.paddingLeft='10%';
+    span.style.paddingLeft = '10%';
+    button.textContent = 'Change';
+    button.id='postal';
+    button.addEventListener('click', changeListener, false);
+
+    span.appendChild(button);
+    li.appendChild(p);
+    li.appendChild(span);
+    ul.appendChild(li);
+
+    div.appendChild(ul);
+}
+
+function changeListener(event)
+{
+//        prompt(event.target.id);
+    window.open(
+        "changeInfo.html",
+        'popUpWindow',
+        'height=150,width=550,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=no,menubar=no,location=no,directories=no,status=yes'
+    );
+}
+
+
+/**
+ *  REGISTER PAGE
+ */
+
+function getLabels()
+{
+    var labels = document.getElementsByTagName('label');
+    for (var i = 0; i < labels.length; i++) {
+        if (labels[i].htmlFor != '') {
+            var elem = document.getElementById(labels[i].htmlFor);
+            if (elem)
+                elem.label = labels[i];
+        }
+    }
+}
+
+function checkForm(form)
+{
+    var re = /\W/;
+    var email = form.email.value.replaceAll('@', '');
+    email = email.replace('.', '');
+    if(re.test(email))
+    {
+        alert("Error: We can't allow special characters in the emails!");
+        form.email.focus();
+        return false;
+    }
+
+    if(form.fName.value.length > 30)
+    {
+        alert("Error: FirstName must be less than 30 characters!");
+        form.fName.focus();
+        return false;
+    }
+    if(form.lName.value.length > 30)
+    {
+        alert("Error: LastName must be less than 30 characters!");
+        form.lName.focus();
+        return false;
+    }
+
+    var table = DB[1];
+    var users = table[1];
+    for(var i = 0; i < users.length; i++)
+        if (form.username.value == users[i])
+        {
+            alert("Error: Username has already been taken!");
+            form.username.focus();
+            return false;
+        }
+
+    if(form.Opass.value != "" && form.Opass.value == form.Cpass.value)
+    {
+        if(form.Opass.value.length < 6 && form.Opass.value.length >= 20)
+        {
+            alert("Error: Password must contain at least 6 characters but be less than 20!");
+            form.Opass.focus();
+            return false;
+        }
+        if(form.Opass.value == form.username.value)
+        {
+            alert("Error: Password must be different from Username!");
+            form.Opass.focus();
+            return false;
+        }
+        re = /[0-9]/;
+        if(!re.test(form.Opass.value))
+        {
+            alert("Error: password must contain at least one number (0-9)!");
+            form.Opass.focus();
+            return false;
+        }
+        re = /[a-z]/;
+        if(!re.test(form.Opass.value))
+        {
+            alert("Error: password must contain at least one lowercase letter (a-z)!");
+            form.Opass.focus();
+            return false;
+        }
+        re = /[A-Z]/;
+        if(!re.test(form.Opass.value))
+        {
+            alert("Error: password must contain at least one uppercase letter (A-Z)!");
+            form.Opass.focus();
+            return false;
+        }
+    }
+    else
+    {
+        alert("Error: Please check that you've entered and confirmed your password!");
+        form.Opass.focus();
+        return false;
+    }
+
+    // regular expression to match only alphanumeric characters and spaces
+    re = /\b[0-9]{3}-[0-9]{3}-[0-9]{4}\b/;
+
+    // validation fails if the input doesn't match our regular expression
+    if(!re.test(form.phone.value))
+    {
+        alert("Error: Phone number is badly formatted");
+        form.phone.focus();
+        return false;
+    }
+    // regular expression to match only alphanumeric characters and spaces
+    re = /\b\w\d\w\d\w\d\b/;
+
+    // validation fails if the input doesn't match our regular expression
+    if(!re.test(form.postal.value))
+    {
+        alert("Error: Postal code is badly formatted");
+        form.postal.focus();
+        return false;
+    }
+    insertUser(form);
+    return true;
+}
+
+function insertUser(form)                                               // todo insert into database
+{
+    var fName = document.getElementById('fName').value;
+    var lName = document.getElementById('lName').value;
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('Opass').value;
+    var age = document.getElementById('age').value;
+    var email = document.getElementById('email').value;
+    var phone = document.getElementById('phone').value;
+    var address = document.getElementById('address').value;
+    var city = document.getElementById('city').value;
+    var prov = document.getElementById('prov').value;
+    var postal = document.getElementById('postal').value;
+
+    var table = DB[1];
+    table[0].push(form.username.value);
+    table[1].push(form.Opass.value);
+    table[2].push(form.email.value);
+    table[3].push(form.fName.value);
+    table[4].push(form.lName.value);
+    table[5].push(form.address.value);
+    table[6].push(form.postal.value);
+    table[7].push(form.prov.value);
+    table[8].push(form.phone.value);
+    table[9].push(form.age.value);
+
+    window.open('myProfile.html','_self');
 }

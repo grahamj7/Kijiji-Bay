@@ -12,11 +12,6 @@
     <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.theme.min.css">
     <link rel="stylesheet" type="text/css" href="styling.css">
 
-    <script type="javascript">
-        //todo find new flashy image for title of website
-        //todo go through css's and filter out the crap
-        //todo get icons for categories
-    </script>
     <script type="text/javascript" src="index.js"></script>
     <script type="text/javascript" src="arrayDB.js"></script>
 </head>
@@ -47,12 +42,12 @@
 
 <div data-role="content">
     <section style="width: 50%; float: left">
-        <form onsubmit="signIn()">
+        <form onsubmit="return signIn()" action="index.html">
             <fieldset>
                 <legend><strong>Sign-In:</strong></legend>
 
                 <label>
-                    <strong>Username: </strong>
+                    <strong>Username/Email: </strong>
                     <input type="text" required id="username">
                 </label>
                 <br>
@@ -103,70 +98,6 @@
         </div>
     </footer>
 </div>
-<script type=text/javascript>
-
-    (function(d, s, id)
-    {                   // like on facebook
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-
-        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, "script", 'facebook-jssdk'));
-
-    // Popup window code
-    function newPopup()
-    {
-        window.open(
-                "forgotPass.html",
-                'popUpWindow',
-                'height=150,width=550,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=no,menubar=no,location=no,directories=no,status=yes'
-        );
-    }
-    function signIn()
-    {
-        var username = document.getElementById('username').value;
-        var password = document.getElementById('password').value;
-        var table = DB[1], pass = table[2];
-//      todo check if username exists in the database
-        var index = checkUserName(username);
-        if(index || index == 0)
-//          todo get index of the user check if that password matches
-            if(checkPassword(password, index))
-            {
-                if(document.getElementById('remainSignedIn').checked)     {}
-//                    setCookie('username', username, 365);             // set cookie for 365 days  (1 year)
-//                else
-//                    setCookie('username', username, 0.041667);        //set cookie for 1 hour
-                                                                        //start session instead of cookie
-                window.open('myProfile.html','_self');
-            }
-            else
-                alert("Password is incorrect"+password+' '+pass[index]);
-        else
-            alert("Username doesn't exist");
-    }
-    function checkUserName(username)
-    {
-        var table = DB[1];
-        var array = table[1];
-        for(var i = 0; i < array.length; i++)
-            if (username == array[i])
-            {alert(username +' '+ array[i]);
-                return i;
-            }
-        return false;
-    }
-    function checkPassword(password, index)
-    {
-        var table = DB[1];
-        var array = table[2];
-
-        return password == array[index];
-    }
-</script>
 
 </body>
 </html>

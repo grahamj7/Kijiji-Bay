@@ -50,7 +50,7 @@
     </section>
     <section id="ItemCategories" style="width: 33%; display: inline-block; visibility: hidden; position: relative;">
         <h2>Item Details</h2>
-        <form action="details.html" onsubmit="getItemDetails()">
+        <form action="" onsubmit="getItemDetails()">
             <label for="title">
                 Title:
                 <input type="text" required="required" id="title" placeholder="Enter a Title Here">
@@ -58,7 +58,7 @@
             <br>
             <label for="price">
                 Price:
-                <input type="number" min="1" required="required" id="price" placeholder="Enter the price">
+                <input type="number" min="1" required="required" step="0.1" id="price" placeholder="Enter the price">
             </label>
             <br>
             <label for="desc">
@@ -85,6 +85,7 @@
 </div>
 <script type="text/javascript">
 
+    checkCookie();
     generateCategories();
     postMainCategories();
 
@@ -112,20 +113,6 @@
         </div>
     </footer>
 </div>
-<script>
-
-    (function(d, s, id)
-    {                   // like on facebook
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-
-        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, "script", 'facebook-jssdk'));
-
-</script>
 
 </body>
 </html>
