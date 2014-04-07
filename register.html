@@ -98,14 +98,7 @@
     </footer>
 </div>
 <script type="text/javascript">
-    var labels = document.getElementsByTagName('label');
-    for (var i = 0; i < labels.length; i++) {
-        if (labels[i].htmlFor != '') {
-            var elem = document.getElementById(labels[i].htmlFor);
-            if (elem)
-                elem.label = labels[i];
-        }
-    }
+    getLabels();
 </script>
 
 </body>

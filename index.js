@@ -593,7 +593,10 @@ function postSubCategories(event)
             a.style.display = "inline";
             a.addEventListener('click', nextHeader, false);
             a.textContent=array[i];
-            a.id = parseInt(specId[index] +i +1);
+            if(index == 0)
+                a.id = '0'+parseInt(specId[index] +i +1);
+            else
+                a.id = parseInt(specId[index] +i +1);
 
             div.appendChild(a);
             div.appendChild(br);
@@ -876,7 +879,7 @@ function signIn()
         alert("Username doesn't exist");
     return false;
 }
-function checkUserName(username)                                         //todo database
+function checkUserName(username)                                        // todo database
 {
     var table = DB[1];
     var array = table[0];
@@ -888,7 +891,7 @@ function checkUserName(username)                                         //todo 
     return false;
 }
 
-function checkPassword(password, pass)                                  //todo database
+function checkPassword(password, pass)                                  // todo database
 {
     return password == pass;
 }
@@ -911,7 +914,7 @@ function onSubmit(form)
     close();
     return false;
 }
-function checkEmail(user)                                                  // todo get users password from database
+function checkEmail(user)                                              // todo get users password from database
 {
     var table = DB[1];
     var email = table[0];
@@ -949,7 +952,7 @@ function sendTheMail(email, pass) {
  * CHANGE INFO PAGE
  */
 
-function submit(form)                                             //todo Jordaen
+function submit(form)                                                   // todo Jordaen
 {
     alert('test');
     return false;
@@ -1188,6 +1191,17 @@ function changeListener(event)
  *  REGISTER PAGE
  */
 
+function getLabels()
+{
+    var labels = document.getElementsByTagName('label');
+    for (var i = 0; i < labels.length; i++) {
+        if (labels[i].htmlFor != '') {
+            var elem = document.getElementById(labels[i].htmlFor);
+            if (elem)
+                elem.label = labels[i];
+        }
+    }
+}
 
 function checkForm(form)
 {
@@ -1291,7 +1305,7 @@ function checkForm(form)
     return true;
 }
 
-function insertUser(form)                             // todo insert into database
+function insertUser(form)                                               // todo insert into database
 {
     var fName = document.getElementById('fName').value;
     var lName = document.getElementById('lName').value;
