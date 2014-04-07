@@ -19,7 +19,12 @@ import java.util.*;
 
 @WebServlet(urlPatterns = {"/test"})
 public class test extends HttpServlet {
-    
+    /*
+        Status codes 
+        0 = read from Items table
+        1 = Insert Item
+        
+    */
     public Connection conn;
     public final String url="jdbc:mysql://edjo.usask.ca:3306/cmpt350_jd";
     public final String user="cmpt350_jd";
@@ -33,21 +38,24 @@ public class test extends HttpServlet {
         if (0 == status) {
            PrintWriter out = response.getWriter();
            try{
-               String username = request.getParameter("username");
-               String password = request.getParameter("password");           
-               out.println(username+" "+password);
-               InsertIntoDB(username, password);
+              int mainCategory = Integer.parseInt(request.getParameter("mainCat"));
+              int subCategory = Integer.parseInt(request.getParameter("subCat"));
+              getItems(request, response, session,mainCategory,subCategory );
            }
            catch(Exception e){
                out.println(e.toString());
            }
             //getAllBook(request, response);
         } else if (1 == status) {
-             try{
-                outputResult(request, response, session);
-            }
-            catch (SQLException e){
-            }
+            
+            String title= request.getParameter("title").toString();
+            float price = Float.parseFloat(request.getParameter("price"));
+            String description = request.getParameter("desc").toString();
+            int mainCategory = Integer.parseInt(request.getParameter("mainCat"));
+            int subCategory = Integer.parseInt(request.getParameter("subCat"));
+            insertItem(title,price,description,mainCategory,subCategory);
+            
+            
         } else {
            
         }
@@ -64,6 +72,62 @@ public class test extends HttpServlet {
         catch(Exception e){
             System.out.println(e.toString());
         }
+    }
+    protected void  insertItem(String title, float price, String description, int mainCategory, int subCategory ){
+        try{
+            this.getConnection();
+            String main=Integer.toString(mainCategory);
+            String sub=Integer.toString(subCategory);
+            final String query = "INSERT INTO Items(ItemId,Title,Description,Price,MainCategory,SubCategory) "
+                    + "VALUES ( ? , ? , ? , ? , ? , ? )";
+            final PreparedStatement ps = this.conn.prepareStatement(query);
+            Random rand = new Random();
+            int itemID=rand.nextInt(100);
+            ps.setInt(1, itemID);
+            ps.setFloat(2, price);
+            ps.setString(3, description);
+            ps.setString(4,main);
+            ps.setString(5, sub);
+            ps.executeUpdate();
+        }catch (SQLException e){
+            System.out.println(e.toString());
+        }
+    }
+    protected void getItems(HttpServletRequest request, HttpServletResponse response, HttpSession session, int main, int sub)
+            throws ServletException, IOException, SQLException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        this.getConnection();
+        String mainCategory=Integer.toString(main);
+        String subCategory=Integer.toString(sub);
+        final String query = "SELECT * FROM Items WHERE MainCategory=? and SubCategory=?";
+        final PreparedStatement ps = this.conn.prepareStatement(query);
+        ps.setString(1, mainCategory);
+        ps.setString(2, subCategory);
+        ps.executeQuery();
+        ResultSet rs = ps.getResultSet();
+        out.println("<table border=1>");
+        out.println("<tr>");
+        out.println("<td>");
+        out.println("<h3>Title</h3>");
+        out.println("</td>");
+        out.println("<td>");
+        out.println("<h3>Description</h3>");
+        out.println("</td>");
+        while(rs.next()){
+            out.println("<tr>");
+            out.println("<td>");
+            out.println(rs.getString("Title"));
+            out.println("</td>");
+            out.println("<td>");
+            out.println(rs.getString("Description"));
+            out.println("</td>");
+            out.println("</tr>");
+        }
+        out.println("</table>");
+        
+        
+        
     }
     protected void InsertIntoDB(String username, String password){
         try{

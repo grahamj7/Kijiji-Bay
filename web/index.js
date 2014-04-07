@@ -734,6 +734,9 @@ function createTable()
 
     var main = parseInt(id.substring(0,1));
     var sub  = parseInt(id.substring(1,3));
+    var url = 'http://localhost:8084/keybay-servlet/test?status=0';
+    url=url+"&mainCat="+main+"&subCat="+sub;
+    loadXMLDoc(url);
 
     var items = DB[0];
     var titleArr = items[0], imageArr = items[1], descArr = items[2], priceArr = items[3], userArr = items[4], mainCatArr = items[5], subCatArr = items[6];
@@ -826,7 +829,7 @@ function checkItemsCookie()
     var username=getCookie("username");
     if (username == "")
     {
-         alert('Items window');
+         //alert('Items window');
     }
 }
 
@@ -1332,4 +1335,48 @@ function insertUser(form)                                               // todo 
     table[9].push(form.age.value);
 
     window.open('myProfile.html','_self');
+}
+
+        
+var xmlhttp;
+function loadXMLDoc(url)
+{
+    xmlhttp = null;
+    if (window.XMLHttpRequest)
+    {// code for IE7, Firefox, Opera, etc.
+        xmlhttp = new XMLHttpRequest();
+    }
+    else if (window.ActiveXObject)
+    {// code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    if (xmlhttp != null)
+    {
+        xmlhttp.onreadystatechange = state_Change;
+        xmlhttp.open("GET", url, false);
+        xmlhttp.send();
+        state_Change();
+    }
+    else
+    {
+        alert("Your browser does not support XMLHTTP.");
+    }
+}
+function state_Change()
+{
+    if (xmlhttp.readyState == 4)
+    {// 4 = "loaded"
+        if (xmlhttp.status == 200)
+        {// 200 = "OK"
+            //  alert(xmlhttp.responseText);
+            // document.getElementById('Status').innerHTML = xmlhttp.status;
+            //                    document.getElementById('StatusText').innerHTML = xmlhttp.statusText
+            
+            document.getElementById("contentDiv").innerHTML = xmlhttp.responseText;
+        }
+        else
+        {
+            alert("Problem retrieving XML data:" + xmlhttp.statusText);
+        }
+    }
 }
