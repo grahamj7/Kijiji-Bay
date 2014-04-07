@@ -2,69 +2,49 @@
 <html>
 <head>
     <title>Forgot Password?</title>
-    <link rel="shortcut icon" type="image/x-icon" href="Images/favicon.ico" />
-
-    <script type="text/javascript" src="https://mandrillapp.com/api/docs/js/mandrill.js"></script>
     <script type="text/javascript" src="index.js"></script>
     <script type="text/javascript" src="arrayDB.js"></script>
 </head>
 <body>
 <h2>Are you sure you want to reset your password?</h2>
-<form onsubmit="return onSubmit(this)">
-    Email Address: <input type="text" name="email" placeholder="Please Enter your email" required>
-    <br>
-    <label id="pass"></label>
-    <br>
-    <input type="submit" id="submit" value="Submit">
-
+<form onSubmit="submit(this)">
+    <input type="text" id="user" placeholder="Enter your username" required>
+    <input type="submit">
+    <!--<p style="display: inline-block" id="password"></p>-->
 </form>
-
 <script type="text/javascript">
-    function onSubmit(form)
+    function randomString() {
+        var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+        var string_length = 8;
+        var randomstring = '';
+        for (var i=0; i<string_length; i++) {
+            var rnum = Math.floor(Math.random() * chars.length);
+            randomstring += chars.substring(rnum,rnum+1);
+        }
+        return randomstring;
+    }
+
+    function submit(form)
     {
-        var pass = checkEmail(form.email.value);
-        if(!pass)
+        alert('submit');
+        if(form.user.value == '')
         {
-            alert("Error: Email doesn't exist in our database");
-            form.email.focus();
+            alert('Error');
+            form.user.focus();
             return false;
         }
-
-        sendTheMail(form.email.value, pass);
-        close();
         return false;
     }
-    function checkEmail(user)
-    {
+    function checkUsername(username)
+    {         alert('check');
         var table = DB[1];
-        var email = table[0];
-        var pass = table[1];
-        for (var i = 0; i < email.length; i++)
-            if(email[i] == user)
-                return pass[i];         // todo get users password from database
-        return false;
-    }
-
-
-    function sendTheMail(email, pass) {
-
-        if(!pass || pass == '')
-            pass = 'Temp Pass';
-
-        var m = new mandrill.Mandrill('dN409U_HBEg6330LDyiJfw');
-        var params =
+        var array = table[0];
+        for(var i =0; i < array.length; i++)
         {
-            "message":
-            {
-                "from_email":"jhg257@mail.usask.ca",
-                "to":[{"email": email}],
-                "subject": "Your current Password for JD CMPT350 Project",
-                "html": "<p>Your current password for JD CMPT350 Project is: "+pass+"</p>",
-                "autotext": true
-            }
-        };
-        m.messages.send
-                (params, null, null);
+            if(array[i] ==username)
+                return i;
+        }
+        return false;
     }
 </script>
 </body>

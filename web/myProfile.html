@@ -42,10 +42,10 @@
 
 <div data-role="content">
     <h1>User Profile</h1>
-    <div id="bought">
-        <h3>Items Bought: </h3>
+    <div id="cart">
+        <h3>Cart: </h3>
     </div>
-    <div id="selling">
+    <div id="sale">
         <h3>Items for Sale: </h3>
     </div>
     <div id="info">
@@ -318,15 +318,9 @@
 
         div.appendChild(ul);
     }
-
     function changeListener(event)
     {
-//        prompt(event.target.id);
-        window.open(
-                "changeInfo.html",
-                'popUpWindow',
-                'height=150,width=550,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=no,menubar=no,location=no,directories=no,status=yes'
-        );
+
     }
 </script>
 
