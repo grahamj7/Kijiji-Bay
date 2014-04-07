@@ -9,7 +9,9 @@
     <script type="text/javascript" src="arrayDB.js"></script>
 </head>
 <body>
+
 <h2>Are you sure you want to reset your password?</h2>
+
 <form onsubmit="return onSubmit(this)">
     Email Address: <input type="text" name="email" placeholder="Please Enter your email" required>
     <br>
@@ -19,53 +21,5 @@
 
 </form>
 
-<script type="text/javascript">
-    function onSubmit(form)
-    {
-        var pass = checkEmail(form.email.value);
-        if(!pass)
-        {
-            alert("Error: Email doesn't exist in our database");
-            form.email.focus();
-            return false;
-        }
-
-        sendTheMail(form.email.value, pass);
-        close();
-        return false;
-    }
-    function checkEmail(user)
-    {
-        var table = DB[1];
-        var email = table[0];
-        var pass = table[1];
-        for (var i = 0; i < email.length; i++)
-            if(email[i] == user)
-                return pass[i];         // todo get users password from database
-        return false;
-    }
-
-
-    function sendTheMail(email, pass) {
-
-        if(!pass || pass == '')
-            pass = 'Temp Pass';
-
-        var m = new mandrill.Mandrill('dN409U_HBEg6330LDyiJfw');
-        var params =
-        {
-            "message":
-            {
-                "from_email":"jhg257@mail.usask.ca",
-                "to":[{"email": email}],
-                "subject": "Your current Password for JD CMPT350 Project",
-                "html": "<p>Your current password for JD CMPT350 Project is: "+pass+"</p>",
-                "autotext": true
-            }
-        };
-        m.messages.send
-                (params, null, null);
-    }
-</script>
 </body>
 </html>
