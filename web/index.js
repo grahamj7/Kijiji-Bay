@@ -1333,10 +1333,3 @@ function insertUser(form)                                               // todo 
 
     window.open('myProfile.html','_self');
 }
-
-
-
-
-
-
-
