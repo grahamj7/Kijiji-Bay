@@ -724,11 +724,11 @@ function getItemDetails()
     categoryId = null;
 
 
-    if(images.length == 0)
-        images.push('Images/NoImage.jpg');
+//    if(images.length == 0)
+//        images.push('Images/NoImage.jpg');
 
     insertItem(price, title, desc, images, mainCat, subCat);
-    window.open("items.html?id="+categoryId+"", "_self");
+   
 }
 
 function createTable()          // todo something
@@ -746,7 +746,13 @@ function createTable()          // todo something
 
 function insertItem(price, title, desc, images, mainCat, subCat)        // todo something else
 {
+   // alert("insertItem");
     var div = document.getElementById('details');
+    var url = 'http://localhost:8084/WebApplication2/servlet?status=1';
+    url=url+"&title="+title+"&price="+price+"&desc="+desc+"&mainCat="+mainCat+"&subCat="+subCat;
+    alert(url);
+    loadXMLDoc(url,1);
+    window.open("items.html?id="+categoryId+"", "_self");
 }
 
 function setCookie(cname,cvalue,exdays)

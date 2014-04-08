@@ -34,6 +34,11 @@ public class Servlet extends HttpServlet {
         
         HttpSession session = request.getSession(true);
         int status = Integer.parseInt(request.getParameter("status"));
+        /*
+         * Status code:
+         * 0 = Get Items
+         * 1 = Insert item
+         */
         if (0 == status) {
            PrintWriter out = response.getWriter();
            try{
@@ -54,7 +59,7 @@ public class Servlet extends HttpServlet {
             int mainCategory = Integer.parseInt(request.getParameter("mainCat"));
             int subCategory = Integer.parseInt(request.getParameter("subCat"));
             insertItem(title,price,description,mainCategory,subCategory); 
-            
+            outputResult(request, response, session);
             
         } else {
            outputResult(request, response, session);
@@ -63,8 +68,6 @@ public class Servlet extends HttpServlet {
         
     }
     
-   
-    
     protected void outputResult(HttpServletRequest request, HttpServletResponse response, HttpSession session)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -72,6 +75,7 @@ public class Servlet extends HttpServlet {
         out.println("test");
 
     }
+    
     public void getConnection()
     {
         try {
@@ -96,15 +100,17 @@ public class Servlet extends HttpServlet {
             Random rand = new Random();
             int itemID=rand.nextInt(100);
             ps.setInt(1, itemID);
-            ps.setFloat(2, price);
+            ps.setString(2, title);
             ps.setString(3, description);
-            ps.setString(4,main);
-            ps.setString(5, sub);
+            ps.setFloat(4, price);
+            ps.setString(5,main);
+            ps.setString(6, sub);
             ps.executeUpdate();
         }catch (SQLException e){
             System.out.println(e.toString());
         }
     }
+   
    protected void getItems(HttpServletRequest request, HttpServletResponse response, HttpSession session, int main, int sub)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
