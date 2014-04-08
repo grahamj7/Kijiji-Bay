@@ -38,6 +38,8 @@ public class Servlet extends HttpServlet {
          * Status code:
          * 0 = Get Items
          * 1 = Insert item
+         * 2 = Delete item
+         * 3 = Insert user
          */
         if (0 == status) {
            PrintWriter out = response.getWriter();
@@ -61,7 +63,25 @@ public class Servlet extends HttpServlet {
             insertItem(title,price,description,mainCategory,subCategory); 
             outputResult(request, response, session);
             
-        } else {
+        } 
+        else if(2==status){
+            
+        }
+        else if(3==status){
+            String username= request.getParameter("username");
+            String password = request.getParameter("password");
+            String firstname = request.getParameter("fName");
+            String lastname = request.getParameter("lName");    
+            String email= request.getParameter("email");
+            String phonenum = request.getParameter("phone");
+            String address = request.getParameter("address");      
+            String city= request.getParameter("city");
+            String province = request.getParameter("prov");
+            String postalcode = request.getParameter("postal");
+            insertUser( username,  password,  firstname,  lastname,  email, 
+            0,  phonenum,  address,  city,  province,  postalcode);
+        }
+        else {
            outputResult(request, response, session);
         }
         
@@ -187,6 +207,11 @@ public class Servlet extends HttpServlet {
         out.println("<td>");
         out.println("<h3>Description</h3>");
         out.println("</td>");
+        out.println("<td>");
+        out.println("<h3>Price</h3>");
+        out.println("</td>");
+        out.println("</tr>");
+        DecimalFormat df = new DecimalFormat("##.00");
         while(rs.next()){
             out.println("<tr>");
             out.println("<td>");
@@ -194,6 +219,9 @@ public class Servlet extends HttpServlet {
             out.println("</td>");
             out.println("<td>");
             out.println(rs.getString("Description"));
+            out.println("</td>");
+            out.println("<td>");
+            out.println("$"+df.format(rs.getInt("Price")));
             out.println("</td>");
             out.println("</tr>");
         }

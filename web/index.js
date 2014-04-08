@@ -1162,6 +1162,7 @@ function getLabels()
 
 function checkForm(form)                                                // todo get user email from database
 {
+    /*
     var re = /\W/;
     var email = form.email.value.replaceAll('@', '');
     email = email.replace('.', '');
@@ -1256,25 +1257,31 @@ function checkForm(form)                                                // todo 
         alert("Error: Postal code is badly formatted");
         form.postal.focus();
         return false;
-    }
+    } */
     insertUser(form);
     return true;
 }
 
 function insertUser(form)                                               // todo insert into database
 {
+    //alert("insert");
+
     var fName = document.getElementById('fName').value;
     var lName = document.getElementById('lName').value;
     var username = document.getElementById('username').value;
     var password = document.getElementById('Opass').value;
-    var age = document.getElementById('age').value;
+   // var age = document.getElementById('age').value;
     var email = document.getElementById('email').value;
     var phone = document.getElementById('phone').value;
     var address = document.getElementById('address').value;
     var city = document.getElementById('city').value;
     var prov = document.getElementById('prov').value;
-    var postal = document.getElementById('postal').value;
-
+    var postal = document.getElementById('postal').value; 
+    var url = 'http://localhost:8084/Keybay/servlet?status=3';
+    url=url+"&fName="+fName+"&lName="+lName+"&username="+username+"&password="+password+"&email="+email+"&phone="+phone
+    +"&address="+address+"&city="+city+"&prov="+prov+"&postal="+postal;
+    loadXMLDoc(url);
+/*
     var table = DB[1];
     table[0].push(form.username.value);
     table[1].push(form.Opass.value);
@@ -1285,8 +1292,7 @@ function insertUser(form)                                               // todo 
     table[6].push(form.postal.value);
     table[7].push(form.prov.value);
     table[8].push(form.phone.value);
-    table[9].push(form.age.value);
-
+    table[9].push(form.age.value); */
     window.open('myProfile.html','_self');
 }
 
