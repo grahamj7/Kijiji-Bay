@@ -11,7 +11,9 @@
     <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.theme.css">
     <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.theme.min.css">
     <link rel="stylesheet" type="text/css" href="styling.css">
-
+    <link rel="stylesheet" type="text/css" href="jquery.mobile-1.4.2/jquery.mobile-1.4.2.css"/>
+    <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="jquery.mobile-1.4.2/jquery.mobile-1.4.2.min.js"></script>
     <script type="text/javascript" src="index.js"></script>
 </head>
 
@@ -39,7 +41,7 @@
     </div>
 </header>
 
-<div data-role="content">
+<div data-role="content" class="ui-field-contain">
     <h1>Register</h1>
     <form action="myProfile.html" onsubmit="return checkForm(this)">
         <fieldset>
@@ -70,7 +72,7 @@
                 <option>NU</option>
             </select><br>
             <label for="postal">Postal Code ex.A1B2C3: <input type="text" name="form" id="postal" required></label><br><br>
-            <input type="submit">
+            <input type="submit" value="Submit">
         </fieldset>
     </form>
 </div>
