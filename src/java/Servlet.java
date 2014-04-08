@@ -200,6 +200,18 @@ public class Servlet extends HttpServlet {
         out.println("</table>");
 
     }
+   public void deleteItem(int ItemId){
+       try{
+           final String deleteSQL = "DELETE FROM Items WHERE ItemId = ?";
+           PreparedStatement preparedStatement = this.conn.prepareStatement(deleteSQL);
+           preparedStatement.setInt(1, ItemId);
+           preparedStatement.executeUpdate();
+           this.closeConnection();
+       }
+       catch (SQLException e){
+           System.out.println(e.toString());
+       }
+   }
    
    public void insertUser(String username, String password, String fname, String lname, String email, int age, String phone, String address, String city, String prov, String postal){
        try{
