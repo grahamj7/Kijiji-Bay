@@ -746,12 +746,11 @@ function createTable()          // todo something
 
 function insertItem(price, title, desc, images, mainCat, subCat)        // todo something else
 {
-   // alert("insertItem");
     var div = document.getElementById('details');
     var url = 'http://localhost:8084/WebApplication2/servlet?status=1';
     url=url+"&title="+title+"&price="+price+"&desc="+desc+"&mainCat="+mainCat+"&subCat="+subCat;
-    alert(url);
-    loadXMLDoc(url,1);
+    //alert(url);
+    loadXMLDoc(url);
     window.open("items.html?id="+categoryId+"", "_self");
 }
 
@@ -1161,6 +1160,7 @@ function getLabels()
 
 function checkForm(form)                                                // todo get user email from database
 {
+    
     var re = /\W/;
     var email = form.email.value.replaceAll('@', '');
     email = email.replace('.', '');
@@ -1273,7 +1273,11 @@ function insertUser(form)                                               // todo 
     var city = document.getElementById('city').value;
     var prov = document.getElementById('prov').value;
     var postal = document.getElementById('postal').value;
-
+    var url = 'http://localhost:8084/WebApplication2/servlet?status=1';
+    url=url+"&fName="+fName+"&lName="+lName+"&username="+username+"&password="+password+"&age="+age
+   +"&email="+email+"&phone="+phone+"&address="+address+"&city="+city+"&prov="+prov +"&postal="+postal;
+    alert(url);
+    //loadXMLDoc(url,1);
     var table = DB[1];
     table[0].push(form.username.value);
     table[1].push(form.Opass.value);

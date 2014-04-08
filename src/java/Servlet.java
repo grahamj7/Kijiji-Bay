@@ -124,6 +124,30 @@ public class Servlet extends HttpServlet {
         ps.setString(2, subCategory);
         ps.executeQuery();
         ResultSet rs = ps.getResultSet();
+       //<table data-role="table" id="movie-table-custom" data-mode="reflow" class="movie-list ui-responsive">
+/*
+        out.println("<table data-role=\"table\" id=\"movie-table-custom\" data-mode=\"reflow\" class=\"movie-list ui-responsive\">");
+        out.println("<thead>");
+        out.println("<tr>");
+        out.println("<th data-priority=\"1\">Title</th>");
+        out.println("<th data-priority=\"2\">Description</th>");
+        out.println("</tr>");
+        out.println("</thead>");
+        out.println("<tbody>");
+        while(rs.next()){
+            out.println("<tr>");
+            out.println("<td>");
+            out.println(rs.getString("Title"));
+            out.println("</td>");
+            out.println("<td>");
+            out.println(rs.getString("Description"));
+            out.println("</td>");
+            out.println("</tr>");
+        }
+        out.println("</tbody>");
+        out.println("</table>");
+         */
+        
         out.println("<table border=1>");
         out.println("<tr>");
         out.println("<td>");
@@ -143,6 +167,7 @@ public class Servlet extends HttpServlet {
             out.println("</tr>");
         }
         out.println("</table>");
+       
         
         
         
