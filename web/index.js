@@ -724,11 +724,10 @@ function getItemDetails()
     categoryId = null;
 
 
-    if(images.length == 0)
-        images.push('Images/NoImage.jpg');
+//    if(images.length == 0)
+//        images.push('Images/NoImage.jpg');
 
     insertItem(price, title, desc, images, mainCat, subCat);
-    window.open("items.html?id="+categoryId+"", "_self");
 }
 
 function createTable()          // todo something
@@ -737,7 +736,7 @@ function createTable()          // todo something
 
     var main = parseInt(id.substring(0,1));
     var sub  = parseInt(id.substring(1,3));
-    var url = 'http://localhost:8084/keybay-servlet/test?status=0';
+    var url = 'http://localhost:8084/Keybay/servlet?status=0';
     url=url+"&mainCat="+main+"&subCat="+sub;
     loadXMLDoc(url);
 
@@ -747,6 +746,14 @@ function createTable()          // todo something
 function insertItem(price, title, desc, images, mainCat, subCat)        // todo something else
 {
     var div = document.getElementById('details');
+    // alert("insertItem");
+    var div = document.getElementById('details');
+    var url = 'http://localhost:8084/Keybay/servlet?status=1';
+    url=url+"&title="+title+"&price="+price+"&desc="+desc+"&mainCat="+mainCat+"&subCat="+subCat;
+    alert(url);
+    loadXMLDoc(url,1);
+    window.open("items.html?id="+categoryId+"", "_self");
+
 }
 
 function setCookie(cname,cvalue,exdays)
