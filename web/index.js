@@ -737,7 +737,7 @@ function createTable()          // todo something
 
     var main = parseInt(id.substring(0,1));
     var sub  = parseInt(id.substring(1,3));
-    var url = 'http://localhost:8084/keybay-servlet/test?status=0';
+    var url = 'http://localhost:8084/WebApplication2/servlet?status=0';
     url=url+"&mainCat="+main+"&subCat="+sub;
     loadXMLDoc(url);
 
