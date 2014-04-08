@@ -1162,17 +1162,23 @@ function getLabels()
 
 function checkForm(form)                                                // todo get user email from database
 {
-    /*
-    var re = /\W/;
-    var email = form.email.value.replaceAll('@', '');
-    email = email.replace('.', '');
+    var re = /\./;
+    var email = form.email.value.toString().replace('@', '');
+    while(re.test(email)){
+        email = email.toString().replace('.','');
+    }
+    re = /_/;
+    while(re.test(email)){
+        email = email.toString().replace('_','');
+    }
+    
+    re = /\W/;
     if(re.test(email))
     {
         alert("Error: We can't allow special characters in the emails!");
         form.email.focus();
         return false;
     }
-
     if(form.fName.value.length > 30)
     {
         alert("Error: FirstName must be less than 30 characters!");
@@ -1186,14 +1192,14 @@ function checkForm(form)                                                // todo 
         return false;
     }
 
-    var users;                                                      // todo database
-    for(var i = 0; i < users.length; i++)
-        if (form.username.value == users[i])
-        {
-            alert("Error: Username has already been taken!");
-            form.username.focus();
-            return false;
-        }
+//    var users;                                                      // todo database
+//    for(var i = 0; i < users.length; i++)
+//        if (form.email.value == users[i])
+//        {
+//            alert("Error: Username has already been taken!");
+//            form.email.focus();
+//            return false;
+//        }
 
     if(form.Opass.value != "" && form.Opass.value == form.Cpass.value)
     {
@@ -1203,12 +1209,7 @@ function checkForm(form)                                                // todo 
             form.Opass.focus();
             return false;
         }
-        if(form.Opass.value == form.username.value)
-        {
-            alert("Error: Password must be different from Username!");
-            form.Opass.focus();
-            return false;
-        }
+
         re = /[0-9]/;
         if(!re.test(form.Opass.value))
         {
@@ -1257,7 +1258,8 @@ function checkForm(form)                                                // todo 
         alert("Error: Postal code is badly formatted");
         form.postal.focus();
         return false;
-    } */
+    }
+    alert('finished');
     insertUser(form);
     return true;
 }
