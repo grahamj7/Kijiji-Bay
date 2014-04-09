@@ -289,6 +289,9 @@ public class Servlet extends HttpServlet {
         out.println("<td>");
         out.println("<h3>Buy Now!</h3>");
         out.println("</td>");
+        out.println("<td>");
+        out.println("<h3>Tweet It!</h3>");
+        out.println("</td>");
         out.println("</tr>");
         DecimalFormat df = new DecimalFormat("##.00");
         int i = 0;
@@ -307,14 +310,16 @@ public class Servlet extends HttpServlet {
             out.println(rs.getString("Quantity"));
             out.println("</td>");
             out.println("<td>");
-            out.println("<input type=\"number\"  id=\"quantityinput"+i+"\" min=\"0\" max=\"99\" value=0>");
+            out.println("<input type=\"number\"  id=\"quantityinput"+i+"\" min=\"0\" max=\""+rs.getString("Quantity")+"\" value=0>");
             out.println("<button name='button' onclick='buyItem("+rs.getString("itemId")+", "+i+")'>Buy</button>");
+            out.println("</td>");
+            out.println("<td>");
+            out.println("<a href=\"https://twitter.com/intent/tweet?button_hashtag=JDCMPT350Project\" class=\"twitter-hashtag-button\" data-lang=\"en\" data-related=\"jasoncosta\">Tweet #JDCMPT350Project</a>");
             out.println("</td>");
             out.println("</tr>");
             i++;
         }
         out.println("</table>");
-//        "+rs.getString("ItemId,"+i)+"
     }
     public void deleteItem(int ItemId){
         try{
@@ -513,9 +518,8 @@ public class Servlet extends HttpServlet {
             
             
             out.println("<label><strong>Password:</strong>");
-            out.println("<input required type='password' id='PasswordInfo' value='"+rs.getString("Password")+"'");
+            out.println("<input required type='password' id='PasswordInfo' onblur='changeToPassword()' onclick='changeToText()' value='"+rs.getString("Password")+"'");
             out.println("</label>");
-            out.println("<button id='showButton' onclick='changeField()'>Show</button>");
             out.println("<br>");
             
             out.println("<label><strong>Phone number:</strong>");

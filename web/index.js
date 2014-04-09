@@ -807,13 +807,13 @@ function checkItemsCookie()
     {
         var buttons = document.getElementsByName('button');
         for (var i = 0; i < buttons.length; i++)
-            buttons[i].disabled = true;
+            buttons[i].hidden = "hidden";
     }
     else
     {
         var buttons = document.getElementsByName('button');
         for (var i = 0; i < buttons.length; i++)
-            buttons[i].disabled = false;
+            buttons[i].hidden = false;
     }
 }
 
@@ -825,10 +825,20 @@ function checkItemsCookie()
     js = d.createElement(s); js.id = id;
 
     js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-
+    
     fjs.parentNode.insertBefore(js, fjs);
 }(document, "script", 'facebook-jssdk'));
-
+!function(d, s, id)
+{
+    var js,fjs=d.getElementsByTagName(s)[0];
+    if(!d.getElementById(id))
+    {
+        js=d.createElement(s);
+        js.id=id;
+        js.src="//platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js,fjs);
+    }
+}(document, "script", "twitter-wjs");
 
 /**
  * SIGN IN PAGE
@@ -920,7 +930,7 @@ function sendTheMail(email, pass)
  * MY PROFILE PAGE
  */
 
-function getUserInfo()                                                 // todo get user data from database
+function getUserInfo()
 {
     var email = getCookie('email');
   /*  var password = 'password';
@@ -938,21 +948,13 @@ function getUserInfo()                                                 // todo g
     //displayUserInfo(email, password, fName, lName, phone, address, city, prov, postal);
 }
 
-function changeField()
+function changeToText()
 {
-    var field = document.getElementById('PasswordInfo');
-    var text = field.value;
-
-    if(field.type == 'password')
-    {
-        field.innerHTML = '<input type="text" id="PasswordInfo" value="'+text+'">';
-        document.getElementById('showButton').value = 'Hide';
-    }
-    else
-    {
-        field.innerHTML = '<input type="password" id="PasswordInfo" value="'+text+'"';
-        document.getElementById('showButton').value = 'Show';
-    }
+    document.getElementById('PasswordInfo').type="text";
+}
+function changeToPassword()
+{
+    document.getElementById('PasswordInfo').type="password";
 }
 
 
@@ -1100,6 +1102,7 @@ function insertUser(form)
     window.open('myProfile.html','_self');
 }
 function buyItem(itemId, index){
+    return alert('test');
     var quantitySelected = document.getElementById('quantityinput'+index).value;
     var url = 'http://localhost:8084/Keybay/servlet?status=5';
     url=url+"&ItemId="+itemId+"&quantity="+quantitySelected;
