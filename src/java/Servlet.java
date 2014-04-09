@@ -41,6 +41,7 @@ public class Servlet extends HttpServlet {
          * 2 = Delete item
          * 3 = Insert user
          * 4 = check if users exists
+         * 5 = buy item
          */
         if (0 == status) {
            PrintWriter out = response.getWriter();
@@ -89,6 +90,11 @@ public class Servlet extends HttpServlet {
                response.sendError(10);
             }
             
+        }
+        else if (5==status){
+            int itemid = Integer.parseInt(request.getParameter("ItemId"));
+            int quantitySelected = Integer.parseInt(request.getParameter("quantity"));
+            this.updateItemQuantity(itemid, quantitySelected);
         }
         else {
            outputResult(request, response, session);
@@ -212,6 +218,9 @@ public class Servlet extends HttpServlet {
         out.println("<table border=1>");
         out.println("<tr>");
         out.println("<td>");
+        out.println("<h3>ItemID</h3>");
+        out.println("</td>");
+        out.println("<td>");
         out.println("<h3>Title</h3>");
         out.println("</td>");
         out.println("<td>");
@@ -231,6 +240,9 @@ public class Servlet extends HttpServlet {
         while(rs.next()){
             out.println("<tr>");
             out.println("<td>");
+            out.println(rs.getString("ItemId"));
+            out.println("</td>");
+            out.println("<td>");
             out.println(rs.getString("Title"));
             out.println("</td>");
             out.println("<td>");
@@ -243,7 +255,7 @@ public class Servlet extends HttpServlet {
             out.println(rs.getString("Quantity"));
             out.println("</td>");
             out.println("<td>");
-            out.println("<input type=\"number\" name =\"input\" min=\"0\" max=\"99\" value=0>");
+            out.println("<input type=\"number\"  id=\"quantityinput\" min=\"0\" max=\"99\" value=0>");
             out.println("<button onclick='buyItem("+rs.getString("ItemId")+")'>Buy</button>");
             out.println("</td>");
             out.println("</tr>");
@@ -253,6 +265,7 @@ public class Servlet extends HttpServlet {
     }
    public void deleteItem(int ItemId){
        try{
+           this.getConnection();
            final String deleteSQL = "DELETE FROM Items WHERE ItemId = ?";
            PreparedStatement preparedStatement = this.conn.prepareStatement(deleteSQL);
            preparedStatement.setInt(1, ItemId);
@@ -262,6 +275,44 @@ public class Servlet extends HttpServlet {
        catch (SQLException e){
            System.out.println(e.toString());
        }
+   }
+   
+   public void updateItemQuantity(int itemId, int quantitySelected){
+       int current = this.getItemQuantity(itemId);
+       int newQuantity = current - quantitySelected;
+       if(newQuantity<=0){
+           this.deleteItem(itemId);
+       }
+       else {
+           try{
+               this.getConnection();
+               final String deleteSQL = "UPDATE Items SET Quantity = ?  WHERE ItemId = ?";
+               PreparedStatement preparedStatement = this.conn.prepareStatement(deleteSQL);
+               preparedStatement.setInt(1, newQuantity);
+               preparedStatement.setInt(2, itemId);
+               preparedStatement.executeUpdate();
+               this.closeConnection();
+           }catch (SQLException e){
+               
+           }
+       }
+   }
+   public int getItemQuantity(int itemId){
+       int quantity=0;
+       try{
+           this.getConnection();
+            final String query = "SELECT Quantity FROM Items WHERE ItemId = ?";
+            final PreparedStatement ps = this.conn.prepareStatement(query);
+            ps.setInt(1, itemId);
+            final ResultSet result = ps.executeQuery();
+            if(result.next()){
+                quantity = result.getInt(1);
+                return quantity;
+            }
+       }catch (SQLException e){
+           
+       }
+       return quantity;
    }
    
    public void insertUser(String password, String fname, String lname, String email, int age, String phone, String address, String city, String prov, String postal){

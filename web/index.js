@@ -1273,7 +1273,15 @@ function insertUser(form)                                               // todo 
 
     window.open('myProfile.html','_self');
 }
-
+function buyItem(itemId){
+    var quantitySelected = document.getElementById('quantityinput').value;
+    var url = 'http://localhost:8084/Keybay/servlet?status=5';
+    url=url+"&ItemId="+itemId+"&quantity="+quantitySelected;
+    loadXMLDoc(url);
+    alert(url);
+    location.reload(true);
+    
+}
         
 var xmlhttp;
 function loadXMLDoc(url)
