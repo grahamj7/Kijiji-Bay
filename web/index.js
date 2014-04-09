@@ -1060,13 +1060,19 @@ function checkForm(form)
         form.phone.focus();
         return false;
     }
+    if(form.postal.value.length > 7)
+    {
+        alert("Error: Postal code cannot be longer than 7 characters!");
+        form.postal.focus();
+        return false;
+    }
     // regular expression to match only alphanumeric characters and spaces
-    re = /\b\w\d\w\d\w\d\b/;
-
+    re = /\b\w{1}\d{1}\w{1}\d{1}\w{1}\d{1}\b/;
+alert(form.postal.value);
     // validation fails if the input doesn't match our regular expression
     if(!re.test(form.postal.value))
     {
-        alert("Error: Postal code is badly formatted");
+        alert("Error: Postal code is badly formatted!");
         form.postal.focus();
         return false;
     }
