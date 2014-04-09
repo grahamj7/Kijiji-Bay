@@ -805,9 +805,15 @@ function checkItemsCookie()
     var email=getCookie("email");
     if (email == "")
     {
-         var buttons = document.getElementsByName('button');
-         for (var i = 0; i < buttons.length; i++)
+        var buttons = document.getElementsByName('button');
+        for (var i = 0; i < buttons.length; i++)
             buttons[i].disabled = true;
+    }
+    else
+    {
+        var buttons = document.getElementsByName('button');
+        for (var i = 0; i < buttons.length; i++)
+            buttons[i].disabled = false;
     }
 }
 
