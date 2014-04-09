@@ -65,7 +65,7 @@ public class Servlet extends HttpServlet {
             int subCategory = Integer.parseInt(request.getParameter("subCat"));
             int quantity = Integer.parseInt(request.getParameter("quantity"));
             insertItem(title,price,description,mainCategory,subCategory, quantity); 
-            outputResult(request, response, session);
+           // outputResult(request, response, session);
             
         } 
         else if(2==status){
@@ -117,6 +117,15 @@ public class Servlet extends HttpServlet {
             String email=request.getParameter("email");
             out.println(getPassword(email).toString());
            
+        }
+        else if (8==status){
+           // PrintWriter out = response.getWriter();
+            try{
+                String email=request.getParameter("email");
+                getUserInfo(request, response, session,email);
+            } catch(Exception e){
+                
+            }
         }
         else {
            outputResult(request, response, session);
@@ -272,7 +281,7 @@ public class Servlet extends HttpServlet {
             out.println("</td>");
             out.println("<td>");
             out.println("<input type=\"number\"  id=\"quantityinput\" min=\"0\" max=\"99\" value=0>");
-            out.println("<button onclick='buyItem("+rs.getString("ItemId")+")'>Buy</button>");
+            out.println("<button name='button' onclick='buyItem("+rs.getString("ItemId")+")'>Buy</button>");
             out.println("</td>");
             out.println("</tr>");
         }
@@ -441,6 +450,84 @@ public class Servlet extends HttpServlet {
        }
        return tempPass;
    }
+  
+        
+        
+   public void getUserInfo(HttpServletRequest request, HttpServletResponse response, HttpSession session, String email)throws ServletException, IOException, SQLException{
+       
+       
+       PrintWriter out = response.getWriter();
+       response.setContentType("text/html;charset=UTF-8");
+       this.getConnection();
+       final String query = "SELECT * FROM Users WHERE Email=?";
+       final PreparedStatement ps = this.conn.prepareStatement(query);
+       ps.setString(1, email);
+       ps.executeQuery();
+       ResultSet rs = ps.getResultSet();
+
+       out.println("<div date-role='content'>");
+       while(rs.next()){
+            out.println("<label><strong>Email:</strong>");
+            out.println("<input type='text' id='emailInfo' value='"+rs.getString("Email")+"'");
+            out.println("</label>");
+            out.println("<br>");
+            
+            out.println("<label><strong>First name:</strong>");
+            out.println("<input type='text' id='FirstnameInfo' value='"+rs.getString("Firstname")+"'");
+            out.println("</label>");
+            out.println("<br>");
+            
+            
+            out.println("<label><strong>Last name:</strong>");
+            out.println("<input type='text' id='LastnameInfo' value='"+rs.getString("Lastname")+"'");
+            out.println("</label>");
+            out.println("<br>");
+            
+            
+            out.println("<label><strong>Password:</strong>");
+            out.println("<input type='password' id='PasswordInfo' value='"+rs.getString("Password")+"'");
+            out.println("</label>");
+            out.println("<button onclick='showPassword()'>Show</button>");
+            out.println("<br>");
+            
+            out.println("<label><strong>Phone number:</strong>");
+            out.println("<input type='text' id='Phonenumber' value='"+rs.getString("Phonenumber")+"'");
+            out.println("</label>");
+            out.println("<br>");
+            
+            out.println("<label><strong>Phone number:</strong>");
+            out.println("<input type='text' id='Phonenumber' value='"+rs.getString("Phonenumber")+"'");
+            out.println("</label>");
+            out.println("<br>");
+            
+            
+            out.println("<label><strong>Address:</strong>");
+            out.println("<input type='text' id='Address' value='"+rs.getString("Address")+"'");
+            out.println("</label>");
+            out.println("<br>");
+            
+            out.println("<label><strong>City:</strong>");
+            out.println("<input type='text' id='Address' value='"+rs.getString("City")+"'");
+            out.println("</label>");
+            out.println("<br>");
+            
+            out.println("<label><strong>Province:</strong>");
+            out.println("<input type='text' id='Address' value='"+rs.getString("Province")+"'");
+            out.println("</label>");
+            out.println("<br>");
+            
+            
+            out.println("<label><strong>Postal Code:</strong>");
+            out.println("<input type='text' id='Address' value='"+rs.getString("PostalCode")+"'");
+            out.println("</label>");
+            out.println("<br>");
+
+        }
+
+       out.println("</div>");
+       
+   }
+   
     
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

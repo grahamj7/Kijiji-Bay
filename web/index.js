@@ -915,16 +915,19 @@ function submit(form)                                                   // todo 
 function getUserInfo()                                                 // todo get user data from database
 {
     var email = getCookie('email');
-    var password = 'password';
+  /*  var password = 'password';
     var fName = 'firstName';
     var lName = 'lastName';
     var phone = 'phone';
     var address = 'address';
     var city = 'city';
     var prov = 'province';
-    var postal = 'postalCode';
-
-    displayUserInfo(email, password, fName, lName, phone, address, city, prov, postal);
+    var postal = 'postalCode'; */
+    //alert(email);
+    var url = 'http://localhost:8084/Keybay/servlet?status=8';
+    url=url+"&email="+email;
+    outputUserInfo(url);
+    //displayUserInfo(email, password, fName, lName, phone, address, city, prov, postal);
 }
 
 function displayUserInfo(email, password, fName, lName, phone, address, city, prov, postal)
@@ -1348,6 +1351,51 @@ function returnMessage()
         else
         {
             alert("Problem retrieving XML data:" + xmlhttp1.statusText);
+        }
+    }
+}
+
+var xmlhttp2;
+function outputUserInfo(url)
+{
+    xmlhttp2 = null;
+    if (window.XMLHttpRequest)
+    {// code for IE7, Firefox, Opera, etc.
+        xmlhttp2 = new XMLHttpRequest();
+    }
+    else if (window.ActiveXObject)
+    {// code for IE6, IE5
+        xmlhttp2 = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    if (xmlhttp2 != null)
+    {
+        xmlhttp2.onreadystatechange = state_Change;
+        xmlhttp2.open("GET", url, false);
+        xmlhttp2.send();
+        getUserInfoMessage();
+        
+    }
+    else
+    {
+        alert("Your browser does not support XMLHTTP.");
+    }
+}
+
+function getUserInfoMessage()
+{
+    if (xmlhttp2.readyState == 4)
+    {// 4 = "loaded"
+        if (xmlhttp2.status == 200)
+        {// 200 = "OK"
+            //  alert(xmlhttp.responseText);
+            // document.getElementById('Status').innerHTML = xmlhttp.status;
+            //                    document.getElementById('StatusText').innerHTML = xmlhttp.statusText
+            
+           document.getElementById("userinfo").innerHTML = xmlhttp2.responseText;
+        }
+        else
+        {
+            alert("Problem retrieving XML data:" + xmlhttp2.statusText);
         }
     }
 }
