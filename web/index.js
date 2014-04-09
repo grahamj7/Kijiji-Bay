@@ -1174,14 +1174,14 @@ function checkForm(form)                                                // todo 
         form.lName.focus();
         return false;
     }
-    var url = 'http://localhost:8084/Keybay/servlet?status=4';
-    url=url+"&email="+form.email.value.toString();
-    alert(url);
-    if(checkUserInDB(url)===10 || checkUserInDB(url)==='10'){
-        alert("Error: Email has already been used!");
-        form.email.focus();
-        return false; 
-    }
+//    var url = 'http://localhost:8084/Keybay/servlet?status=4';
+//    url=url+"&email="+form.email.value.toString();
+//    alert(url);
+//    if(checkUserInDB(url)===10 || checkUserInDB(url)==='10'){
+//        alert("Error: Email has already been used!");
+//        form.email.focus();
+//        return false; 
+//    }
     //    var users;                                                      // todo database
     //    for(var i = 0; i < users.length; i++)
     //        if (form.email.value == users[i])

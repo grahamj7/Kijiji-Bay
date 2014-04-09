@@ -231,6 +231,8 @@ public class Servlet extends HttpServlet {
             out.println("<td>");
             out.println("$"+df.format(rs.getInt("Price")));
             out.println("</td>");
+            out.println("<td>");
+            out.println("<button onclick='buyItem("+rs.getString("ItemId")+")'>Buy</button>");
             out.println("</tr>");
         }
         out.println("</table>");
