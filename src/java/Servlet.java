@@ -311,8 +311,23 @@ public class Servlet extends HttpServlet {
             out.println("</td>");
             out.println("<td>");
             out.println("<input type=\"number\"  id=\"quantityinput"+i+"\" min=\"0\" max=\""+rs.getString("Quantity")+"\" value=0>");
-            out.println("<button name='button' onclick='buyItem("+rs.getString("itemId")+", "+i+")'>Buy</button>");
- 
+// out.println("<button name='button' onclick='buyItem("+rs.getString("itemId")+", "+i+")'>Buy</button>");
+             
+out.println("<form name='button' action='https://www.paypal.com/cgi-bin/webscr' onsubmit='buyItem("+rs.getString("itemId")+", "+i+")' method='post' target='_top'>");
+out.println("<input type='hidden' name='cmd' value='_xclick'>");
+out.println("<input type='hidden' name='business' value='jhg257@mail.usask.ca'>");
+out.println("<input type='hidden' name='lc' value='CA'>");
+out.println("<input type='hidden' name='item_name' value='"+rs.getInt("Title")+"'>");                                   // todo
+out.println("<input type='hidden' name='amount' value='"+(rs.getString("Quantity")*df.format(rs.getInt("Price")))+"'>");
+out.println("<input type='hidden' name='currency_code' value='CAD'>");
+out.println("<input type='hidden' name='button_subtype' value='services'>");
+out.println("<input type='hidden' name='tax_rate' value='10.000'>");
+out.println("<input type='hidden' name='shipping' value='0.00'>");
+out.println("<input type='hidden' name='bn' value='PP-BuyNowBF:btn_buynowCC_LG.gif:NonHosted'>");
+out.println("<input type='image' src='https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif' border='0' name='submit' alt='PayPal - The safer, easier way to pay online!'>");
+out.println("<img alt='' border='0' src='https://www.paypalobjects.com/en_US/i/scr/pixel.gif' width='1' height='1'>");
+out.println("</form>");
+           
             out.println("</td>");
             out.println("<td>");
             out.println("<a href=\"https://twitter.com/intent/tweet?button_hashtag=JDCMPT350Project\" class=\"twitter-hashtag-button\" data-lang=\"en\" data-related=\"jasoncosta\">Tweet #JDCMPT350Project</a>");
