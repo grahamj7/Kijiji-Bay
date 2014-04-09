@@ -741,7 +741,7 @@ function createTable()
     url=url+"&mainCat="+main+"&subCat="+sub;
     loadXMLDoc(url);
 
-
+//    checkItemsCookie();
 }
 
 function insertItem(price, title, desc, quantity, mainCat, subCat)      
