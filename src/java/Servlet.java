@@ -42,6 +42,7 @@ public class Servlet extends HttpServlet {
          * 3 = Insert user
          * 4 = check if users exists
          * 5 = buy item
+         * 6 = check user log in
          */
         if (0 == status) {
            PrintWriter out = response.getWriter();
@@ -84,10 +85,14 @@ public class Servlet extends HttpServlet {
             0,  phonenum,  address,  city,  province,  postalcode);
         }
         else if (4==status){
+            PrintWriter out = response.getWriter();
             String email= request.getParameter("email");
             response.setContentType("text/html;charset=UTF-8");            
             if(checkIfUserExists(email)){
-               response.sendError(10);
+                out.println('t');
+            }
+            else{
+                out.println('f');
             }
             
         }
@@ -95,6 +100,17 @@ public class Servlet extends HttpServlet {
             int itemid = Integer.parseInt(request.getParameter("ItemId"));
             int quantitySelected = Integer.parseInt(request.getParameter("quantity"));
             this.updateItemQuantity(itemid, quantitySelected);
+        }
+        else if(6==status){
+            PrintWriter out = response.getWriter();
+            String email=request.getParameter("email");
+            String password=request.getParameter("password");
+            if(this.checkUserLogin(email, password)){
+                out.println('t');
+            }
+            else{
+                out.println('f');
+            }
         }
         else {
            outputResult(request, response, session);
@@ -218,9 +234,6 @@ public class Servlet extends HttpServlet {
         out.println("<table border=1>");
         out.println("<tr>");
         out.println("<td>");
-        out.println("<h3>ItemID</h3>");
-        out.println("</td>");
-        out.println("<td>");
         out.println("<h3>Title</h3>");
         out.println("</td>");
         out.println("<td>");
@@ -239,9 +252,6 @@ public class Servlet extends HttpServlet {
         DecimalFormat df = new DecimalFormat("##.00");
         while(rs.next()){
             out.println("<tr>");
-            out.println("<td>");
-            out.println(rs.getString("ItemId"));
-            out.println("</td>");
             out.println("<td>");
             out.println(rs.getString("Title"));
             out.println("</td>");
@@ -370,9 +380,6 @@ public class Servlet extends HttpServlet {
            ps.setString(1, email);
            final ResultSet result = ps.executeQuery();
            
-           /*
-           * If there is anything in the result, user must exist
-           */
            if(result.next()){
                final int count = result.getInt(1);
                if(count == 1){
@@ -385,9 +392,31 @@ public class Servlet extends HttpServlet {
            this.closeConnection();
            return false;
        }catch (SQLException e){
-           System.out.println(e.toString());
+            return false;
        }
-       return false;
+   }
+   public boolean checkUserLogin(String email, String password){
+       try{
+           this.getConnection();
+           final String query = "SELECT COUNT(*) FROM Users WHERE Email=? AND Password=?";
+           final PreparedStatement ps = this.conn.prepareStatement(query);  
+           ps.setString(1, email);
+           ps.setString(2, password);
+           final ResultSet result = ps.executeQuery();
+           if(result.next()){
+               final int count = result.getInt(1);
+               if(count == 1){
+                   return true;
+               }
+               else{
+                   return false;
+               }
+           }
+           this.closeConnection();
+           return false;
+       }catch (SQLException e){
+            return false;
+       }
    }
     
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

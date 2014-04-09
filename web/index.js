@@ -752,7 +752,6 @@ function insertItem(price, title, desc, quantity, mainCat, subCat)
     var url = 'http://localhost:8084/Keybay/servlet?status=1';
     url=url+"&title="+title+"&price="+price+"&desc="+desc+"&mainCat="+mainCat
             +"&subCat="+subCat+"&quantity="+quantity;
-    alert(url);
     loadXMLDoc(url);
     window.open("items.html?id="+categoryId+"", "_self");
 
@@ -827,23 +826,21 @@ function signIn()
 {
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
-
-    var pass = checkUserName(email);
-    if(pass)
-        if(checkPassword(password, pass))
-        {
-            if(document.getElementById('remainSignedIn').checked)
-                setCookie('email', email, 365);               // set cookie for 365 days  (1 year)
-            else
-                setCookie('email', email, 1);                 //set cookie for 1 day
-
-            return true;
-        }
-        else
-            alert("Password is incorrect");
+    var url = 'http://localhost:8084/Keybay/servlet?status=6';
+    url=url+"&email="+email+"&password="+password;
+    
+    var value = checkUserInDB(url);
+    if(value.toString().trim() !== 't'){
+        alert("Error: Invalid Email/Password");
+        return false;
+    }
+    
+    if(document.getElementById('remainSignedIn').checked)
+        setCookie('email', email, 365);               // set cookie for 365 days  (1 year)
     else
-        alert("Email doesn't exist");
-    return false;
+        setCookie('email', email, 1);                 //set cookie for 1 day
+    
+    return true;
 }
 function checkUserName(email)                                        // todo database
 {
@@ -859,7 +856,7 @@ function checkUserName(email)                                        // todo dat
 
 function checkPassword(password, pass)                           
 {
-    return password == pass;
+    return password === pass;
 }
 
 /**
@@ -1176,14 +1173,14 @@ function checkForm(form)                                                // todo 
         form.lName.focus();
         return false;
     }
-//    var url = 'http://localhost:8084/Keybay/servlet?status=4';
-//    url=url+"&email="+form.email.value.toString();
-//    alert(url);
-//    if(checkUserInDB(url)===10 || checkUserInDB(url)==='10'){
-//        alert("Error: Email has already been used!");
-//        form.email.focus();
-//        return false; 
-//    }
+    var url = 'http://localhost:8084/Keybay/servlet?status=4';
+    url=url+"&email="+form.email.value.toString();
+    var responseValue = checkUserInDB(url);
+    if(responseValue.toString().trim() ==='t'){
+        alert("Error: Email is already in use!");
+        form.email.focus();
+        return false; 
+    }
     //    var users;                                                      // todo database
     //    for(var i = 0; i < users.length; i++)
     //        if (form.email.value == users[i])
@@ -1278,7 +1275,6 @@ function buyItem(itemId){
     var url = 'http://localhost:8084/Keybay/servlet?status=5';
     url=url+"&ItemId="+itemId+"&quantity="+quantitySelected;
     loadXMLDoc(url);
-    alert(url);
     location.reload(true);
     
 }
@@ -1361,11 +1357,11 @@ function returnMessage()
             // document.getElementById('Status').innerHTML = xmlhttp.status;
             //                    document.getElementById('StatusText').innerHTML = xmlhttp.statusText
             
-            return xmlhttp1.responseType;
+            return xmlhttp1.responseText;
         }
         else
         {
-            alert("Problem retrieving XML data:" + xmlhttp.statusText);
+            alert("Problem retrieving XML data:" + xmlhttp1.statusText);
         }
     }
 }
