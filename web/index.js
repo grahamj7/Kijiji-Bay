@@ -748,10 +748,10 @@ function insertItem(price, title, desc, images, mainCat, subCat)        // todo 
     var div = document.getElementById('details');
     // alert("insertItem");
     var div = document.getElementById('details');
+    var email = getCookie("email");
     var url = 'http://localhost:8084/Keybay/servlet?status=1';
     url=url+"&title="+title+"&price="+price+"&desc="+desc+"&mainCat="+mainCat+"&subCat="+subCat;
-    alert(url);
-    loadXMLDoc(url,1);
+    loadXMLDoc(url);
     window.open("items.html?id="+categoryId+"", "_self");
 
 }
@@ -779,8 +779,8 @@ function getCookie(cname)
 
 function checkCookie()
 {
-    var username=getCookie("username");
-    if (username == "")
+    var email=getCookie("email");
+    if (email == "")
     {
         window.open('signIn.html', '_self');
     }
@@ -788,8 +788,8 @@ function checkCookie()
 
 function checkItemsCookie()
 {
-    var username=getCookie("username");
-    if (username == "")
+    var email=getCookie("email");
+    if (email == "")
     {
          //alert('Items window');
     }
@@ -823,39 +823,39 @@ function newPopup()
 }
 function signIn()
 {
-    var username = document.getElementById('username').value;
+    var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
 
-    var pass = checkUserName(username);
+    var pass = checkUserName(email);
     if(pass)
         if(checkPassword(password, pass))
         {
             if(document.getElementById('remainSignedIn').checked)
-                setCookie('username', username, 365);               // set cookie for 365 days  (1 year)
+                setCookie('email', email, 365);               // set cookie for 365 days  (1 year)
             else
-                setCookie('username', username, 1);                 //set cookie for 1 day
+                setCookie('email', email, 1);                 //set cookie for 1 day
 
             return true;
         }
         else
             alert("Password is incorrect");
     else
-        alert("Username doesn't exist");
+        alert("Email doesn't exist");
     return false;
 }
-function checkUserName(username)                                        // todo database
+function checkUserName(email)                                        // todo database
 {
     var table = DB[1];
     var array = table[0];
     var pass = table[1];
     for(var i = 0; i < array.length; i++)
-        if (username == array[i])
+        if (email == array[i])
             return pass[i];
 
     return false;
 }
 
-function checkPassword(password, pass)                                  // todo database
+function checkPassword(password, pass)                           
 {
     return password == pass;
 }
@@ -922,7 +922,7 @@ function submit(form)                                                   // todo 
 
 function getUserInfo()                                                 // todo get user data from database
 {
-    var email = getCookie('username');
+    var email = getCookie('email');
     var password = 'password';
     var fName = 'firstName';
     var lName = 'lastName';
@@ -942,23 +942,6 @@ function displayUserInfo(email, password, fName, lName, phone, address, city, pr
     div = document.getElementById('info');
     ul = document.createElement('ul');
     ul.style.listStyleType="none";
-
-    li = document.createElement('li');
-    p = document.createElement('p');
-    span = document.createElement('span');
-    button = document.createElement('button');
-
-    li.textContent='Username: ';
-    p.textContent = username;
-    p.style.paddingLeft='10%';
-    span.style.paddingLeft = '10%';
-    button.textContent = 'Change';
-    button.id='username';
-    button.addEventListener('click', changeListener, false);
-
-    li.appendChild(p);
-    ul.appendChild(li);
-
 
     li = document.createElement('li');
     p = document.createElement('p');
@@ -1191,15 +1174,22 @@ function checkForm(form)                                                // todo 
         form.lName.focus();
         return false;
     }
-
-//    var users;                                                      // todo database
-//    for(var i = 0; i < users.length; i++)
-//        if (form.email.value == users[i])
-//        {
-//            alert("Error: Username has already been taken!");
-//            form.email.focus();
-//            return false;
-//        }
+    var url = 'http://localhost:8084/Keybay/servlet?status=4';
+    url=url+"&email="+form.email.value.toString();
+    alert(url);
+    if(checkUserInDB(url)===10 || checkUserInDB(url)==='10'){
+        alert("Error: Email has already been used!");
+        form.email.focus();
+        return false; 
+    }
+    //    var users;                                                      // todo database
+    //    for(var i = 0; i < users.length; i++)
+    //        if (form.email.value == users[i])
+    //        {
+    //            alert("Error: Email has already been used!");
+    //            form.email.focus();
+    //            return false;
+    //        }
 
     if(form.Opass.value != "" && form.Opass.value == form.Cpass.value)
     {
@@ -1259,20 +1249,15 @@ function checkForm(form)                                                // todo 
         form.postal.focus();
         return false;
     }
-    alert('finished');
     insertUser(form);
     return true;
 }
 
 function insertUser(form)                                               // todo insert into database
 {
-    //alert("insert");
-
     var fName = document.getElementById('fName').value;
     var lName = document.getElementById('lName').value;
-    var username = document.getElementById('username').value;
     var password = document.getElementById('Opass').value;
-   // var age = document.getElementById('age').value;
     var email = document.getElementById('email').value;
     var phone = document.getElementById('phone').value;
     var address = document.getElementById('address').value;
@@ -1280,21 +1265,10 @@ function insertUser(form)                                               // todo 
     var prov = document.getElementById('prov').value;
     var postal = document.getElementById('postal').value; 
     var url = 'http://localhost:8084/Keybay/servlet?status=3';
-    url=url+"&fName="+fName+"&lName="+lName+"&username="+username+"&password="+password+"&email="+email+"&phone="+phone
+    url=url+"&fName="+fName+"&lName="+lName+"&password="+password+"&email="+email+"&phone="+phone
     +"&address="+address+"&city="+city+"&prov="+prov+"&postal="+postal;
     loadXMLDoc(url);
-/*
-    var table = DB[1];
-    table[0].push(form.username.value);
-    table[1].push(form.Opass.value);
-    table[2].push(form.email.value);
-    table[3].push(form.fName.value);
-    table[4].push(form.lName.value);
-    table[5].push(form.address.value);
-    table[6].push(form.postal.value);
-    table[7].push(form.prov.value);
-    table[8].push(form.phone.value);
-    table[9].push(form.age.value); */
+
     window.open('myProfile.html','_self');
 }
 
@@ -1334,6 +1308,50 @@ function state_Change()
             //                    document.getElementById('StatusText').innerHTML = xmlhttp.statusText
             
             document.getElementById("contentDiv").innerHTML = xmlhttp.responseText;
+        }
+        else
+        {
+            alert("Problem retrieving XML data:" + xmlhttp.statusText);
+        }
+    }
+}
+var xmlhttp1;
+function checkUserInDB(url)
+{
+    xmlhttp1 = null;
+    if (window.XMLHttpRequest)
+    {// code for IE7, Firefox, Opera, etc.
+        xmlhttp1 = new XMLHttpRequest();
+    }
+    else if (window.ActiveXObject)
+    {// code for IE6, IE5
+        xmlhttp1 = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    if (xmlhttp1 != null)
+    {
+        xmlhttp1.onreadystatechange = state_Change;
+        xmlhttp1.open("GET", url, false);
+        xmlhttp1.send();
+        var userCheck=returnMessage();
+        return userCheck;
+    }
+    else
+    {
+        alert("Your browser does not support XMLHTTP.");
+    }
+}
+
+function returnMessage()
+{
+    if (xmlhttp1.readyState == 4)
+    {// 4 = "loaded"
+        if (xmlhttp1.status == 200)
+        {// 200 = "OK"
+            //  alert(xmlhttp.responseText);
+            // document.getElementById('Status').innerHTML = xmlhttp.status;
+            //                    document.getElementById('StatusText').innerHTML = xmlhttp.statusText
+            
+            return xmlhttp1.responseType;
         }
         else
         {

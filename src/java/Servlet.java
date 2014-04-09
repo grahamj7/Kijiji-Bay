@@ -40,6 +40,7 @@ public class Servlet extends HttpServlet {
          * 1 = Insert item
          * 2 = Delete item
          * 3 = Insert user
+         * 4 = check if users exists
          */
         if (0 == status) {
            PrintWriter out = response.getWriter();
@@ -68,7 +69,6 @@ public class Servlet extends HttpServlet {
             
         }
         else if(3==status){
-            String username= request.getParameter("username");
             String password = request.getParameter("password");
             String firstname = request.getParameter("fName");
             String lastname = request.getParameter("lName");    
@@ -78,8 +78,16 @@ public class Servlet extends HttpServlet {
             String city= request.getParameter("city");
             String province = request.getParameter("prov");
             String postalcode = request.getParameter("postal");
-            insertUser( username,  password,  firstname,  lastname,  email, 
+            insertUser( password,  firstname,  lastname,  email, 
             0,  phonenum,  address,  city,  province,  postalcode);
+        }
+        else if (4==status){
+            String email= request.getParameter("email");
+            response.setContentType("text/html;charset=UTF-8");            
+            if(checkIfUserExists(email)){
+               response.sendError(10);
+            }
+            
         }
         else {
            outputResult(request, response, session);
@@ -241,23 +249,23 @@ public class Servlet extends HttpServlet {
        }
    }
    
-   public void insertUser(String username, String password, String fname, String lname, String email, int age, String phone, String address, String city, String prov, String postal){
+   public void insertUser(String password, String fname, String lname, String email, int age, String phone, String address, String city, String prov, String postal){
        try{
             this.getConnection();
-            final String query = "INSERT INTO Users (Username, Password, Firstname, Lastname, Email, Age, Phonenumber, Address, City, Province, PostalCode) "
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            final String query = "INSERT INTO Users (Password, Firstname, Lastname, Email, Age, Phonenumber, Address, City, Province, PostalCode) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             final PreparedStatement ps = this.conn.prepareStatement(query);
-            ps.setString(1, username);
-            ps.setString(2, password);
-            ps.setString(3, fname);
-            ps.setString(4, lname);
-            ps.setString(5, email);
-            ps.setInt(6,age);
-            ps.setString(7, phone);
-            ps.setString(8, address);
-            ps.setString(9, city);
-            ps.setString(10, prov);
-            ps.setString(11, postal);     
+  
+            ps.setString(1, password);
+            ps.setString(2, fname);
+            ps.setString(3, lname);
+            ps.setString(4, email);
+            ps.setInt(5,age);
+            ps.setString(6, phone);
+            ps.setString(7, address);
+            ps.setString(8, city);
+            ps.setString(9, prov);
+            ps.setString(10, postal);     
             ps.executeUpdate();
             this.closeConnection();
         }catch (SQLException e){
@@ -265,36 +273,35 @@ public class Servlet extends HttpServlet {
         }
    }
    
-   public void updateUserInfo(String username, String password, String fname, String lname, String email, int age, String phone, String address, String city, String prov, String postal){
+   public void updateUserInfo(String password, String fname, String lname, String email, int age, String phone, String address, String city, String prov, String postal){
        
        try{
            this.getConnection();
-           final String query = "UPDATE Users SET Password = ?, Firstname = ?, Lastname = ?, Email = ?, Age = ?, Phonenumber = ?, Address = ?, City = ?, Province = ?, PostalCode = ? WHERE Username = ?";
+           final String query = "UPDATE Users SET Password = ?, Firstname = ?, Lastname = ?, Age = ?, Phonenumber = ?, Address = ?, City = ?, Province = ?, PostalCode = ? WHERE Email = ?";
            final PreparedStatement ps = this.conn.prepareStatement(query);
  
            ps.setString(1, password);
            ps.setString(2, fname);
            ps.setString(3, lname);
-           ps.setString(4, email);
-           ps.setInt(5,age);
-           ps.setString(6, phone);
-           ps.setString(7, address);
-           ps.setString(8, city);
-           ps.setString(9, prov);
-           ps.setString(10, postal);
-           ps.setString(11, username);
+           ps.setInt(4,age);
+           ps.setString(5, phone);
+           ps.setString(6, address);
+           ps.setString(7, city);
+           ps.setString(8, prov);
+           ps.setString(9, postal);
+           ps.setString(10, email);
            ps.executeUpdate();
            this.closeConnection();
        }catch (SQLException e){
            System.out.println(e.toString());
        }
    } 
-   public boolean checkIfUserExists(String username){
+   public boolean checkIfUserExists(String email){
        try{
            this.getConnection();
-           final String query = "SELECT count(*) FROM Users WHERE username = ?";
+           final String query = "SELECT count(*) FROM Users WHERE Email = ?";
            final PreparedStatement ps = this.conn.prepareStatement(query);
-           ps.setString(1, username);
+           ps.setString(1, email);
            final ResultSet result = ps.executeQuery();
            
            /*
