@@ -61,7 +61,8 @@ public class Servlet extends HttpServlet {
             String description = request.getParameter("desc").toString();
             int mainCategory = Integer.parseInt(request.getParameter("mainCat"));
             int subCategory = Integer.parseInt(request.getParameter("subCat"));
-            insertItem(title,price,description,mainCategory,subCategory); 
+            int quantity = Integer.parseInt(request.getParameter("quantity"));
+            insertItem(title,price,description,mainCategory,subCategory, quantity); 
             outputResult(request, response, session);
             
         } 
@@ -148,13 +149,13 @@ public class Servlet extends HttpServlet {
        }
 	
    }
-   public void  insertItem(String title, float price, String description, int mainCategory, int subCategory ){
+   public void  insertItem(String title, float price, String description, int mainCategory, int subCategory, int quantity){
         try{
             this.getConnection();
             String main=Integer.toString(mainCategory);
             String sub=Integer.toString(subCategory);
-            final String query = "INSERT INTO Items(ItemId,Title,Description,Price,MainCategory,SubCategory) "
-                    + "VALUES ( ? , ? , ? , ? , ? , ? )";
+            final String query = "INSERT INTO Items(ItemId,Title,Description,Price,MainCategory,SubCategory, Quantity) "
+                    + "VALUES ( ? , ? , ? , ? , ? , ?, ?)";
             final PreparedStatement ps = this.conn.prepareStatement(query);
             int itemID=getMaxItemID()+1;
             ps.setInt(1, itemID);
@@ -163,6 +164,7 @@ public class Servlet extends HttpServlet {
             ps.setFloat(4, price);
             ps.setString(5,main);
             ps.setString(6, sub);
+            ps.setInt(7, quantity);
             ps.executeUpdate();
             this.closeConnection();
         }catch (SQLException e){
@@ -218,6 +220,12 @@ public class Servlet extends HttpServlet {
         out.println("<td>");
         out.println("<h3>Price</h3>");
         out.println("</td>");
+        out.println("<td>");
+        out.println("<h3>Quantity Remaining</h3>");
+        out.println("</td>");
+        out.println("<td>");
+        out.println("<h3>Buy Now!</h3>");
+        out.println("</td>");
         out.println("</tr>");
         DecimalFormat df = new DecimalFormat("##.00");
         while(rs.next()){
@@ -232,7 +240,12 @@ public class Servlet extends HttpServlet {
             out.println("$"+df.format(rs.getInt("Price")));
             out.println("</td>");
             out.println("<td>");
+            out.println(rs.getString("Quantity"));
+            out.println("</td>");
+            out.println("<td>");
+            out.println("<input type=\"number\" name =\"input\" min=\"0\" max=\"99\" value=0>");
             out.println("<button onclick='buyItem("+rs.getString("ItemId")+")'>Buy</button>");
+            out.println("</td>");
             out.println("</tr>");
         }
         out.println("</table>");

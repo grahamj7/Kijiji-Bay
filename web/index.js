@@ -720,6 +720,7 @@ function getItemDetails()
     var images = document.getElementById('images').files;
     var mainCat = categoryId.substr(0,1);
     var subCat = categoryId.substr(1);
+    var quantity = document.getElementById('quantity').value;
 
     categoryId = null;
 
@@ -727,7 +728,7 @@ function getItemDetails()
 //    if(images.length == 0)
 //        images.push('Images/NoImage.jpg');
 
-    insertItem(price, title, desc, images, mainCat, subCat);
+    insertItem(price, title, desc, quantity, mainCat, subCat);
 }
 
 function createTable()          // todo something
@@ -743,14 +744,15 @@ function createTable()          // todo something
 
 }
 
-function insertItem(price, title, desc, images, mainCat, subCat)        // todo something else
+function insertItem(price, title, desc, quantity, mainCat, subCat)      
 {
-    var div = document.getElementById('details');
     // alert("insertItem");
     var div = document.getElementById('details');
     var email = getCookie("email");
     var url = 'http://localhost:8084/Keybay/servlet?status=1';
-    url=url+"&title="+title+"&price="+price+"&desc="+desc+"&mainCat="+mainCat+"&subCat="+subCat;
+    url=url+"&title="+title+"&price="+price+"&desc="+desc+"&mainCat="+mainCat
+            +"&subCat="+subCat+"&quantity="+quantity;
+    alert(url);
     loadXMLDoc(url);
     window.open("items.html?id="+categoryId+"", "_self");
 
