@@ -66,7 +66,8 @@ public class Servlet extends HttpServlet {
             int mainCategory = Integer.parseInt(request.getParameter("mainCat"));
             int subCategory = Integer.parseInt(request.getParameter("subCat"));
             int quantity = Integer.parseInt(request.getParameter("quantity"));
-            insertItem(title,price,description,mainCategory,subCategory, quantity);
+            String email= request.getParameter("email");
+            insertItem(title,price,description,mainCategory,subCategory, quantity, email);
             // outputResult(request, response, session);
             
         }
@@ -201,13 +202,13 @@ public class Servlet extends HttpServlet {
         }
         
     }
-    public void  insertItem(String title, float price, String description, int mainCategory, int subCategory, int quantity){
+    public void  insertItem(String title, float price, String description, int mainCategory, int subCategory, int quantity, String email){
         try{
             this.getConnection();
             String main=Integer.toString(mainCategory);
             String sub=Integer.toString(subCategory);
-            final String query = "INSERT INTO Items(ItemId,Title,Description,Price,MainCategory,SubCategory, Quantity) "
-                    + "VALUES ( ? , ? , ? , ? , ? , ?, ?)";
+            final String query = "INSERT INTO Items(ItemId,Title,Description,Price,MainCategory,SubCategory, Quantity, UserEmail) "
+                    + "VALUES ( ? , ? , ? , ? , ? , ?, ?, ?)";
             final PreparedStatement ps = this.conn.prepareStatement(query);
             int itemID=getMaxItemID()+1;
             ps.setInt(1, itemID);
@@ -217,6 +218,7 @@ public class Servlet extends HttpServlet {
             ps.setString(5,main);
             ps.setString(6, sub);
             ps.setInt(7, quantity);
+            ps.setString(8, email);
             ps.executeUpdate();
             this.closeConnection();
         }catch (SQLException e){
@@ -284,6 +286,9 @@ public class Servlet extends HttpServlet {
         out.println("<h3>Price</h3>");
         out.println("</td>");
         out.println("<td>");
+        out.println("<h3>Seller's email</h3>");
+        out.println("</td>");
+        out.println("<td>");
         out.println("<h3>Quantity Remaining</h3>");
         out.println("</td>");
         out.println("<td>");
@@ -307,6 +312,9 @@ public class Servlet extends HttpServlet {
             out.println("$"+df.format(rs.getInt("Price")));
             out.println("</td>");
             out.println("<td>");
+            out.println(rs.getString("UserEmail"));
+            out.println("</td>");
+            out.println("<td>");
             out.println(rs.getString("Quantity"));
             out.println("</td>");
             out.println("<td>");
@@ -317,8 +325,8 @@ out.println("<form name='button' action='https://www.paypal.com/cgi-bin/webscr' 
 out.println("<input type='hidden' name='cmd' value='_xclick'>");
 out.println("<input type='hidden' name='business' value='jhg257@mail.usask.ca'>");
 out.println("<input type='hidden' name='lc' value='CA'>");
-out.println("<input type='hidden' name='item_name' value='"+rs.getInt("Title")+"'>");                                   // todo
-out.println("<input type='hidden' name='amount' value='"+(rs.getString("Quantity")*df.format(rs.getInt("Price")))+"'>");
+out.println("<input type='hidden' name='item_name' value='"+rs.getString("Title")+"'>");                                   // todo
+out.println("<input type='hidden' name='amount' value='"+df.format(rs.getDouble("Price"))+"'>");
 out.println("<input type='hidden' name='currency_code' value='CAD'>");
 out.println("<input type='hidden' name='button_subtype' value='services'>");
 out.println("<input type='hidden' name='tax_rate' value='10.000'>");

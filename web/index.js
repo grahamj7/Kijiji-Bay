@@ -749,7 +749,7 @@ function insertItem(price, title, desc, quantity, mainCat, subCat)
     var email = getCookie("email");
     var url = 'http://localhost:8084/Keybay/servlet?status=1';
     url=url+"&title="+title+"&price="+price+"&desc="+desc+"&mainCat="+mainCat
-            +"&subCat="+subCat+"&quantity="+quantity;
+            +"&subCat="+subCat+"&quantity="+quantity+"&email="+email;
     loadXMLDoc(url);
     window.open("items.html?id="+categoryId+"", "_self");
 
