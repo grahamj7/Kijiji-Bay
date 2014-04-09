@@ -787,6 +787,19 @@ function checkCookie()
     }
 }
 
+function removeCookie()
+{
+    var cookies = document.cookie.split(";");
+
+    for (var i = 0; i < cookies.length; i++)
+    {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+}
+
 function checkItemsCookie()
 {
     var email=getCookie("email");
@@ -898,17 +911,6 @@ function sendTheMail(email, pass)
 
 
 /**
- * CHANGE INFO PAGE
- */
-
-function submit(form)                                                   // todo Jordaen
-{
-    alert('test');
-    return false;
-}
-
-
-/**
  * MY PROFILE PAGE
  */
 
@@ -930,195 +932,21 @@ function getUserInfo()                                                 // todo g
     //displayUserInfo(email, password, fName, lName, phone, address, city, prov, postal);
 }
 
-function displayUserInfo(email, password, fName, lName, phone, address, city, prov, postal)
+function changeField()
 {
-    var div, ul, li, p, span, button;
+    var field = document.getElementById('PasswordInfo');
+    var text = field.value;
 
-    div = document.getElementById('info');
-    ul = document.createElement('ul');
-    ul.style.listStyleType="none";
-
-    li = document.createElement('li');
-    p = document.createElement('p');
-    span = document.createElement('span');
-    button = document.createElement('button');
-
-    li.textContent='Password: ';
-    p.textContent = password;
-    p.style.paddingLeft='10%';
-    span.style.paddingLeft = '10%';
-    button.textContent = 'Change';
-    button.id='password';
-    button.addEventListener('click', changeListener, false);
-
-    span.appendChild(button);
-    li.appendChild(p);
-    li.appendChild(span);
-    ul.appendChild(li);
-
-
-    li = document.createElement('li');
-    p = document.createElement('p');
-    span = document.createElement('span');
-    button = document.createElement('button');
-
-    li.textContent='FirstName: ';
-    p.textContent = fName;
-    p.style.paddingLeft='10%';
-    span.style.paddingLeft = '10%';
-    button.textContent = 'Change';
-    button.id='fName';
-    button.addEventListener('click', changeListener, false);
-
-    span.appendChild(button);
-    li.appendChild(p);
-    li.appendChild(span);
-    ul.appendChild(li);
-
-
-    li = document.createElement('li');
-    p = document.createElement('p');
-    span = document.createElement('span');
-    button = document.createElement('button');
-
-    li.textContent='LastName: ';
-    p.textContent = lName;
-    p.style.paddingLeft='10%';
-    span.style.paddingLeft = '10%';
-    button.textContent = 'Change';
-    button.id='lName';
-    button.addEventListener('click', changeListener, false);
-
-    span.appendChild(button);
-    li.appendChild(p);
-    li.appendChild(span);
-    ul.appendChild(li);
-
-
-    li = document.createElement('li');
-    p = document.createElement('p');
-    span = document.createElement('span');
-    button = document.createElement('button');
-
-    li.textContent='Email: ';
-    p.textContent = email;
-    p.style.paddingLeft='10%';
-    span.style.paddingLeft = '10%';
-    button.textContent = 'Change';
-    button.id='email';
-    button.addEventListener('click', changeListener, false);
-
-    span.appendChild(button);
-    li.appendChild(p);
-    li.appendChild(span);
-    ul.appendChild(li);
-
-
-    li = document.createElement('li');
-    p = document.createElement('p');
-    span = document.createElement('span');
-    button = document.createElement('button');
-
-    li.textContent='Phone Number: ';
-    p.textContent = phone;
-    p.style.paddingLeft='10%';
-    span.style.paddingLeft = '10%';
-    button.textContent = 'Change';
-    button.id='phone';
-    button.addEventListener('click', changeListener, false);
-
-    span.appendChild(button);
-    li.appendChild(p);
-    li.appendChild(span);
-    ul.appendChild(li);
-
-
-    li = document.createElement('li');
-    p = document.createElement('p');
-    span = document.createElement('span');
-    button = document.createElement('button');
-
-    li.textContent='Address: ';
-    p.textContent = address;
-    p.style.paddingLeft='10%';
-    span.style.paddingLeft = '10%';
-    button.textContent = 'Change';
-    button.id='address';
-    button.addEventListener('click', changeListener, false);
-
-    span.appendChild(button);
-    li.appendChild(p);
-    li.appendChild(span);
-    ul.appendChild(li);
-
-
-    li = document.createElement('li');
-    p = document.createElement('p');
-    span = document.createElement('span');
-    button = document.createElement('button');
-
-    li.textContent='City: ';
-    p.textContent = city;
-    p.style.paddingLeft='10%';
-    span.style.paddingLeft = '10%';
-    button.textContent = 'Change';
-    button.id='city';
-    button.addEventListener('click', changeListener, false);
-
-    span.appendChild(button);
-    li.appendChild(p);
-    li.appendChild(span);
-    ul.appendChild(li);
-
-
-    li = document.createElement('li');
-    p = document.createElement('p');
-    span = document.createElement('span');
-    button = document.createElement('button');
-
-    li.textContent='Province: ';
-    p.textContent = prov;
-    p.style.paddingLeft='10%';
-    span.style.paddingLeft = '10%';
-    button.textContent = 'Change';
-    button.id='prov';
-    button.addEventListener('click', changeListener, false);
-
-    span.appendChild(button);
-    li.appendChild(p);
-    li.appendChild(span);
-    ul.appendChild(li);
-
-
-    li = document.createElement('li');
-    p = document.createElement('p');
-    span = document.createElement('span');
-    button = document.createElement('button');
-
-    li.textContent='Postal Code: ';
-    p.textContent = postal;
-    p.style.paddingLeft='10%';
-    span.style.paddingLeft = '10%';
-    button.textContent = 'Change';
-    button.id='postal';
-    button.addEventListener('click', changeListener, false);
-
-    span.appendChild(button);
-    li.appendChild(p);
-    li.appendChild(span);
-    ul.appendChild(li);
-
-    div.appendChild(ul);
-}
-
-function changeListener(event)
-{
-//        prompt(event.target.id);
-    window.open(
-        "changeInfo.html",
-        'popUpWindow',
-        'height=150,width=550,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=no,menubar=no,location=no,directories=no,status=yes'
-    );
+    if(field.type == 'password')
+    {
+        field.innerHTML = '<input type="text" id="PasswordInfo" value="'+text+'">';
+        document.getElementById('showButton').value = 'Hide';
+    }
+    else
+    {
+        field.innerHTML = '<input type="password" id="PasswordInfo" value="'+text+'"';
+        document.getElementById('showButton').value = 'Show';
+    }
 }
 
 
