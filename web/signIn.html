@@ -20,12 +20,13 @@
 <header>
     <div id="TopHeader">
         <div id="HeaderLeft">
-            <a href="index.html"><image src="Images/favicon.ico"></a>
+            <a href="index.html"><image src="Images/favicon.ico"></image></a>
         </div>
         <div id="HeaderRight">
             <ul id="HeaderRightTop">
-                <li><a href="signIn.html" rel="nofollow">Sign In<span style="padding-right: 50px"></span></a></li>
-                <li><a href="register.html" rel="nofollow">Register<span style="padding-right: 30px"></span></a></li>
+                <li><a href="signIn.html" rel="nofollow">Sign In</a></li>
+                <li><a href="register.html" rel="nofollow">Register</a></li>
+                <li><a href="index.html" rel="nofollow" onclick="removeCookie()">Sign-Out</a></li>
             </ul>
             <div id="HeaderRightBottom">
                 <a class="button-header-nav first" href="postAd.html" rel="nofollow">
@@ -42,7 +43,7 @@
 <div data-role="content">
     <section style="width: 50%; float: left">
         <form onsubmit="return signIn()" action="index.html">
-            <fieldset>
+            <fieldset style="border: 1px solid #0025ff;">
                 <legend><strong>Sign-In:</strong></legend>
 
                 <label>
@@ -59,13 +60,13 @@
                 <br>
                 <label for="remainSignedIn"><input type="checkbox" id="remainSignedIn" value="false">Keep me signed in</label>
                 <br>
-                <input type="submit">
+                <input type="submit" value="Sign-In">
             </fieldset>
         </form>
     </section>
     <section style="width: 50%; float: right">
         <form action="register.html">
-            <fieldset>
+            <fieldset style="border: 1px solid #ff0b00;">
                 <legend><strong>Not Registered Yet?</strong></legend>
                 <br><h3>Register Now</h3>
                 <a hidden="hidden"></a><br>
