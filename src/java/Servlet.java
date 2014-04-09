@@ -497,7 +497,7 @@ public class Servlet extends HttpServlet {
         ps.executeQuery();
         ResultSet rs = ps.getResultSet();
         
-        out.println("<div date-role='content'>");
+        out.println("<div date-role='content' class='ui-field-contain'>");
         out.println("<form>");
         while(rs.next()){
             out.println("<label><strong>Email:</strong>");
