@@ -731,7 +731,7 @@ function getItemDetails()
     insertItem(price, title, desc, quantity, mainCat, subCat);
 }
 
-function createTable()          // todo something
+function createTable()        
 {
     var id = (parent.document.URL.substring(parent.document.URL.indexOf('?')+4, parent.document.URL.length));
 
@@ -792,7 +792,9 @@ function checkItemsCookie()
     var email=getCookie("email");
     if (email == "")
     {
-         //alert('Items window');
+         var buttons = document.getElementsByName('button');
+         for (var i = 0; i < buttons.length; i++)
+            buttons[i].disabled = true;
     }
 }
 
@@ -841,17 +843,6 @@ function signIn()
         setCookie('email', email, 1);                 //set cookie for 1 day
     
     return true;
-}
-function checkUserName(email)                                        // todo database
-{
-    var table = DB[1];
-    var array = table[0];
-    var pass = table[1];
-    for(var i = 0; i < array.length; i++)
-        if (email == array[i])
-            return pass[i];
-
-    return false;
 }
 
 function checkPassword(password, pass)                           
@@ -1144,7 +1135,7 @@ function getLabels()
     }
 }
 
-function checkForm(form)                                                // todo get user email from database
+function checkForm(form)                          
 {
     var re = /\./;
     var email = form.email.value.toString().replace('@', '');
@@ -1183,14 +1174,6 @@ function checkForm(form)                                                // todo 
         form.email.focus();
         return false; 
     }
-    //    var users;                                                      // todo database
-    //    for(var i = 0; i < users.length; i++)
-    //        if (form.email.value == users[i])
-    //        {
-    //            alert("Error: Email has already been used!");
-    //            form.email.focus();
-    //            return false;
-    //        }
 
     if(form.Opass.value != "" && form.Opass.value == form.Cpass.value)
     {
@@ -1250,11 +1233,12 @@ function checkForm(form)                                                // todo 
         form.postal.focus();
         return false;
     }
+    setCookie('email', form.email.value.toString(), 1);
     insertUser(form);
     return true;
 }
 
-function insertUser(form)                                               // todo insert into database
+function insertUser(form)                                           
 {
     var fName = document.getElementById('fName').value;
     var lName = document.getElementById('lName').value;
