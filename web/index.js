@@ -580,27 +580,27 @@ function postSubCategories(event)
         otherFunction(array, div);
     else
         for (var i = 0; i < array.length; i++)
-        {
-            br = document.createElement('br');
+    {
+        br = document.createElement('br');
 
-            a = document.createElement('a');
-            a.style.color="#006";
-            a.style.cursor="pointer";
-            a.style.textDecoration="underline";
-            a.style.display="block";
-            a.style.paddingLeft="10%";
-            a.style.fontWeight="bold";
-            a.style.display = "inline";
-            a.addEventListener('click', nextHeader, false);
-            a.textContent=array[i];
-            if(index == 0)
-                a.id = '0'+parseInt(specId[index] +i +1);
-            else
-                a.id = parseInt(specId[index] +i +1);
+        a = document.createElement('a');
+        a.style.color="#006";
+        a.style.cursor="pointer";
+        a.style.textDecoration="underline";
+        a.style.display="block";
+        a.style.paddingLeft="10%";
+        a.style.fontWeight="bold";
+        a.style.display = "inline";
+        a.addEventListener('click', nextHeader, false);
+        a.textContent=array[i];
+        if(index == 0)
+            a.id = '0'+parseInt(specId[index] +i +1);
+        else
+            a.id = parseInt(specId[index] +i +1);
 
-            div.appendChild(a);
-            div.appendChild(br);
-        }
+        div.appendChild(a);
+        div.appendChild(br);
+    }
 }
 
 function otherFunction(array, div)
@@ -725,8 +725,8 @@ function getItemDetails()
     categoryId = null;
 
 
-//    if(images.length == 0)
-//        images.push('Images/NoImage.jpg');
+    //    if(images.length == 0)
+    //        images.push('Images/NoImage.jpg');
 
     insertItem(price, title, desc, quantity, mainCat, subCat);
 }
@@ -740,8 +740,6 @@ function createTable()
     var url = 'http://localhost:8084/Keybay/servlet?status=0';
     url=url+"&mainCat="+main+"&subCat="+sub;
     loadXMLDoc(url);
-
-//    checkItemsCookie();
 }
 
 function insertItem(price, title, desc, quantity, mainCat, subCat)      
@@ -817,6 +815,17 @@ function checkItemsCookie()
     }
 }
 
+function checkSignedIn()
+{
+    var email=getCookie("email");
+    if (email != "")
+    {
+        var elem = document.getElementById('signIn');
+        elem.href="myProfile.html";
+        elem.textContent=email;
+    }
+}
+
 
 (function(d, s, id)
 {                   // like on facebook
@@ -848,10 +857,10 @@ function checkItemsCookie()
 function newPopup()
 {
     window.open(
-        "forgotPass.html",
-        'popUpWindow',
-        'height=150,width=550,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=no,menubar=no,location=no,directories=no,status=yes'
-    );
+            "forgotPass.html",
+    'popUpWindow',
+    'height=150,width=550,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=no,menubar=no,location=no,directories=no,status=yes'
+            );
 }
 function signIn()
 {
@@ -911,10 +920,10 @@ function sendTheMail(email, pass)
 {
     var m = new mandrill.Mandrill('dN409U_HBEg6330LDyiJfw');
     var params =
-    {
-        "message":
-        {
-            "from_email":"jhg257@mail.usask.ca",
+            {
+                "message":
+                {
+                    "from_email":"jhg257@mail.usask.ca",
             "to":[{"email": email}],
             "subject": "Your Current Password for JD CMPT350 Project",
             "html": "<p>Your current password for JD CMPT350 Project is: "+pass+"</p>",
@@ -922,7 +931,7 @@ function sendTheMail(email, pass)
         }
     };
     m.messages.send
-        (params, function(){alert('Pass'); return true;}, function(err){alert('Email failed: '+err);return false;});
+    (params, function(){alert('Pass'); return true;}, function(err){alert('Email failed: '+err);return false;});
 }
 
 
@@ -933,7 +942,7 @@ function sendTheMail(email, pass)
 function getUserInfo()
 {
     var email = getCookie('email');
-  /*  var password = 'password';
+    /*  var password = 'password';
     var fName = 'firstName';
     var lName = 'lastName';
     var phone = 'phone';
@@ -1070,7 +1079,7 @@ function checkForm(form)
     }
     // regular expression to match only alphanumeric characters and spaces
     re = /\b\w{1}\d{1}\w{1}\d{1}\w{1}\d{1}\b/;
-alert(form.postal.value);
+    alert(form.postal.value);
     // validation fails if the input doesn't match our regular expression
     if(!re.test(form.postal.value))
     {
@@ -1096,7 +1105,7 @@ function insertUser(form)
     var postal = document.getElementById('postal').value; 
     var url = 'http://localhost:8084/Keybay/servlet?status=3';
     url=url+"&fName="+fName+"&lName="+lName+"&password="+password+"&email="+email+"&phone="+phone
-    +"&address="+address+"&city="+city+"&prov="+prov+"&postal="+postal;
+            +"&address="+address+"&city="+city+"&prov="+prov+"&postal="+postal;
     loadXMLDoc(url);
 
     window.open('myProfile.html','_self');
@@ -1250,7 +1259,7 @@ function getUserInfoMessage()
             // document.getElementById('Status').innerHTML = xmlhttp.status;
             //                    document.getElementById('StatusText').innerHTML = xmlhttp.statusText
             
-           document.getElementById("userinfo").innerHTML = xmlhttp2.responseText;
+            document.getElementById("userinfo").innerHTML = xmlhttp2.responseText;
         }
         else
         {

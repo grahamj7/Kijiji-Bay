@@ -1,124 +1,125 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-    <!--JD CMPT350 Project: Free Classifieds in Saskatoon. Find a job, buy a car, find a house or apartment, furniture, appliances and more!-->
-    <title>JD CMPT350 Project</title>
-    <link rel="shortcut icon" type="image/x-icon" href="Images/favicon.ico" />
-
-    <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.structure.css">
-    <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.structure.min.css">
-    <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.theme.css">
-    <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.theme.min.css">
-    <link rel="stylesheet" type="text/css" href="styling.css">
-    <link rel="stylesheet" type="text/css" href="jquery.mobile-1.4.2/jquery.mobile-1.4.2.css"/>
-    <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
-    <script type="text/javascript" src="jquery.mobile-1.4.2/jquery.mobile-1.4.2.min.js"></script>
-    <script type="text/javascript" src="index.js"></script>
-</head>
-
-<body>
-
-<header>
-    <div id="TopHeader">
-        <div id="HeaderLeft">
-            <a href="index.html"><image src="Images/favicon.ico"></a>
-        </div>
-        <div id="HeaderRight">
-            <ul id="HeaderRightTop">
-                <li><a href="signIn.html" rel="nofollow">Sign In</a></li>
-                <li><a href="register.html" rel="nofollow">Register</a></li>
-                <li><a href="index.html" rel="nofollow" onclick="removeCookie()">Sign-Out</a></li>
-            </ul>
-            <div id="HeaderRightBottom">
-                <a class="button-header-nav first" href="postAd.html" rel="nofollow">
-                    <strong>Post Ad</strong></a><a class="button-header-nav last" href="myProfile.html" rel="nofollow">
-                My Profile</a>
+    <head>
+        <!--JD CMPT350 Project: Free Classifieds in Saskatoon. Find a job, buy a car, find a house or apartment, furniture, appliances and more!-->
+        <title>JD CMPT350 Project</title>
+        <link rel="shortcut icon" type="image/x-icon" href="Images/favicon.ico" />
+        
+        <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.structure.css">
+        <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.structure.min.css">
+        <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.theme.css">
+        <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.theme.min.css">
+        <link rel="stylesheet" type="text/css" href="styling.css">
+        <link rel="stylesheet" type="text/css" href="jquery.mobile-1.4.2/jquery.mobile-1.4.2.css"/>
+        <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
+        <script type="text/javascript" src="jquery.mobile-1.4.2/jquery.mobile-1.4.2.min.js"></script>
+        <script type="text/javascript" src="index.js"></script>
+    </head>
+    
+    <body>
+        
+        <header>
+            <div id="TopHeader">
+                <div id="HeaderLeft">
+                    <a href="index.html"><image src="Images/favicon.ico"></a>
+                </div>
+                <div id="HeaderRight">
+                    <ul id="HeaderRightTop">
+                        <li><a href="signIn.html" rel="nofollow">Sign In</a></li>
+                        <li><a href="register.html" rel="nofollow">Register</a></li>
+                        <li><a href="index.html" rel="nofollow" onclick="removeCookie()">Sign-Out</a></li>
+                    </ul>
+                    <div id="HeaderRightBottom">
+                        <a class="button-header-nav first" href="postAd.html" rel="nofollow">
+                            <strong>Post Ad</strong></a><a class="button-header-nav last" href="myProfile.html" rel="nofollow">
+                            My Profile</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-
-    <div id="HeaderBar">
-    </div>
-</header>
-
-<div data-role="content" class="ui-field-contain">
-    <h1>Register</h1>
-    <form action="myProfile.html" onsubmit="return checkForm(this)">
-        <fieldset>
             
-            <label for="email">Email: <input type="email" name="form" id="email" required></label><br>
-            <label for="fName">First Name: <input name="form" type="text" id="fName" required></label><br>
-            <label for="lName">Last Name: <input name="form" type="text" id="lName" required></label><br>
-            <label for="Opass">Password: <input type="password" name="form" id="Opass" required></label><br>
-            <label for="Cpass">Confirm Password: <input type="password" name="form" id="Cpass" required></label><br>
-            <label for="phone">Phone Number ex.555-123-4567: <input name="form" type="tel" required id="phone"></label><br>
-            <label for="address">Address: <input type="text" name="form" id="address" required></label><br>
-            <label for="city">City: <input type="text" name="form" id="city" required></label><br>
-            <label for="prov">Province: </label>
-            <select id="prov" required name="form">
-                <option></option>
-                <option>BC</option>
-                <option>AB</option>
-                <option>SK</option>
-                <option>MB</option>
-                <option>ON</option>
-                <option>QC</option>
-                <option>NS</option>
-                <option>PE</option>
-                <option>NB</option>
-                <option>NL</option>
-                <option>YT</option>
-                <option>NW</option>
-                <option>NU</option>
-            </select><br>
-            <label for="postal">Postal Code ex.A1B2C3: <input type="text" name="form" id="postal" required></label><br><br>
-            <input type="submit" value="Submit">
-        </fieldset>
-    </form>
-</div>
-
-<div id="LayoutFooter">
-    <footer>
-        <div id="FooterBottom">
-            <section style="min-width: 20%; max-width:33%; padding-left: 10%;">
-                <ul style="list-style-type: none">
-                    <li>
-                        <a href="game.html" target="_blank" rel="nofollow"><img src="Images/game.ico"></a>
-                        <a href="game.html" target="_blank" rel="nofollow">Want to play a game?</a>
-                    </li>
-                </ul>
-            </section>
-            <section style="min-width: 20%; max-width:33%; padding-left: 10%;">
-                <ul style="list-style-type: none">
-                    <li>
-                        <img style="cursor:pointer" onclick="window.open('https://www.facebook.com/AnotherSchoolProject')" src="Images/fbook.png">
-                        <a href="https://www.facebook.com/AnotherSchoolProject" target="_blank" rel="nofollow">Friend us on Facebook</a>
-                    </li>
-                </ul>
-            </section>
-            <section style="min-width: 20%; max-width:33%;">
-                <ul style="list-style-type: none">
-                    <li>
-                        <!--suppress XmlUnboundNsPrefix -->
-                        <fb:like style="vertical-align: -33px" href="https://www.facebook.com/AnotherSchoolProject" send="false" width="60" show_faces="false"></fb:like>
-                    </li>
-                </ul>
-            </section>
-            <section style="max-width: 33%">
-                <ul style="list-style-type: none">
-                    <li>
-                        <a href="https://twitter.com/JDCMPT350Projec" class="twitter-follow-button" data-size="large" data-show-screen-name="true" data-show-count="true" data-lang="en"></a>
-                    </li>
-                </ul>
-            </section>
+            <div id="HeaderBar">
+            </div>
+        </header>
+        
+        <div data-role="content" class="ui-field-contain">
+            <h1>Register</h1>
+            <form action="myProfile.html" onsubmit="return checkForm(this)">
+                <fieldset>
+                    
+                    <label for="email">Email: <input type="email" name="form" id="email" required></label><br>
+                    <label for="fName">First Name: <input name="form" type="text" id="fName" required></label><br>
+                    <label for="lName">Last Name: <input name="form" type="text" id="lName" required></label><br>
+                    <label for="Opass">Password: <input type="password" name="form" id="Opass" required></label><br>
+                    <label for="Cpass">Confirm Password: <input type="password" name="form" id="Cpass" required></label><br>
+                    <label for="phone">Phone Number ex.555-123-4567: <input name="form" type="tel" required id="phone"></label><br>
+                    <label for="address">Address: <input type="text" name="form" id="address" required></label><br>
+                    <label for="city">City: <input type="text" name="form" id="city" required></label><br>
+                    <label for="prov">Province: </label>
+                    <select id="prov" required name="form">
+                        <option></option>
+                        <option>BC</option>
+                        <option>AB</option>
+                        <option>SK</option>
+                        <option>MB</option>
+                        <option>ON</option>
+                        <option>QC</option>
+                        <option>NS</option>
+                        <option>PE</option>
+                        <option>NB</option>
+                        <option>NL</option>
+                        <option>YT</option>
+                        <option>NW</option>
+                        <option>NU</option>
+                    </select><br>
+                    <label for="postal">Postal Code ex.A1B2C3: <input type="text" name="form" id="postal" required></label><br><br>
+                    <input type="submit" value="Submit">
+                </fieldset>
+            </form>
         </div>
-    </footer>
-</div>
-
-<script type="text/javascript">
-    getLabels();
-</script>
-
-</body>
+        
+        <div id="LayoutFooter">
+            <footer>
+                <div id="FooterBottom">
+                    <section style="min-width: 20%; max-width:33%; padding-left: 10%;">
+                        <ul style="list-style-type: none">
+                            <li>
+                                <a href="game.html" target="_blank" rel="nofollow"><img src="Images/game.ico"></a>
+                                <a href="game.html" target="_blank" rel="nofollow">Want to play a game?</a>
+                            </li>
+                        </ul>
+                    </section>
+                    <section style="min-width: 20%; max-width:33%; padding-left: 10%;">
+                        <ul style="list-style-type: none">
+                            <li>
+                                <img style="cursor:pointer" onclick="window.open('https://www.facebook.com/AnotherSchoolProject')" src="Images/fbook.png">
+                                <a href="https://www.facebook.com/AnotherSchoolProject" target="_blank" rel="nofollow">Friend us on Facebook</a>
+                            </li>
+                        </ul>
+                    </section>
+                    <section style="min-width: 20%; max-width:33%;">
+                        <ul style="list-style-type: none">
+                            <li>
+                                <!--suppress XmlUnboundNsPrefix -->
+                            <fb:like style="vertical-align: -33px" href="https://www.facebook.com/AnotherSchoolProject" send="false" width="60" show_faces="false"></fb:like>
+                            </li>
+                        </ul>
+                    </section>
+                    <section style="max-width: 33%">
+                        <ul style="list-style-type: none">
+                            <li>
+                                <a href="https://twitter.com/JDCMPT350Projec" class="twitter-follow-button" data-size="large" data-show-screen-name="true" data-show-count="true" data-lang="en"></a>
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+            </footer>
+        </div>
+        
+        <script type="text/javascript">    
+            checkSignedIn();
+            getLabels();
+        </script>
+        
+    </body>
 </html>
