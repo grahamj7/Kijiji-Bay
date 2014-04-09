@@ -312,6 +312,7 @@ public class Servlet extends HttpServlet {
             out.println("<td>");
             out.println("<input type=\"number\"  id=\"quantityinput"+i+"\" min=\"0\" max=\""+rs.getString("Quantity")+"\" value=0>");
             out.println("<button name='button' onclick='buyItem("+rs.getString("itemId")+", "+i+")'>Buy</button>");
+ 
             out.println("</td>");
             out.println("<td>");
             out.println("<a href=\"https://twitter.com/intent/tweet?button_hashtag=JDCMPT350Project\" class=\"twitter-hashtag-button\" data-lang=\"en\" data-related=\"jasoncosta\">Tweet #JDCMPT350Project</a>");
@@ -496,8 +497,9 @@ public class Servlet extends HttpServlet {
         ps.setString(1, email);
         ps.executeQuery();
         ResultSet rs = ps.getResultSet();
-        
-        out.println("<div date-role='content' class='ui-field-contain'>");
+
+        //class='ui-field-contain'
+        out.println("<div date-role='content'>");
         out.println("<form>");
         while(rs.next()){
             out.println("<label><strong>Email:</strong>");
