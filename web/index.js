@@ -1102,7 +1102,7 @@ function insertUser(form)
     window.open('myProfile.html','_self');
 }
 function buyItem(itemId, index){
-    return alert('test');
+    //alert('test');
     var quantitySelected = document.getElementById('quantityinput'+index).value;
     var url = 'http://localhost:8084/Keybay/servlet?status=5';
     url=url+"&ItemId="+itemId+"&quantity="+quantitySelected;
