@@ -35,26 +35,26 @@ public class Servlet extends HttpServlet {
         HttpSession session = request.getSession(true);
         int status = Integer.parseInt(request.getParameter("status"));
         /*
-         * Status code:
-         * 0 = Get Items
-         * 1 = Insert item
-         * 2 = Delete item
-         * 3 = Insert user
-         * 4 = check if users exists
-         * 5 = buy item
-         * 6 = check user log in
-         */
+        * Status code:
+        * 0 = Get Items
+        * 1 = Insert item
+        * 2 = Delete item
+        * 3 = Insert user
+        * 4 = check if users exists
+        * 5 = buy item
+        * 6 = check user log in
+        */
         if (0 == status) {
-           PrintWriter out = response.getWriter();
-           try{
-               
-              int mainCategory = Integer.parseInt(request.getParameter("mainCat"));
-              int subCategory = Integer.parseInt(request.getParameter("subCat"));
-              getItems(request, response, session,mainCategory,subCategory );
-           }
-           catch(Exception e){
-               out.println(e.toString());
-           }
+            PrintWriter out = response.getWriter();
+            try{
+                
+                int mainCategory = Integer.parseInt(request.getParameter("mainCat"));
+                int subCategory = Integer.parseInt(request.getParameter("subCat"));
+                getItems(request, response, session,mainCategory,subCategory );
+            }
+            catch(Exception e){
+                out.println(e.toString());
+            }
             //getAllBook(request, response);
         } else if (1 == status) {
             
@@ -64,30 +64,30 @@ public class Servlet extends HttpServlet {
             int mainCategory = Integer.parseInt(request.getParameter("mainCat"));
             int subCategory = Integer.parseInt(request.getParameter("subCat"));
             int quantity = Integer.parseInt(request.getParameter("quantity"));
-            insertItem(title,price,description,mainCategory,subCategory, quantity); 
-           // outputResult(request, response, session);
+            insertItem(title,price,description,mainCategory,subCategory, quantity);
+            // outputResult(request, response, session);
             
-        } 
+        }
         else if(2==status){
             
         }
         else if(3==status){
             String password = request.getParameter("password");
             String firstname = request.getParameter("fName");
-            String lastname = request.getParameter("lName");    
+            String lastname = request.getParameter("lName");
             String email= request.getParameter("email");
             String phonenum = request.getParameter("phone");
-            String address = request.getParameter("address");      
+            String address = request.getParameter("address");
             String city= request.getParameter("city");
             String province = request.getParameter("prov");
             String postalcode = request.getParameter("postal");
-            insertUser( password,  firstname,  lastname,  email, 
-            0,  phonenum,  address,  city,  province,  postalcode);
+            insertUser( password,  firstname,  lastname,  email,
+                    0,  phonenum,  address,  city,  province,  postalcode);
         }
         else if (4==status){
             PrintWriter out = response.getWriter();
             String email= request.getParameter("email");
-            response.setContentType("text/html;charset=UTF-8");            
+            response.setContentType("text/html;charset=UTF-8");
             if(checkIfUserExists(email)){
                 out.println('t');
             }
@@ -116,10 +116,10 @@ public class Servlet extends HttpServlet {
             PrintWriter out = response.getWriter();
             String email=request.getParameter("email");
             out.println(getPassword(email).toString());
-           
+            
         }
         else if (8==status){
-           // PrintWriter out = response.getWriter();
+            // PrintWriter out = response.getWriter();
             try{
                 String email=request.getParameter("email");
                 getUserInfo(request, response, session,email);
@@ -127,8 +127,20 @@ public class Servlet extends HttpServlet {
                 
             }
         }
+        else if (9==status){
+            String password = request.getParameter("password");
+            String firstname = request.getParameter("firstname");
+            String lastname = request.getParameter("lastname");
+            String email= request.getParameter("email");
+            String phonenum = request.getParameter("phone");
+            String address = request.getParameter("address");
+            String city= request.getParameter("city");
+            String province = request.getParameter("prov");
+            String postalcode = request.getParameter("postal");
+            updateUserInfo( password,  firstname,  lastname,  email, phonenum,  address,  city,  province,  postalcode);
+        }
         else {
-           outputResult(request, response, session);
+            outputResult(request, response, session);
         }
         
         
@@ -139,7 +151,7 @@ public class Servlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         out.println("test");
-
+        
     }
     
     protected void getConnection()
@@ -157,36 +169,36 @@ public class Servlet extends HttpServlet {
     public void closeConnection()
     {
         try{
-           this.conn.close();
+            this.conn.close();
         }
         catch(SQLException e)
         {
             System.out.println(e.toString());
         }
     }
-   protected int getMaxItemID()throws SQLException{
-       
-       this.getConnection();
-       final String query = "SELECT MAX(ItemId) FROM Items";
-       final PreparedStatement ps = this.conn.prepareStatement(query);
-       final ResultSet result = ps.executeQuery();
-       
-       if(result.next()){
-           final int itemID = result.getInt(1);
-           this.closeConnection();
-           return itemID;
-       }
-       else if(!result.next()){
-           this.closeConnection();
-           return 0;
-       }
-       else{
-           this.closeConnection();
-           throw new SQLException();
-       }
-	
-   }
-   public void  insertItem(String title, float price, String description, int mainCategory, int subCategory, int quantity){
+    protected int getMaxItemID()throws SQLException{
+        
+        this.getConnection();
+        final String query = "SELECT MAX(ItemId) FROM Items";
+        final PreparedStatement ps = this.conn.prepareStatement(query);
+        final ResultSet result = ps.executeQuery();
+        
+        if(result.next()){
+            final int itemID = result.getInt(1);
+            this.closeConnection();
+            return itemID;
+        }
+        else if(!result.next()){
+            this.closeConnection();
+            return 0;
+        }
+        else{
+            this.closeConnection();
+            throw new SQLException();
+        }
+        
+    }
+    public void  insertItem(String title, float price, String description, int mainCategory, int subCategory, int quantity){
         try{
             this.getConnection();
             String main=Integer.toString(mainCategory);
@@ -208,8 +220,8 @@ public class Servlet extends HttpServlet {
             System.out.println(e.toString());
         }
     }
-   
-   public void getItems(HttpServletRequest request, HttpServletResponse response, HttpSession session, int main, int sub)
+    
+    public void getItems(HttpServletRequest request, HttpServletResponse response, HttpSession session, int main, int sub)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
@@ -222,8 +234,8 @@ public class Servlet extends HttpServlet {
         ps.setString(2, subCategory);
         ps.executeQuery();
         ResultSet rs = ps.getResultSet();
-       //<table data-role="table" id="movie-table-custom" data-mode="reflow" class="movie-list ui-responsive">
-/*
+        //<table data-role="table" id="movie-table-custom" data-mode="reflow" class="movie-list ui-responsive">
+        /*
         out.println("<table data-role=\"table\" id=\"movie-table-custom\" data-mode=\"reflow\" class=\"movie-list ui-responsive\">");
         out.println("<thead>");
         out.println("<tr>");
@@ -233,18 +245,18 @@ public class Servlet extends HttpServlet {
         out.println("</thead>");
         out.println("<tbody>");
         while(rs.next()){
-            out.println("<tr>");
-            out.println("<td>");
-            out.println(rs.getString("Title"));
-            out.println("</td>");
-            out.println("<td>");
-            out.println(rs.getString("Description"));
-            out.println("</td>");
-            out.println("</tr>");
+        out.println("<tr>");
+        out.println("<td>");
+        out.println(rs.getString("Title"));
+        out.println("</td>");
+        out.println("<td>");
+        out.println(rs.getString("Description"));
+        out.println("</td>");
+        out.println("</tr>");
         }
         out.println("</tbody>");
         out.println("</table>");
-         */
+        */
         
         out.println("<table border=1>");
         out.println("<tr>");
@@ -286,46 +298,46 @@ public class Servlet extends HttpServlet {
             out.println("</tr>");
         }
         out.println("</table>");
-
+        
     }
-   public void deleteItem(int ItemId){
-       try{
-           this.getConnection();
-           final String deleteSQL = "DELETE FROM Items WHERE ItemId = ?";
-           PreparedStatement preparedStatement = this.conn.prepareStatement(deleteSQL);
-           preparedStatement.setInt(1, ItemId);
-           preparedStatement.executeUpdate();
-           this.closeConnection();
-       }
-       catch (SQLException e){
-           System.out.println(e.toString());
-       }
-   }
-   
-   public void updateItemQuantity(int itemId, int quantitySelected){
-       int current = this.getItemQuantity(itemId);
-       int newQuantity = current - quantitySelected;
-       if(newQuantity<=0){
-           this.deleteItem(itemId);
-       }
-       else {
-           try{
-               this.getConnection();
-               final String deleteSQL = "UPDATE Items SET Quantity = ?  WHERE ItemId = ?";
-               PreparedStatement preparedStatement = this.conn.prepareStatement(deleteSQL);
-               preparedStatement.setInt(1, newQuantity);
-               preparedStatement.setInt(2, itemId);
-               preparedStatement.executeUpdate();
-               this.closeConnection();
-           }catch (SQLException e){
-               
-           }
-       }
-   }
-   public int getItemQuantity(int itemId){
-       int quantity=0;
-       try{
-           this.getConnection();
+    public void deleteItem(int ItemId){
+        try{
+            this.getConnection();
+            final String deleteSQL = "DELETE FROM Items WHERE ItemId = ?";
+            PreparedStatement preparedStatement = this.conn.prepareStatement(deleteSQL);
+            preparedStatement.setInt(1, ItemId);
+            preparedStatement.executeUpdate();
+            this.closeConnection();
+        }
+        catch (SQLException e){
+            System.out.println(e.toString());
+        }
+    }
+    
+    public void updateItemQuantity(int itemId, int quantitySelected){
+        int current = this.getItemQuantity(itemId);
+        int newQuantity = current - quantitySelected;
+        if(newQuantity<=0){
+            this.deleteItem(itemId);
+        }
+        else {
+            try{
+                this.getConnection();
+                final String deleteSQL = "UPDATE Items SET Quantity = ?  WHERE ItemId = ?";
+                PreparedStatement preparedStatement = this.conn.prepareStatement(deleteSQL);
+                preparedStatement.setInt(1, newQuantity);
+                preparedStatement.setInt(2, itemId);
+                preparedStatement.executeUpdate();
+                this.closeConnection();
+            }catch (SQLException e){
+                
+            }
+        }
+    }
+    public int getItemQuantity(int itemId){
+        int quantity=0;
+        try{
+            this.getConnection();
             final String query = "SELECT Quantity FROM Items WHERE ItemId = ?";
             final PreparedStatement ps = this.conn.prepareStatement(query);
             ps.setInt(1, itemId);
@@ -334,19 +346,19 @@ public class Servlet extends HttpServlet {
                 quantity = result.getInt(1);
                 return quantity;
             }
-       }catch (SQLException e){
-           
-       }
-       return quantity;
-   }
-   
-   public void insertUser(String password, String fname, String lname, String email, int age, String phone, String address, String city, String prov, String postal){
-       try{
+        }catch (SQLException e){
+            
+        }
+        return quantity;
+    }
+    
+    public void insertUser(String password, String fname, String lname, String email, int age, String phone, String address, String city, String prov, String postal){
+        try{
             this.getConnection();
             final String query = "INSERT INTO Users (Password, Firstname, Lastname, Email, Age, Phonenumber, Address, City, Province, PostalCode) "
                     + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             final PreparedStatement ps = this.conn.prepareStatement(query);
-  
+            
             ps.setString(1, password);
             ps.setString(2, fname);
             ps.setString(3, lname);
@@ -356,178 +368,175 @@ public class Servlet extends HttpServlet {
             ps.setString(7, address);
             ps.setString(8, city);
             ps.setString(9, prov);
-            ps.setString(10, postal);     
+            ps.setString(10, postal);
             ps.executeUpdate();
             this.closeConnection();
         }catch (SQLException e){
             System.out.println(e.toString());
         }
-   }
-   
-   public void updateUserInfo(String password, String fname, String lname, String email, int age, String phone, String address, String city, String prov, String postal){
-       
-       try{
-           this.getConnection();
-           final String query = "UPDATE Users SET Password = ?, Firstname = ?, Lastname = ?, Age = ?, Phonenumber = ?, Address = ?, City = ?, Province = ?, PostalCode = ? WHERE Email = ?";
-           final PreparedStatement ps = this.conn.prepareStatement(query);
- 
-           ps.setString(1, password);
-           ps.setString(2, fname);
-           ps.setString(3, lname);
-           ps.setInt(4,age);
-           ps.setString(5, phone);
-           ps.setString(6, address);
-           ps.setString(7, city);
-           ps.setString(8, prov);
-           ps.setString(9, postal);
-           ps.setString(10, email);
-           ps.executeUpdate();
-           this.closeConnection();
-       }catch (SQLException e){
-           System.out.println(e.toString());
-       }
-   } 
-   public boolean checkIfUserExists(String email){
-       try{
-           this.getConnection();
-           final String query = "SELECT count(*) FROM Users WHERE Email = ?";
-           final PreparedStatement ps = this.conn.prepareStatement(query);
-           ps.setString(1, email);
-           final ResultSet result = ps.executeQuery();
-           
-           if(result.next()){
-               final int count = result.getInt(1);
-               if(count == 1){
-                   return true;
-               }
-               else{
-                   return false;
-               }
-           }
-           this.closeConnection();
-           return false;
-       }catch (SQLException e){
+    }
+    
+    public void updateUserInfo(String password, String fname, String lname, String email, String phone, String address, String city, String prov, String postal){
+        
+        try{
+            this.getConnection();
+            final String query = "UPDATE Users SET Password = ?, Firstname = ?, Lastname = ?, Phonenumber = ?, Address = ?, City = ?, Province = ?, PostalCode = ? WHERE Email = ?";
+            final PreparedStatement ps = this.conn.prepareStatement(query);
+            
+            ps.setString(1, password);
+            ps.setString(2, fname);
+            ps.setString(3, lname);
+            ps.setString(4, phone);
+            ps.setString(5, address);
+            ps.setString(6, city);
+            ps.setString(7, prov);
+            ps.setString(8, postal);
+            ps.setString(9, email);
+            ps.executeUpdate();
+            this.closeConnection();
+        }catch (SQLException e){
+            System.out.println(e.toString());
+        }
+    }
+    public boolean checkIfUserExists(String email){
+        try{
+            this.getConnection();
+            final String query = "SELECT count(*) FROM Users WHERE Email = ?";
+            final PreparedStatement ps = this.conn.prepareStatement(query);
+            ps.setString(1, email);
+            final ResultSet result = ps.executeQuery();
+            
+            if(result.next()){
+                final int count = result.getInt(1);
+                if(count == 1){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+            this.closeConnection();
             return false;
-       }
-   }
-   public boolean checkUserLogin(String email, String password){
-       try{
-           this.getConnection();
-           final String query = "SELECT COUNT(*) FROM Users WHERE Email=? AND Password=?";
-           final PreparedStatement ps = this.conn.prepareStatement(query);  
-           ps.setString(1, email);
-           ps.setString(2, password);
-           final ResultSet result = ps.executeQuery();
-           if(result.next()){
-               final int count = result.getInt(1);
-               if(count == 1){
-                   return true;
-               }
-               else{
-                   return false;
-               }
-           }
-           this.closeConnection();
-           return false;
-       }catch (SQLException e){
+        }catch (SQLException e){
             return false;
-       }
-   }
-   public String getPassword(String email){
-       String tempPass="";
-       try{
-           this.getConnection();
-           final String query = "SELECT Password FROM Users WHERE Email=?";
-           final PreparedStatement ps = this.conn.prepareStatement(query);
-           ps.setString(1, email);
-           final ResultSet result = ps.executeQuery();
-           if(result.next()){
-               tempPass = result.getString(1);
-               return tempPass;
-           }
-       }catch(SQLException e){
-           
-       }
-       return tempPass;
-   }
-  
+        }
+    }
+    public boolean checkUserLogin(String email, String password){
+        try{
+            this.getConnection();
+            final String query = "SELECT COUNT(*) FROM Users WHERE Email=? AND Password=?";
+            final PreparedStatement ps = this.conn.prepareStatement(query);
+            ps.setString(1, email);
+            ps.setString(2, password);
+            final ResultSet result = ps.executeQuery();
+            if(result.next()){
+                final int count = result.getInt(1);
+                if(count == 1){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+            this.closeConnection();
+            return false;
+        }catch (SQLException e){
+            return false;
+        }
+    }
+    public String getPassword(String email){
+        String tempPass="";
+        try{
+            this.getConnection();
+            final String query = "SELECT Password FROM Users WHERE Email=?";
+            final PreparedStatement ps = this.conn.prepareStatement(query);
+            ps.setString(1, email);
+            final ResultSet result = ps.executeQuery();
+            if(result.next()){
+                tempPass = result.getString(1);
+                return tempPass;
+            }
+        }catch(SQLException e){
+            
+        }
+        return tempPass;
+    }
+    
+    
+    
+    public void getUserInfo(HttpServletRequest request, HttpServletResponse response, HttpSession session, String email)throws ServletException, IOException, SQLException{
         
         
-   public void getUserInfo(HttpServletRequest request, HttpServletResponse response, HttpSession session, String email)throws ServletException, IOException, SQLException{
-       
-       
-       PrintWriter out = response.getWriter();
-       response.setContentType("text/html;charset=UTF-8");
-       this.getConnection();
-       final String query = "SELECT * FROM Users WHERE Email=?";
-       final PreparedStatement ps = this.conn.prepareStatement(query);
-       ps.setString(1, email);
-       ps.executeQuery();
-       ResultSet rs = ps.getResultSet();
-
-       out.println("<div date-role='content'>");
-       while(rs.next()){
+        PrintWriter out = response.getWriter();
+        response.setContentType("text/html;charset=UTF-8");
+        this.getConnection();
+        final String query = "SELECT * FROM Users WHERE Email=?";
+        final PreparedStatement ps = this.conn.prepareStatement(query);
+        ps.setString(1, email);
+        ps.executeQuery();
+        ResultSet rs = ps.getResultSet();
+        
+        out.println("<div date-role='content'>");
+        out.println("<form>");
+        while(rs.next()){
             out.println("<label><strong>Email:</strong>");
-            out.println("<input type='text' id='emailInfo' value='"+rs.getString("Email")+"'");
+            out.println("<input readOnly type='text' id='emailInfo' value='"+rs.getString("Email")+"'");
             out.println("</label>");
             out.println("<br>");
             
             out.println("<label><strong>First name:</strong>");
-            out.println("<input type='text' id='FirstnameInfo' value='"+rs.getString("Firstname")+"'");
+            out.println("<input required type='text' id='FirstnameInfo' value='"+rs.getString("Firstname")+"'");
             out.println("</label>");
             out.println("<br>");
             
             
             out.println("<label><strong>Last name:</strong>");
-            out.println("<input type='text' id='LastnameInfo' value='"+rs.getString("Lastname")+"'");
+            out.println("<input required type='text' id='LastnameInfo' value='"+rs.getString("Lastname")+"'");
             out.println("</label>");
             out.println("<br>");
             
             
             out.println("<label><strong>Password:</strong>");
-            out.println("<input type='password' id='PasswordInfo' value='"+rs.getString("Password")+"'");
+            out.println("<input required type='password' id='PasswordInfo' value='"+rs.getString("Password")+"'");
             out.println("</label>");
-            out.println("<button onclick='showPassword()'>Show</button>");
+            out.println("<button id='showButton' onclick='changeField()'>Show</button>");
             out.println("<br>");
             
             out.println("<label><strong>Phone number:</strong>");
-            out.println("<input type='text' id='Phonenumber' value='"+rs.getString("Phonenumber")+"'");
+            out.println("<input required type='text' id='Phonenumber' value='"+rs.getString("Phonenumber")+"'");
             out.println("</label>");
             out.println("<br>");
             
-            out.println("<label><strong>Phone number:</strong>");
-            out.println("<input type='text' id='Phonenumber' value='"+rs.getString("Phonenumber")+"'");
-            out.println("</label>");
-            out.println("<br>");
             
             
             out.println("<label><strong>Address:</strong>");
-            out.println("<input type='text' id='Address' value='"+rs.getString("Address")+"'");
+            out.println("<input required type='text' id='Address' value='"+rs.getString("Address")+"'");
             out.println("</label>");
             out.println("<br>");
             
             out.println("<label><strong>City:</strong>");
-            out.println("<input type='text' id='Address' value='"+rs.getString("City")+"'");
+            out.println("<input required type='text' id='City' value='"+rs.getString("City")+"'");
             out.println("</label>");
             out.println("<br>");
             
             out.println("<label><strong>Province:</strong>");
-            out.println("<input type='text' id='Address' value='"+rs.getString("Province")+"'");
+            out.println("<input required type='text' id='Province' value='"+rs.getString("Province")+"'");
             out.println("</label>");
             out.println("<br>");
             
             
             out.println("<label><strong>Postal Code:</strong>");
-            out.println("<input type='text' id='Address' value='"+rs.getString("PostalCode")+"'");
+            out.println("<input required type='text' id='PostalCode' value='"+rs.getString("PostalCode")+"'");
             out.println("</label>");
             out.println("<br>");
-
+            
         }
-
-       out.println("</div>");
-       
-   }
-   
+        out.println("<input type='submit' onclick='updateUserInfo()'value='Submit Changes'>");
+        out.println("</form>");
+        out.println("</div>");
+        
+    }
+    
     
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

@@ -1267,7 +1267,22 @@ function buyItem(itemId){
     location.reload(true);
     
 }
-        
+function updateUserInfo(){
+    var email = getCookie('email');
+    var firstname = document.getElementById('FirstnameInfo').value;
+    var lastname = document.getElementById('LastnameInfo').value;
+    var password = document.getElementById('PasswordInfo').value;
+    var phone = document.getElementById('Phonenumber').value;
+    var address = document.getElementById('Address').value;
+    var city = document.getElementById('City').value;
+    var prov = document.getElementById('Province').value;
+    var postal = document.getElementById('PostalCode').value;
+    var url = 'http://localhost:8084/Keybay/servlet?status=9';
+    url=url+"&email="+email+"&firstname="+firstname+"&lastname="+lastname+"&password="+password+"&phone="+phone
+            +"&address="+address+"&city="+city+"&prov="+prov+"&postal="+postal;
+    loadXMLDoc(url);
+    return true;
+}        
 var xmlhttp;
 function loadXMLDoc(url)
 {
@@ -1310,6 +1325,7 @@ function state_Change()
         }
     }
 }
+
 var xmlhttp1;
 function checkUserInDB(url)
 {
