@@ -1,85 +1,92 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-    <!--JD CMPT350 Project: Free Classifieds in Saskatoon. Find a job, buy a car, find a house or apartment, furniture, appliances and more!-->
-    <title>JD CMPT350 Project</title>
-    <link rel="shortcut icon" type="image/x-icon" href="Images/favicon.ico" />
-
-    <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.structure.css">
-    <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.structure.min.css">
-    <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.theme.css">
-    <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.theme.min.css">
-    <link rel="stylesheet" type="text/css" href="styling.css">
-
-    <script type="text/javascript" src="index.js"></script>
-</head>
-
-<body>
-
-<header>
-    <div id="TopHeader">
-        <div id="HeaderLeft">
-            <a href="index.html"><image src="Images/favicon.ico"></image></a>
-        </div>
-        <div id="HeaderRight">
-            <ul id="HeaderRightTop">
-                <li><a href="signIn.html" rel="nofollow">Sign In</a></li>
-                <li><a href="register.html" rel="nofollow">Register</a></li>
-                <li><a href="index.html" rel="nofollow" onclick="removeCookie()">Sign-Out</a></li>
-            </ul>
-            <div id="HeaderRightBottom">
-                <a class="button-header-nav first" href="postAd.html" rel="nofollow">
-                    <strong>Post Ad </strong></a><a class="button-header-nav last" href="myProfile.html" rel="nofollow">
-                My Profile</a>
+    <head>
+        <!--JD CMPT350 Project: Free Classifieds in Saskatoon. Find a job, buy a car, find a house or apartment, furniture, appliances and more!-->
+        <title>JD CMPT350 Project</title>
+        <link rel="shortcut icon" type="image/x-icon" href="Images/favicon.ico" />
+        
+        <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.structure.css">
+        <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.structure.min.css">
+        <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.theme.css">
+        <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.theme.min.css">
+        <link rel="stylesheet" type="text/css" href="styling.css">
+        
+        <script type="text/javascript" src="index.js"></script>
+    </head>
+    
+    <body>
+        
+        <header>
+            <div id="TopHeader">
+                <div id="HeaderLeft">
+                    <a href="index.html"><image src="Images/favicon.ico"></image></a>
+                </div>
+                <div id="HeaderRight">
+                    <ul id="HeaderRightTop">
+                        <li><a href="signIn.html" rel="nofollow">Sign In</a></li>
+                        <li><a href="register.html" rel="nofollow">Register</a></li>
+                        <li><a href="index.html" rel="nofollow" onclick="removeCookie()">Sign-Out</a></li>
+                    </ul>
+                    <div id="HeaderRightBottom">
+                        <a class="button-header-nav first" href="postAd.html" rel="nofollow">
+                            <strong>Post Ad </strong></a><a class="button-header-nav last" href="myProfile.html" rel="nofollow">
+                            My Profile</a>
+                    </div>
+                </div>
             </div>
+            
+            <div id="HeaderBar">
+            </div>
+        </header>
+        
+        <div id="contentDiv" data-role="content">
+            <h1>Items</h1>
         </div>
-    </div>
-
-    <div id="HeaderBar">
-    </div>
-</header>
-
-<div id="contentDiv" data-role="content">
-    <h1>Items</h1>
-</div>
-
-<div id="LayoutFooter">
-    <footer>
-        <div id="FooterBottom">
-            <section style="min-width: 20%; max-width:33%; padding-left: 10%;">
-                <ul style="list-style-type: none">
-                    <li>
-                        <a href="game.html" target="_blank" rel="nofollow"><img src="Images/game.ico"></a>
-                        <a href="game.html" target="_blank" rel="nofollow">Want to play a game?</a>
-                    </li>
-                </ul>
-            </section>
-            <section style="min-width: 20%; max-width:33%; padding-left: 10%;">
-                <ul style="list-style-type: none">
-                    <li>
-                        <img style="cursor:pointer" onclick="window.open('https://www.facebook.com/AnotherSchoolProject')" src="Images/fbook.png">
-                        <a href="https://www.facebook.com/AnotherSchoolProject" target="_blank" rel="nofollow">Friend us on Facebook</a>
-                    </li>
-                </ul>
-            </section>
-            <section style="min-width: 20%; max-width:33%;">
-                <ul style="list-style-type: none">
-                    <li>
-                        <!--suppress XmlUnboundNsPrefix -->
-                        <fb:like style="vertical-align: -33px" href="https://www.facebook.com/AnotherSchoolProject" send="false" width="60" show_faces="false"></fb:like>
-                    </li>
-                </ul>
-            </section>
+        
+        <div id="LayoutFooter">
+            <footer>
+                <div id="FooterBottom">
+                    <section style="min-width: 20%; max-width:33%; padding-left: 10%;">
+                        <ul style="list-style-type: none">
+                            <li>
+                                <a href="game.html" target="_blank" rel="nofollow"><img src="Images/game.ico"></a>
+                                <a href="game.html" target="_blank" rel="nofollow">Want to play a game?</a>
+                            </li>
+                        </ul>
+                    </section>
+                    <section style="min-width: 20%; max-width:33%; padding-left: 10%;">
+                        <ul style="list-style-type: none">
+                            <li>
+                                <img style="cursor:pointer" onclick="window.open('https://www.facebook.com/AnotherSchoolProject')" src="Images/fbook.png">
+                                <a href="https://www.facebook.com/AnotherSchoolProject" target="_blank" rel="nofollow">Friend us on Facebook</a>
+                            </li>
+                        </ul>
+                    </section>
+                    <section style="min-width: 20%; max-width:33%;">
+                        <ul style="list-style-type: none">
+                            <li>
+                                <!--suppress XmlUnboundNsPrefix -->
+                            <fb:like style="vertical-align: -33px" href="https://www.facebook.com/AnotherSchoolProject" send="false" width="60" show_faces="false"></fb:like>
+                            </li>
+                        </ul>
+                    </section>
+                    <section style="max-width: 33%">
+                        <ul style="list-style-type: none">
+                            <li>
+                                <a href="https://twitter.com/JDCMPT350Projec" class="twitter-follow-button" data-size="large" data-show-screen-name="true" data-show-count="true" data-lang="en"></a>
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+            </footer>
         </div>
-    </footer>
-</div>
+        
+        <script type="text/javascript">
 
-<script type="text/javascript">
+            checkItemsCookie();
+            createTable();
 
-    checkItemsCookie();
-    createTable();
-
-</script>
-</body>
+        </script>
+    </body>
 </html>

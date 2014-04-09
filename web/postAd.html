@@ -1,128 +1,135 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-    <!--JD CMPT350 Project: Free Classifieds in Saskatoon. Find a job, buy a car, find a house or apartment, furniture, appliances and more!-->
-    <title>JD CMPT350 Project</title>
-    <link rel="shortcut icon" type="image/x-icon" href="Images/favicon.ico" />
-
-    <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.structure.css">
-    <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.structure.min.css">
-    <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.theme.css">
-    <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.theme.min.css">
-    <link rel="stylesheet" type="text/css" href="styling.css">
-
-    <script type="text/javascript" src="index.js"></script>
-</head>
-
-<body>
-
-<header>
-    <div id="TopHeader">
-        <div id="HeaderLeft">
-            <a href="index.html"><image src="Images/favicon.ico"></a>
-        </div>
-        <div id="HeaderRight">
-            <ul id="HeaderRightTop">
-                <li><a href="signIn.html" rel="nofollow">Sign In</a></li>
-                <li><a href="register.html" rel="nofollow">Register</a></li>
-                <li><a href="index.html" rel="nofollow" onclick="removeCookie()">Sign-Out</a></li>
-            </ul>
-            <div id="HeaderRightBottom">
-                <a class="button-header-nav first" href="postAd.html" rel="nofollow">
-                    <strong>Post Ad</strong></a><a class="button-header-nav last" href="myProfile.html" rel="nofollow">
-                My Profile</a>
+    <head>
+        <!--JD CMPT350 Project: Free Classifieds in Saskatoon. Find a job, buy a car, find a house or apartment, furniture, appliances and more!-->
+        <title>JD CMPT350 Project</title>
+        <link rel="shortcut icon" type="image/x-icon" href="Images/favicon.ico" />
+        
+        <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.structure.css">
+        <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.structure.min.css">
+        <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.theme.css">
+        <link rel="stylesheet" type="text/css" href="jquery/jquery.mobile.custom.theme.min.css">
+        <link rel="stylesheet" type="text/css" href="styling.css">
+        
+        <script type="text/javascript" src="index.js"></script>
+    </head>
+    
+    <body>
+        
+        <header>
+            <div id="TopHeader">
+                <div id="HeaderLeft">
+                    <a href="index.html"><image src="Images/favicon.ico"></a>
+                </div>
+                <div id="HeaderRight">
+                    <ul id="HeaderRightTop">
+                        <li><a href="signIn.html" rel="nofollow">Sign In</a></li>
+                        <li><a href="register.html" rel="nofollow">Register</a></li>
+                        <li><a href="index.html" rel="nofollow" onclick="removeCookie()">Sign-Out</a></li>
+                    </ul>
+                    <div id="HeaderRightBottom">
+                        <a class="button-header-nav first" href="postAd.html" rel="nofollow">
+                            <strong>Post Ad</strong></a><a class="button-header-nav last" href="myProfile.html" rel="nofollow">
+                            My Profile</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-
-    <div id="HeaderBar">
-    </div>
-</header>
-
-<div data-role="content">
-
-    <section id="MainCategories" style="width: 33%; display: inline-block;">
-        <h2>Main Category</h2>
-    </section>
-    <section id="SubCategories"  style="width: 33%; display: inline-block; visibility: hidden;">
-        <h2>Sub Category</h2>
-    </section>
-    <section id="ItemCategories" style="width: 33%; display: inline-block; visibility: hidden; position: relative;">
-        <h2>Item Details</h2>
-        <form action="" onsubmit="getItemDetails()">
-            <label for="title">
-                Title:
-                <input type="text" required="required" id="title" placeholder="Enter a Title Here">
-            </label>
-            <br>
-            <label for="price">
-                Price:
-                <input type="number" min="1" required="required" step="0.1" id="price" placeholder="Enter the price">
-            </label>
-            <br>
-            <label for="desc">
-                Description:
-                <input id="desc" required="required" type="text" placeholder="Enter a description">
-            </label>
-            <br>
-            <label for="quantity">
-                Quantity:
-                <input id="quantity" required="required" type="number" min="1" value="1">
-            </label>
-            <br>
-            <label for="images">
-                Images:
-                <input id="images" type="file" accept="image/*" multiple>
-            </label>
-            <br>
-            <label for="submit">
-            <input id="submit" type="submit">
-        </label>
-            <br>
-        </form>
-    </section>
-</div>
-<script type="text/javascript">
-
-    checkCookie();
-    generateCategories();
-    postMainCategories();
-
-</script>
-
-<div id="LayoutFooter">
-    <footer>
-        <div id="FooterBottom">
-            <section style="min-width: 20%; max-width:33%; padding-left: 10%;">
-                <ul style="list-style-type: none">
-                    <li>
-                        <a href="game.html" target="_blank" rel="nofollow"><img src="Images/game.ico"></a>
-                        <a href="game.html" target="_blank" rel="nofollow">Want to play a game?</a>
-                    </li>
-                </ul>
+            
+            <div id="HeaderBar">
+            </div>
+        </header>
+        
+        <div data-role="content">
+            
+            <section id="MainCategories" style="width: 33%; display: inline-block;">
+                <h2>Main Category</h2>
             </section>
-            <section style="min-width: 20%; max-width:33%; padding-left: 10%;">
-                <ul style="list-style-type: none">
-                    <li>
-                        <img style="cursor:pointer" onclick="window.open('https://www.facebook.com/AnotherSchoolProject')" src="Images/fbook.png">
-                        <a href="https://www.facebook.com/AnotherSchoolProject" target="_blank" rel="nofollow">Friend us on Facebook</a>
-                    </li>
-                </ul>
+            <section id="SubCategories"  style="width: 33%; display: inline-block; visibility: hidden;">
+                <h2>Sub Category</h2>
             </section>
-            <section style="min-width: 20%; max-width:33%;">
-                <ul style="list-style-type: none">
-                    <li>
-                        <!--suppress XmlUnboundNsPrefix -->
-                        <fb:like style="vertical-align: -33px" href="https://www.facebook.com/AnotherSchoolProject" send="false" width="60" show_faces="false"></fb:like>
-                    </li>
-                </ul>
+            <section id="ItemCategories" style="width: 33%; display: inline-block; visibility: hidden; position: relative;">
+                <h2>Item Details</h2>
+                <form action="" onsubmit="getItemDetails()">
+                    <label for="title">
+                        Title:
+                        <input type="text" required="required" id="title" placeholder="Enter a Title Here">
+                    </label>
+                    <br>
+                    <label for="price">
+                        Price:
+                        <input type="number" min="1" required="required" step="0.1" id="price" placeholder="Enter the price">
+                    </label>
+                    <br>
+                    <label for="desc">
+                        Description:
+                        <input id="desc" required="required" type="text" placeholder="Enter a description">
+                    </label>
+                    <br>
+                    <label for="quantity">
+                        Quantity:
+                        <input id="quantity" required="required" type="number" min="1" value="1">
+                    </label>
+                    <br>
+                    <label for="images">
+                        Images:
+                        <input id="images" type="file" accept="image/*" multiple>
+                    </label>
+                    <br>
+                    <label for="submit">
+                        <input id="submit" type="submit">
+                    </label>
+                    <br>
+                </form>
             </section>
         </div>
-    </footer>
-</div>
+        <script type="text/javascript">
 
+            checkCookie();
+            generateCategories();
+            postMainCategories();
 
-</body>
+        </script>
+        
+        <div id="LayoutFooter">
+            <footer>
+                <div id="FooterBottom">
+                    <section style="min-width: 20%; max-width:33%; padding-left: 10%;">
+                        <ul style="list-style-type: none">
+                            <li>
+                                <a href="game.html" target="_blank" rel="nofollow"><img src="Images/game.ico"></a>
+                                <a href="game.html" target="_blank" rel="nofollow">Want to play a game?</a>
+                            </li>
+                        </ul>
+                    </section>
+                    <section style="min-width: 20%; max-width:33%; padding-left: 10%;">
+                        <ul style="list-style-type: none">
+                            <li>
+                                <img style="cursor:pointer" onclick="window.open('https://www.facebook.com/AnotherSchoolProject')" src="Images/fbook.png">
+                                <a href="https://www.facebook.com/AnotherSchoolProject" target="_blank" rel="nofollow">Friend us on Facebook</a>
+                            </li>
+                        </ul>
+                    </section>
+                    <section style="min-width: 20%; max-width:33%;">
+                        <ul style="list-style-type: none">
+                            <li>
+                                <!--suppress XmlUnboundNsPrefix -->
+                            <fb:like style="vertical-align: -33px" href="https://www.facebook.com/AnotherSchoolProject" send="false" width="60" show_faces="false"></fb:like>
+                            </li>
+                        </ul>
+                    </section>
+                    <section style="max-width: 33%">
+                        <ul style="list-style-type: none">
+                            <li>
+                                <a href="https://twitter.com/JDCMPT350Projec" class="twitter-follow-button" data-size="large" data-show-screen-name="true" data-show-count="true" data-lang="en"></a>
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+            </footer>
+        </div>
+        
+        
+    </body>
 </html>
 
