@@ -21,6 +21,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
+
+
 @WebServlet(urlPatterns = {"/servlet"})
 public class Servlet extends HttpServlet {
     
@@ -99,6 +101,7 @@ public class Servlet extends HttpServlet {
         else if (5==status){
             int itemid = Integer.parseInt(request.getParameter("ItemId"));
             int quantitySelected = Integer.parseInt(request.getParameter("quantity"));
+            
             this.updateItemQuantity(itemid, quantitySelected);
         }
         else if(6==status){
@@ -228,10 +231,21 @@ public class Servlet extends HttpServlet {
         this.getConnection();
         String mainCategory=Integer.toString(main);
         String subCategory=Integer.toString(sub);
-        final String query = "SELECT * FROM Items WHERE MainCategory=? and SubCategory=?";
-        final PreparedStatement ps = this.conn.prepareStatement(query);
-        ps.setString(1, mainCategory);
-        ps.setString(2, subCategory);
+        final String query;
+        final PreparedStatement ps;
+        if(sub == 0)
+        {
+            query = "SELECT * FROM Items WHERE MainCategory=?";
+            ps = this.conn.prepareStatement(query);
+            ps.setString(1, mainCategory);
+        }
+        else
+        {
+            query = "SELECT * FROM Items WHERE MainCategory=? and SubCategory=?";
+            ps = this.conn.prepareStatement(query);
+            ps.setString(1, mainCategory);
+            ps.setString(2, subCategory);
+        }
         ps.executeQuery();
         ResultSet rs = ps.getResultSet();
         //<table data-role="table" id="movie-table-custom" data-mode="reflow" class="movie-list ui-responsive">
@@ -277,6 +291,7 @@ public class Servlet extends HttpServlet {
         out.println("</td>");
         out.println("</tr>");
         DecimalFormat df = new DecimalFormat("##.00");
+        int i = 0;
         while(rs.next()){
             out.println("<tr>");
             out.println("<td>");
@@ -292,13 +307,14 @@ public class Servlet extends HttpServlet {
             out.println(rs.getString("Quantity"));
             out.println("</td>");
             out.println("<td>");
-            out.println("<input type=\"number\"  id=\"quantityinput\" min=\"0\" max=\"99\" value=0>");
-            out.println("<button name='button' onclick='buyItem("+rs.getString("ItemId")+")'>Buy</button>");
+            out.println("<input type=\"number\"  id=\"quantityinput"+i+"\" min=\"0\" max=\"99\" value=0>");
+            out.println("<button name='button' onclick='buyItem("+rs.getString("itemId")+", "+i+")'>Buy</button>");
             out.println("</td>");
             out.println("</tr>");
+            i++;
         }
         out.println("</table>");
-        
+//        "+rs.getString("ItemId,"+i)+"
     }
     public void deleteItem(int ItemId){
         try{
