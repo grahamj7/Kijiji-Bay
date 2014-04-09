@@ -112,6 +112,12 @@ public class Servlet extends HttpServlet {
                 out.println('f');
             }
         }
+        else if (7==status){
+            PrintWriter out = response.getWriter();
+            String email=request.getParameter("email");
+            out.println(getPassword(email).toString());
+           
+        }
         else {
            outputResult(request, response, session);
         }
@@ -417,6 +423,23 @@ public class Servlet extends HttpServlet {
        }catch (SQLException e){
             return false;
        }
+   }
+   public String getPassword(String email){
+       String tempPass="";
+       try{
+           this.getConnection();
+           final String query = "SELECT Password FROM Users WHERE Email=?";
+           final PreparedStatement ps = this.conn.prepareStatement(query);
+           ps.setString(1, email);
+           final ResultSet result = ps.executeQuery();
+           if(result.next()){
+               tempPass = result.getString(1);
+               return tempPass;
+           }
+       }catch(SQLException e){
+           
+       }
+       return tempPass;
    }
     
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -866,24 +866,26 @@ function checkPassword(password, pass)
 function onSubmit(form)
 {
     var pass = checkEmail(form.email.value);
-    if(!pass)
+
+    if(!pass || pass.trim() == '')
     {
         alert("Error: Email doesn't exist in our database");
         form.email.focus();
         return false;
     }
-
-    sendTheMail(form.email.value, pass);
-    close();
+    var success = sendTheMail(form.email.value, pass);
+    if(!success)
+        close();
+    
     return false;
 }
-function checkEmail(user)                                              // todo get users password from database
+function checkEmail(email)                                              
 {
- var email, pass;
-    for (var i = 0; i < email.length; i++)
-        if(email[i] == user)
-            return pass[i];
-    return false;
+    var url = 'http://localhost:8084/Keybay/servlet?status=7';
+    url=url+"&email="+email;
+    var responsePassword = checkUserInDB(url);
+
+    return responsePassword;
 }
 function sendTheMail(email, pass)
 {
@@ -900,7 +902,7 @@ function sendTheMail(email, pass)
         }
     };
     m.messages.send
-        (params, null, alert('Email failed'));
+        (params, function(){alert('Pass'); return true;}, function(err){alert('Email failed: '+err);return false;});
 }
 
 
